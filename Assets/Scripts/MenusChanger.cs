@@ -4,18 +4,14 @@ using System.Collections.Generic;
 
 public class MenusChanger : MonoBehaviour
 {
-    public enum ButtonNames { Undefined, NewGame, Setting, Credits, QuitGame, SoundEnable, Difficulty, Resolution, BackToMenu };
-    public enum Difficulty { Normal, Hard, Brutal };
-    public enum Resolution { low, medium, high };
-
-    public ButtonNames buttonName = ButtonNames.Undefined;
+    public CommonClass.ButtonNames buttonName = CommonClass.ButtonNames.Undefined;
 
     private static bool IsSettingShowed = false;
-    private static string LevelLoaderScene = "LevelMenus";
+    private const string LevelLoaderScene = "LevelMenus";
     private static bool SoundEnabled = true;
-    private static Difficulty CurentDificulity;
-    private static ButtonNames lastPressedButton = ButtonNames.Undefined;
-    private static Dictionary<ButtonNames, GUIText> buttons = new Dictionary<ButtonNames, GUIText>();
+    private static CommonClass.Difficulty CurentDificulity = CommonClass.Difficulty.Normal;
+    private static CommonClass.ButtonNames lastPressedButton = CommonClass.ButtonNames.Undefined;
+    private static Dictionary<CommonClass.ButtonNames, GUIText> buttons = new Dictionary<CommonClass.ButtonNames, GUIText>();
 
     public void Start()
     {
@@ -35,28 +31,28 @@ public class MenusChanger : MonoBehaviour
             print(lastPressedButton);
             switch (lastPressedButton)
             {
-                case ButtonNames.Undefined:
+                case CommonClass.ButtonNames.Undefined:
                     {
                         Debug.LogError(this.ToString() + "Is undefined button.");
                         break;
                     }
-                case ButtonNames.NewGame:
+                case CommonClass.ButtonNames.NewGame:
                     {
                         Application.LoadLevel(LevelLoaderScene);
                         break;
                     }
-                case ButtonNames.Credits:
+                case CommonClass.ButtonNames.Credits:
                     {
                         ShowCredits();
                         break;
                     }
-                case ButtonNames.QuitGame:
+                case CommonClass.ButtonNames.QuitGame:
                     {
                         OnClosing();
                         Application.Quit();
                         break;
                     }
-                case ButtonNames.Setting:
+                case CommonClass.ButtonNames.Setting:
                     {
                         if (IsSettingShowed)
                             HideSubMenus();
@@ -64,30 +60,30 @@ public class MenusChanger : MonoBehaviour
                             ShowOptions();
                         break;
                     }
-                case ButtonNames.SoundEnable:
+                case CommonClass.ButtonNames.SoundEnable:
                     {
                         if (SoundEnabled)
-                            buttons[ButtonNames.SoundEnable].text = "Off";
+                            buttons[CommonClass.ButtonNames.SoundEnable].text = "Off";
                         else
-                            buttons[ButtonNames.SoundEnable].text = "On";
+                            buttons[CommonClass.ButtonNames.SoundEnable].text = "On";
                         SoundEnabled = !SoundEnabled;
                         break;
                     }
-                case ButtonNames.Resolution:
+                case CommonClass.ButtonNames.Resolution:
                     {
                         break;
                     }
-                case ButtonNames.Difficulty:
+                case CommonClass.ButtonNames.Difficulty:
                     {
 
-                        if (CurentDificulity == Difficulty.Brutal)
-                            CurentDificulity = Difficulty.Normal;
+                        if (CurentDificulity == CommonClass.Difficulty.Brutal)
+                            CurentDificulity = CommonClass.Difficulty.Normal;
                         else
                             CurentDificulity = CurentDificulity + 1;
-                        buttons[ButtonNames.Difficulty].text = CurentDificulity.ToString();
+                        buttons[CommonClass.ButtonNames.Difficulty].text = CurentDificulity.ToString();
                         break;
                     }
-                case ButtonNames.BackToMenu:
+                case CommonClass.ButtonNames.BackToMenu:
                     {
                         HideSubMenus();
                         break;
@@ -95,7 +91,7 @@ public class MenusChanger : MonoBehaviour
             }
 
         }
-        lastPressedButton = ButtonNames.Undefined;
+        lastPressedButton = CommonClass.ButtonNames.Undefined;
     }
 
     private void ShowCredits()

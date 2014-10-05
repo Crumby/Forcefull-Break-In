@@ -4,34 +4,13 @@ using System.Collections.Generic;
 
 public class LevelMenusChanger : MonoBehaviour
 {
-    public enum LevelButtonNames { Undefined, MainMenu, Shop, Start, NextStage, PrevStage, Stage, PlanetName, PlanetAcessibility };
 
-    public LevelButtonNames buttonName = LevelButtonNames.Undefined;
+    public CommonClass.LevelButtonNames buttonName = CommonClass.LevelButtonNames.Undefined;
 
-    private static string MainMenuScene = "Menus";
+    private const string MainMenuScene = "Menus";
     private static bool IsShopShowed = false;
-    private static LevelButtonNames lastPressedButton = LevelButtonNames.Undefined;
-    private static Dictionary<LevelButtonNames, GUIText> buttons = new Dictionary<LevelButtonNames, GUIText>();
-    public static Dictionary<PlanetSettings.Planet, PlanetSettings> planets = new Dictionary<PlanetSettings.Planet, PlanetSettings>();
-    private static PlanetSettings.Planet selectedPlanet = PlanetSettings.Planet.Eurasia;
-    private static PlanetSettings.Planet SelectedPlanet
-    {
-        get { return selectedPlanet; }
-        set
-        {
-            selectedPlanet = value;
-            buttons[LevelButtonNames.PlanetName].text = selectedPlanet.ToString();
-            buttons[LevelButtonNames.Stage].text = planets[selectedPlanet].SelectedStage.ToString();
-            buttons[LevelButtonNames.PlanetAcessibility].enabled = !planets[selectedPlanet].IsLocked;
-        }
-    }
-
-
-
-    public void Update()
-    {
-
-    }
+    private static CommonClass.LevelButtonNames lastPressedButton = CommonClass.LevelButtonNames.Undefined;
+    private static Dictionary<CommonClass.LevelButtonNames, GUIText> buttons = new Dictionary<CommonClass.LevelButtonNames, GUIText>();
 
     public void Start()
     {
@@ -52,17 +31,17 @@ public class LevelMenusChanger : MonoBehaviour
             print(lastPressedButton);
             switch (lastPressedButton)
             {
-                case LevelButtonNames.Undefined:
+                case CommonClass.LevelButtonNames.Undefined:
                     {
                         Debug.LogError(this.ToString() + "Is undefined button.");
                         break;
                     }
-                case LevelButtonNames.MainMenu:
+                case CommonClass.LevelButtonNames.MainMenu:
                     {
                         Application.LoadLevel(MainMenuScene);
                         break;
                     }
-                case LevelButtonNames.Shop:
+                case CommonClass.LevelButtonNames.Shop:
                     {
                         if (IsShopShowed)
                             HideSubMenus();
@@ -70,27 +49,25 @@ public class LevelMenusChanger : MonoBehaviour
                             ShowShop();
                         break;
                     }
-                case LevelButtonNames.NextStage:
+                case CommonClass.LevelButtonNames.NextStage:
                     {
-                        planets[selectedPlanet].NextStage();
-                        buttons[LevelButtonNames.Stage].text = planets[selectedPlanet].SelectedStage.ToString();
+                        PlanetSettings.SelectedPlanet.NextStage();
                         break;
                     }
-                case LevelButtonNames.PrevStage:
+                case CommonClass.LevelButtonNames.PrevStage:
                     {
-                        planets[selectedPlanet].PrevStage();
-                        buttons[LevelButtonNames.Stage].text = planets[selectedPlanet].SelectedStage.ToString();
+                        PlanetSettings.SelectedPlanet.PrevStage();
                         break;
                     }
-                case LevelButtonNames.Start:
+                case CommonClass.LevelButtonNames.Start:
                     {
-                        planets[selectedPlanet].LoadLevel();
+                        PlanetSettings.SelectedPlanet.LoadLevel();
                         break;
                     }
             }
 
         }
-        lastPressedButton = LevelButtonNames.Undefined;
+        lastPressedButton = CommonClass.LevelButtonNames.Undefined;
     }
 
     private void ShowShop()
