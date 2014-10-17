@@ -2,44 +2,69 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class mov : MonoBehaviour
+public class PlayerMotion : MonoBehaviour
 {
 
     public float Accelaration { get; private set; }
     public float yAxis { get; private set; }
     public float zAxis { get; private set; }
-    private bool normalHeight, changeHeight;
+    private bool normalHeight = true, changeHeight = false;
 
     //only 3D
-    public float HeightLimit = 50, ForwardLimit = 600;
-    public float ForwardChange = 15, SideChange = 1;
+    public float HeightLimit, ForwardLimit;
+    public float ForwardChange, SideChange;
 
-    public float AccelerationLimit = 2, AccelerationChange = 0.2f;
-    public float RotationLimit = 0.10f, RotationChange = 0.2f;
+    public float AccelerationLimit, AccelerationChange;
+    public float RotationLimit, RotationChange;
 
     public GameObject activeTrack;
-    public static List<GameObject> tracks = new List<GameObject>();
-    public static bool Pause = false;
-    //public GameObject secondTrack;
+    public static List<GameObject> Tracks = new List<GameObject>();
+    public float MaxTracksX
+    {
+        get
+        {
+            float res = float.MinValue;
+            foreach (var tr in Tracks)
+            {
+                res = Mathf.Max(res, tr.renderer.bounds.max.x);
+            }
+            return res;
+        }
+    }
+    public float MinTracksX
+    {
+        get
+        {
+            float res = float.MaxValue;
+            foreach (var tr in Tracks)
+            {
+                res = Mathf.Min(res, tr.renderer.bounds.min.x);
+            }
+            return res;
+        }
+    }
+    //redo
+    private float signBM = 0;
+
+    public static bool Pause;
+    public GameObject Fog;
 
     //fire things
     public GameObject projectile;
     public Vector3 projectileSpawn;
+    public int CollisionDmg = 25;
 
-    public static int Score = 0;
-    public UnityEngine.UI.Text ScoreText;
-
-    // Use this for initialization
     void Start()
     {
+        Tracks.Clear();
+        Pause = false;
+        projectile.GetComponent<ProjectileMotion>().OwnerStats = this.GetComponent<Stats>();
         CameraTransformation.Player = this;
         Spawns.Player = this;
-        moverPlatform.Player = this;
+        PlatformMotion.Player = this;
         yAxis = this.transform.position.y;
         zAxis = this.transform.position.z;
         Accelaration = 0;
-        normalHeight = true;
-        changeHeight = false;
     }
 
     void Update()
@@ -47,37 +72,73 @@ public class mov : MonoBehaviour
         if (!Pause)
         {
             xAxisMove();
-            yAxisMove();
+            HooverJump();
             zAxisMove();
             fireObject();
-            ScoreText.text = Score.ToString();
         }
     }
 
-    public void SetRightActive()
+    void OnCollisionEnter(Collision collision)
     {
-        foreach (var t in mov.tracks)
+        if (collision.gameObject.GetComponent<EnemyMotion>() != null)
         {
-            if (t != activeTrack && t.transform.position.x > activeTrack.transform.position.x)
+            var stats = collision.gameObject.GetComponent<Stats>();
+            if (stats != null)
             {
-                activeTrack = t;
-                return;
+                if (stats.Shield - CollisionDmg <= 0)
+                {
+                    stats.Hp = stats.Hp + stats.Shield - CollisionDmg;
+                    stats.Shield = 0;
+                }
+                else
+                {
+                    stats.Shield = stats.Shield - CollisionDmg;
+                }
+                if (stats.Hp <= 0)
+                {
+                    this.GetComponent<Stats>().Score += stats.Score;
+                    Destroy(collision.gameObject);
+                }
             }
         }
+        else
+            Destroy(collision.gameObject);
     }
 
-    public void SetLeftActive()
+    void OnDestroy()
     {
-        foreach (var t in mov.tracks)
+        GameObject.Find("Canvas").GetComponent<InGameMenu>().GameOver();
+    }
+
+    public void SetCurrentTrackActive()
+    {
+        if (transform.collider.bounds.max.x > activeTrack.renderer.bounds.max.x)
         {
-            if (t != activeTrack && t.transform.position.x < activeTrack.transform.position.x)
+            foreach (var t in PlayerMotion.Tracks)
             {
-                activeTrack = t;
-                return;
+                if (t != activeTrack && t.transform.position.x > activeTrack.transform.position.x)
+                {
+                    activeTrack = t;
+                    break;
+                }
             }
+            //CameraTransformation.MoveCameraToTrack(activeTrack);
+        }
+        else if (transform.collider.bounds.min.x < activeTrack.renderer.bounds.min.x)
+        {
+            foreach (var t in PlayerMotion.Tracks)
+            {
+                if (t != activeTrack && t.transform.position.x < activeTrack.transform.position.x)
+                {
+                    activeTrack = t;
+                    break;
+                }
+            }
+            //CameraTransformation.MoveCameraToTrack(activeTrack);
         }
     }
 
+    [System.Obsolete("Redooo")]
     public void PauseGame(bool val)
     {
         Pause = val;
@@ -93,14 +154,14 @@ public class mov : MonoBehaviour
         }
     }
 
-    [System.Obsolete("use yAxisMove")]
-    private void yAxisMoveJump()
+
+    private void PlatformJump()
     {
         if (Input.GetButtonDown("Jump"))
         {
             normalHeight = !normalHeight;
-            //if (normalHeight)
-            //secondTrack.SetActive(false);
+            if (normalHeight)
+                Fog.SetActive(false);
             changeHeight = true;
         }
         if (changeHeight)
@@ -124,18 +185,19 @@ public class mov : MonoBehaviour
                         Camera.main.transform.position.y + 1, Camera.main.transform.position.z);
                     Camera.main.transform.Rotate(0.05f, 0, 0);
                 }
-                //else secondTrack.SetActive(true);
+                else Fog.SetActive(true);
             }
         }
 
     }
 
-    private void yAxisMove()
+    private void HooverJump()
     {
         if (!Input.GetButton("Jump"))
         {
             if (this.transform.position.y >= yAxis)
             {
+                normalHeight = true;
                 this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 2, this.transform.position.z);
                 this.transform.Rotate(0.2f, 0, 0);
             }
@@ -146,6 +208,7 @@ public class mov : MonoBehaviour
         }
         else
         {
+
             if (this.transform.position.y <= yAxis + HeightLimit)
             {
                 this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z);
@@ -153,39 +216,31 @@ public class mov : MonoBehaviour
             }
             else if (this.transform.rotation.x < 0)
             {
+                normalHeight = false;
+                Fog.SetActive(true);
                 this.transform.Rotate(0.2f, 0, 0);
             }
         }
+        if (normalHeight)
+            Fog.SetActive(false);
     }
 
-    private float xTrackMax()
+    //not implemented
+    private void GravityJump()
     {
-        float res = float.MinValue;
-        foreach (var tr in tracks)
-        {
-            res = Mathf.Max(res, tr.renderer.bounds.max.x);
-        }
-        return res;
+        PlatformJump();
+        //split ...
+        if (!changeHeight)
+            PlatformJump();
     }
 
-    private float xTrackMin()
-    {
-        float res = float.MaxValue;
-        foreach (var tr in tracks)
-        {
-            res = Mathf.Min(res, tr.renderer.bounds.min.x);
-        }
-        return res;
-    }
-
-    //remove oscilating
     private void xAxisMove()
     {
         if (Input.GetButton("Horizontal"))
             if (Input.GetAxis("Horizontal") > 0)
             {
                 var where = new Vector3(this.transform.position.x + SideChange + Accelaration, this.transform.position.y, this.transform.position.z);
-                if (xTrackMax() >= where.x + collider.bounds.size.x)
+                if (MaxTracksX >= where.x + collider.bounds.size.x)
                 {
                     this.transform.position = where;
                     if (Accelaration <= AccelerationLimit)
@@ -194,17 +249,12 @@ public class mov : MonoBehaviour
                     {
                         this.transform.Rotate(0, 0, -RotationChange);
                     }
-                    if (transform.collider.bounds.max.x > activeTrack.renderer.bounds.max.x)
-                    {
-                        SetRightActive();
-                        CameraTransformation.MoveCameraToTrack(activeTrack);
-                    }
                 }
             }
             else
             {
                 var where = new Vector3(this.transform.position.x - SideChange + Accelaration, this.transform.position.y, this.transform.position.z);
-                if (xTrackMin() <= where.x - collider.bounds.size.x)
+                if (MinTracksX <= where.x - collider.bounds.size.x)
                 {
                     this.transform.position = where;
                     if (Accelaration >= -AccelerationLimit)
@@ -212,11 +262,6 @@ public class mov : MonoBehaviour
                     if (this.transform.rotation.z <= RotationLimit)
                     {
                         this.transform.Rotate(0, 0, RotationChange);
-                    }
-                    if (transform.collider.bounds.min.x < activeTrack.renderer.bounds.min.x)
-                    {
-                        SetLeftActive();
-                        CameraTransformation.MoveCameraToTrack(activeTrack);
                     }
                 }
             }
@@ -226,7 +271,6 @@ public class mov : MonoBehaviour
         }
     }
 
-    //remove oscilations
     private void BalanceModel()
     {
         if (Accelaration < 0)
@@ -253,10 +297,22 @@ public class mov : MonoBehaviour
                     this.transform.position = where;
             }
         }
-        if (this.transform.rotation.z < 0)
-            this.transform.Rotate(0, 0, RotationChange);
-        else if (this.transform.rotation.z > 0)
-            this.transform.Rotate(0, 0, -RotationChange);
+        if (transform.rotation.z != 0)
+        {
+            float xChange = RotationChange;
+            if (this.transform.rotation.z > 0)
+                xChange = -xChange;
+            if (signBM == 0)
+                signBM = Mathf.Sign(xChange);
+            if (signBM != Mathf.Sign(xChange))
+            {
+                signBM = 0;
+                this.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0,
+                    transform.rotation.w);
+                return;
+            }
+            this.transform.Rotate(0, 0, xChange);
+        }
     }
 
     private void zAxisMove()
@@ -264,17 +320,17 @@ public class mov : MonoBehaviour
         if (Input.GetButton("Vertical"))
             if (Input.GetAxis("Vertical") > 0)
             {
-                if (CameraTransformation.activeView == CameraTransformation.CameraView.Perspective && this.transform.position.z + ForwardChange <= zAxis + ForwardLimit)
+                if (CameraTransformation.CameraMode == CameraView.Perspective && this.transform.position.z + ForwardChange <= zAxis + ForwardLimit)
                     MoveInZ(1);
-                else if (CameraTransformation.activeView == CameraTransformation.CameraView.Orthoraphic &&
+                else if (CameraTransformation.CameraMode == CameraView.Orthoraphic &&
                     this.transform.position.z <= activeTrack.renderer.bounds.max.z)
                     MoveInZ(1);
             }
             else
             {
-                if (CameraTransformation.activeView == CameraTransformation.CameraView.Perspective && this.transform.position.z - ForwardChange >= zAxis)
+                if (CameraTransformation.CameraMode == CameraView.Perspective && this.transform.position.z - ForwardChange >= zAxis)
                     MoveInZ(-1);
-                else if (CameraTransformation.activeView == CameraTransformation.CameraView.Orthoraphic &&
+                else if (CameraTransformation.CameraMode == CameraView.Orthoraphic &&
                     this.transform.position.z >= activeTrack.renderer.bounds.min.z)
                     MoveInZ(-1);
             }

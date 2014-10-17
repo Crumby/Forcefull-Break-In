@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Spawns : MonoBehaviour
 {
-    public static mov Player;
+    public static PlayerMotion Player;
     public Vector3 spwanStart;
     public GameObject[] spawnObjects;
     public bool endGame = false;
@@ -55,7 +55,7 @@ public class Spawns : MonoBehaviour
 
     private void SpawnOnAllTracks(GameObject toSpawn)
     {
-        foreach (var track in mov.tracks)
+        foreach (var track in PlayerMotion.Tracks)
             SpawnOnTrack(track, toSpawn);
     }
     //check needed
@@ -73,7 +73,7 @@ public class Spawns : MonoBehaviour
     {
         while (!endGame)
         {
-            if (Player != null && !mov.Pause)
+            if (Player != null && !PlayerMotion.Pause)
             {
                 if (Random.Range(0, 10) == 4 && !generatedPlatform)
                 {
@@ -104,7 +104,7 @@ public class Spawns : MonoBehaviour
     {
         while (!endGame)
         {
-            if (Player != null && !mov.Pause)
+            if (Player != null && !PlayerMotion.Pause)
             {
                 for (int i = 0; i <= Random.Range(2, 50); i++)
                 {

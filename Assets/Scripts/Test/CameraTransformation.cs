@@ -1,81 +1,142 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraTransformation : MonoBehaviour
+namespace UnityEngine
 {
     public enum CameraView { Perspective, Orthoraphic };
+}
 
+public class CameraTransformation : MonoBehaviour
+{
+    public static CameraView CameraMode
+    {
+        get
+        {
+            if (Camera.main.isOrthoGraphic)
+                return CameraView.Orthoraphic;
+            else
+                return CameraView.Perspective;
+        }
+        private set
+        {
+            if (value == CameraView.Orthoraphic)
+            {
+                if (!persChange)
+                {
+                    Camera.main.isOrthoGraphic = true;
+                    ortoChange = true;
+                }
+            }
+            else
+            {
+                if (!ortoChange)
+                {
+                    Camera.main.isOrthoGraphic = false;
+                    persChange = true;
+                }
+            }
+        }
+    }
     //perspective
-    private static float p_xAxis, p_yAxis = 233, p_zAxis = -1000;
-    private static float p_xRoation = 3;
-    private static float p_size = 150, p_far = 10000;
+    public Vector3 PerspectivePosition = new Vector3(0, 233, -1000);
+    private float p_xRoation = 3;
+    private float p_size = 150, p_far = 10000;
     // ortographic
-    private static float o_xAxis, o_yAxis = 450, o_zAxis = 500;
-    private static float o_size = 1000, o_far = 1000;
+    public Vector3 OrthographicPosition = new Vector3(0, 450, 500);
+    private float o_size = 1000, o_far = 1000;
 
     //Moves
-    private static bool moveToTrack = false, moveToStart = false;
-    private static float speed, angle;
+    public float CameraMargin;
+    private bool moveToTrack, moveToStart;
     private static bool ortoChange = false, persChange = false;
+    private float signMTS = 0, signMTT = 0;
 
-    public static mov Player;
-    private float signumDirection = 0;
-    public static CameraView activeView = CameraView.Perspective;
-    // Use this for initialization
+    public static PlayerMotion Player;
+
+    [System.Obsolete("Only for debug !!")]
+    public void TestCameraFlip()
+    {
+        if (CameraMode == CameraView.Orthoraphic)
+            CameraMode = CameraView.Perspective;
+        else
+            CameraMode = CameraView.Orthoraphic;
+    }
+
     void Start()
     {
+        moveToTrack = false;
+        moveToStart = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (ortoChange)
-            CameraToOrto();
+            CameraToOrto(5, 8);
         if (persChange)
-            CameraToPers();
+            CameraToPers(5, 8);
+
+        //obsolete
         if (moveToTrack)
-            moveCamera();
+            MoveToTrack(5);
+
         if (moveToStart)
-            MoveToStart();
-        if (!mov.Pause)
+            MoveToStart(2);
+
+        if (!PlayerMotion.Pause)
         {
-            xAxisMove();
-            yAxisMove();
+            zRotation(0.1f);
+            xAxisMove(5.5f);
+            yAxisMove(0.05f, 1);
         }
     }
 
-    private void moveCamera()
+    private void xAxisMove(float xChange)
     {
-        float xChange = 5;
-        if (activeView == CameraView.Orthoraphic)
+        if (Player.transform.position.x > transform.position.x + CameraMargin)
         {
-            if (Camera.main.transform.position.x > o_xAxis)
+            transform.position = new Vector3(transform.position.x + xChange,
+                transform.position.y,
+                transform.position.z);
+        }
+        else if (Player.transform.position.x < transform.position.x - CameraMargin)
+        {
+            transform.position = new Vector3(transform.position.x - xChange,
+                transform.position.y,
+                transform.position.z);
+        }
+    }
+
+    private void MoveToTrack(float xChange)
+    {
+        if (CameraMode == CameraView.Orthoraphic)
+        {
+            if (Camera.main.transform.position.x > OrthographicPosition.x)
                 xChange = -xChange;
-            if (signumDirection == 0)
-                signumDirection = Mathf.Sign(xChange);
-            if (signumDirection != Mathf.Sign(xChange))
+            if (signMTT == 0)
+                signMTT = Mathf.Sign(xChange);
+            if (signMTT != Mathf.Sign(xChange))
             {
-                signumDirection = 0;
+                signMTT = 0;
                 moveToTrack = false;
-                MoveObjectsToStart();
+
                 return;
             }
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + xChange,
                     Camera.main.transform.position.y,
                     Camera.main.transform.position.z);
-
         }
-        else if (activeView == CameraView.Perspective)
+        else if (CameraMode == CameraView.Perspective)
         {
-            if (Camera.main.transform.position.x > p_xAxis)
+            if (Camera.main.transform.position.x > PerspectivePosition.x)
                 xChange = -xChange;
-            if (signumDirection == 0)
-                signumDirection = Mathf.Sign(xChange);
-            if (signumDirection != Mathf.Sign(xChange))
+            if (signMTT == 0)
+                signMTT = Mathf.Sign(xChange);
+            if (signMTT != Mathf.Sign(xChange))
             {
-                signumDirection = 0;
+                signMTT = 0;
                 moveToTrack = false;
-                MoveObjectsToStart();
+
                 return;
             }
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + xChange,
@@ -84,76 +145,63 @@ public class CameraTransformation : MonoBehaviour
         }
     }
 
-    public void CameraFlip()
-    {
-        float speed = 5, angle = 8;
-        if (activeView == CameraView.Orthoraphic)
-        {
-            activeView = CameraView.Perspective;
-            CameraTransformation.CameraToPers(speed, angle);
-        }
-        else
-        {
-            activeView = CameraView.Orthoraphic;
-            CameraTransformation.CameraToOrto(speed, angle);
-        }
-    }
-
-    private void xAxisMove()
+    private void zRotation(float zRotation)
     {
         if (Input.GetButton("Horizontal"))
             if (Input.GetAxis("Horizontal") > 0)
             {
                 if (transform.rotation.z >= -Player.RotationLimit)
-                    Camera.main.transform.Rotate(0, 0, -0.1f);
+                    Camera.main.transform.Rotate(0, 0, -zRotation);
             }
             else
             {
                 if (transform.rotation.z <= Player.RotationLimit)
-                    Camera.main.transform.Rotate(0, 0, 0.1f);
+                    Camera.main.transform.Rotate(0, 0, zRotation);
             }
         else
         {
             if (Camera.main.transform.rotation.z < 0)
-                Camera.main.transform.Rotate(0, 0, 0.1f);
+                Camera.main.transform.Rotate(0, 0, zRotation);
             else if (Camera.main.transform.rotation.z > 0)
-                Camera.main.transform.Rotate(0, 0, -0.1f);
+                Camera.main.transform.Rotate(0, 0, -zRotation);
         }
     }
 
-    private void yAxisMove()
+    private void yAxisMove(float xRotation, float yChange)
     {
-        if (!Input.GetButton("Jump"))
+        if (CameraMode == CameraView.Perspective)
         {
-            if (Player.transform.position.y >= Player.yAxis)
+            if (!Input.GetButton("Jump"))
             {
-                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
-                                    Camera.main.transform.position.y - 1, Camera.main.transform.position.z);
-                Camera.main.transform.Rotate(-0.05f, 0, 0);
+                if (Player.transform.position.y >= Player.yAxis)
+                {
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
+                                        Camera.main.transform.position.y - yChange, Camera.main.transform.position.z);
+                    Camera.main.transform.Rotate(-xRotation, 0, 0);
+                }
             }
-        }
-        else
-        {
-            if (Player.transform.position.y <= Player.yAxis + Player.HeightLimit)
+            else
             {
-                Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
-                    Camera.main.transform.position.y + 1, Camera.main.transform.position.z);
-                Camera.main.transform.Rotate(0.05f, 0, 0);
+                if (Player.transform.position.y <= Player.yAxis + Player.HeightLimit)
+                {
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
+                        Camera.main.transform.position.y + yChange, Camera.main.transform.position.z);
+                    Camera.main.transform.Rotate(xRotation, 0, 0);
+                }
             }
         }
     }
 
     //todo somting to change x of projectiles and spawns
-    private void MoveToStart()
+    private void MoveToStart(float xChange)
     {
-        float xChange = 2;
         if (Player.activeTrack.transform.position.x > 0)
             xChange = -xChange;
-        if (signumDirection == 0)
-            signumDirection = Mathf.Sign(xChange);
-        if (signumDirection != Mathf.Sign(xChange))
+        if (signMTS == 0)
+            signMTS = Mathf.Sign(xChange);
+        if (signMTS != Mathf.Sign(xChange))
         {
-            signumDirection = 0;
+            signMTS = 0;
             moveToStart = false;
             //redo
             Spawns.leftPlatform = false;
@@ -171,77 +219,39 @@ public class CameraTransformation : MonoBehaviour
             Player.activeTrack.transform.position.z);
     }
 
-    [System.Obsolete("Only for debuging.")]
-    public void MoveAllToStart()
+    [System.Obsolete("only for debug")]
+    public void MoveToStartAll()
     {
         moveToStart = true;
     }
 
-    public static void MoveObjectsToStart()
+    //nvm dafuq
+    public void RecalculateCamera()
     {
-        moveToStart = true;
-    }
-
-    [System.Obsolete("Only for debuging.")]
-    public void MoveCameraToActivTrack()
-    {
-        MoveCameraToTrack(Player.activeTrack);
-    }
-
-    public static void MoveCameraToTrack(GameObject track)
-    {
-        RecalculateOrto(track);
-        RecalculatePers(track);
-        moveToTrack = true;
-    }
-
-    [System.Obsolete("Only for debuging.")]
-    public static void RecalculateCamera(GameObject track)
-    {
+        var track = Player.activeTrack;
         track.transform.position = new Vector3(track.transform.position.x,
             track.transform.position.y, 541.62f);
-        RecalculateOrto(track);
-        RecalculatePers(track);
-        if (activeView == CameraView.Orthoraphic)
-            Camera.main.transform.position = new Vector3(o_xAxis, o_yAxis, o_zAxis);
+        //orto
+        OrthographicPosition.x = track.transform.position.x;
+        //pers
+        PerspectivePosition.x = track.transform.position.x;
+        if (CameraMode == CameraView.Orthoraphic)
+            Camera.main.transform.position = new Vector3(OrthographicPosition.x, OrthographicPosition.y, OrthographicPosition.z);
         else
-            Camera.main.transform.position = new Vector3(p_xAxis, p_yAxis, p_zAxis);
+            Camera.main.transform.position = new Vector3(PerspectivePosition.x, PerspectivePosition.y, PerspectivePosition.z);
     }
 
-    private static void RecalculateOrto(GameObject track)
-    {
-        o_xAxis = track.transform.position.x;
-        //o_zAxis = track.transform.position.z;
-    }
-
-    //bug after changing platforms
-    private static void RecalculatePers(GameObject track)
-    {
-        p_xAxis = track.transform.position.x;
-        //p_zAxis = -2 * track.transform.position.z;
-    }
-
-    public static void CameraToPers(float speed, float angle)
-    {
-        if (!ortoChange)
-        {
-            CameraTransformation.speed = speed;
-            CameraTransformation.angle = angle;
-            persChange = true;
-        }
-    }
-
-    private void CameraToPers()
+    private void CameraToPers(float speed, float angle)
     {
         bool endTest = true;
-        if (Camera.main.transform.position.y >= p_yAxis)
+        if (Camera.main.transform.position.y >= PerspectivePosition.y)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
                 Camera.main.transform.position.y - speed,
                 Camera.main.transform.position.z);
             endTest = false;
         }
-        if (Camera.main.transform.position.z >= p_zAxis)
+        if (Camera.main.transform.position.z >= PerspectivePosition.z)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
                 Camera.main.transform.position.y,
@@ -268,27 +278,17 @@ public class CameraTransformation : MonoBehaviour
             persChange = false;
     }
 
-    public static void CameraToOrto(float speed, float angle)
-    {
-        if (!persChange)
-        {
-            CameraTransformation.speed = speed;
-            CameraTransformation.angle = angle;
-            ortoChange = true;
-        }
-    }
-
-    private void CameraToOrto()
+    private void CameraToOrto(float speed, float angle)
     {
         bool endTest = true;
-        if (Camera.main.transform.position.y < o_yAxis)
+        if (Camera.main.transform.position.y < OrthographicPosition.y)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
                 Camera.main.transform.position.y + speed,
                 Camera.main.transform.position.z);
             endTest = false;
         }
-        if (Camera.main.transform.position.z <= o_zAxis)
+        if (Camera.main.transform.position.z <= OrthographicPosition.z)
         {
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x,
                 Camera.main.transform.position.y,

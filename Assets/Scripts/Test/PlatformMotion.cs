@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class moverPlatform : MonoBehaviour
+public class PlatformMotion : MonoBehaviour
 {
 
-    public static mov Player;
+    public static PlayerMotion Player;
     private float speed = 25f;
     private float z = 541;
 
     // Use this for initialization
     void Start()
     {
-        mov.tracks.Add(gameObject);
+        PlayerMotion.Tracks.Add(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!mov.Pause)
+        if (!PlayerMotion.Pause)
         {
 
             if (Player.activeTrack != this.gameObject)
@@ -30,7 +30,7 @@ public class moverPlatform : MonoBehaviour
             }
             if (renderer.bounds.max.z < z)
             {
-                mov.tracks.Remove(gameObject);
+                PlayerMotion.Tracks.Remove(gameObject);
                 Destroy(gameObject);
                 if (Player.activeTrack.transform.position.x < transform.position.x)
                     Spawns.rightPlatform = false;
