@@ -144,11 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d954a42e4871c408d59b932b340066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 2000
   Dmg: 50
   OwnerStats: {fileID: 0}
   explosion: {fileID: 100004, guid: 9ca6cf850aef36b4091ffac241612cef, type: 2}
   bigExplosion: {fileID: 100012, guid: 3ca0d06e5dd205c4caf46612930f616b, type: 2}
+  Forward: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

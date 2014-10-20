@@ -6,8 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/main.unity
-  - enabled: 1
-    path: Assets/Scenes/tstbic.unity
-  - enabled: 1
     path: Assets/Scenes/welcomeMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/game.unity

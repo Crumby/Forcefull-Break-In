@@ -62,10 +62,7 @@ public class MenusLogic : MonoBehaviour
 
     public void LoadLevel()
     {
-        if (SelectedPlanet.PlanetName == "json")
-            Application.LoadLevel("tstbic");
-        else
-            Application.LoadLevel("main");
+            Application.LoadLevel("game");
     }
 
     public void QuitGame()
