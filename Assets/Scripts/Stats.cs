@@ -10,7 +10,10 @@ public class Stats : MonoBehaviour
         get { return hp; }
         set
         {
-            hp = value;
+            if (value >= 0)
+                hp = value;
+            else
+                hp = 0;
             if (HealthImg != null)
                 HealthImg.rectTransform.localScale = new Vector3(hp / MaxHp, 1, 1);
             if (HpText != null)
@@ -22,7 +25,10 @@ public class Stats : MonoBehaviour
         get { return shield; }
         set
         {
-            shield = value;
+            if (value >= 0)
+                shield = value;
+            else
+                shield = 0;
             if (ShieldImg != null)
                 ShieldImg.rectTransform.localScale = new Vector3(shield / MaxShield, 1, 1);
             if (ShieldText != null)

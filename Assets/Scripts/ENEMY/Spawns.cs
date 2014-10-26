@@ -34,9 +34,9 @@ public class Spawns : MonoBehaviour
     {
         if (!leftPlatform)
         {
-            var vec = new Vector3(Player.activeTrack.transform.position.x - Player.activeTrack.renderer.bounds.size.x,
-                Player.activeTrack.transform.position.y,
-                Player.activeTrack.transform.position.z + zOffset);
+            var vec = new Vector3(GameData.ActiveTrack.transform.position.x - GameData.ActiveTrack.renderer.bounds.size.x,
+                GameData.ActiveTrack.transform.position.y,
+                GameData.ActiveTrack.transform.position.z + zOffset);
             Instantiate(trackSpawn, vec, Quaternion.identity);
             leftPlatform = true;
         }
@@ -45,9 +45,9 @@ public class Spawns : MonoBehaviour
     {
         if (!rightPlatform)
         {
-            var vec = new Vector3(Player.activeTrack.transform.position.x + Player.activeTrack.renderer.bounds.size.x,
-                Player.activeTrack.transform.position.y,
-                Player.activeTrack.transform.position.z + zOffset);
+            var vec = new Vector3(GameData.ActiveTrack.transform.position.x + GameData.ActiveTrack.renderer.bounds.size.x,
+                GameData.ActiveTrack.transform.position.y,
+                GameData.ActiveTrack.transform.position.z + zOffset);
             Instantiate(trackSpawn, vec, Quaternion.identity);
             rightPlatform = true;
         }
@@ -55,7 +55,7 @@ public class Spawns : MonoBehaviour
 
     private void SpawnOnAllTracks(GameObject toSpawn)
     {
-        foreach (var track in PlayerMotion.Tracks)
+        foreach (var track in GameData.Tracks)
             SpawnOnTrack(track, toSpawn);
     }
     //check needed
@@ -73,7 +73,7 @@ public class Spawns : MonoBehaviour
     {
         while (!endGame)
         {
-            if (Player != null && !PlayerMotion.Pause)
+            if (Player != null && !GameData.PauseGame)
             {
                 if (Random.Range(0, 10) == 4 && !generatedPlatform)
                 {
@@ -81,9 +81,9 @@ public class Spawns : MonoBehaviour
                     float signum = 1;
                     if (Random.Range(1, 25437) % 2 == 1)
                         signum = -1;
-                    var vec = new Vector3(Player.activeTrack.transform.position.x + signum * Player.activeTrack.renderer.bounds.size.x,
-                Player.activeTrack.transform.position.y,
-                Player.activeTrack.transform.position.z + 4000);
+                    var vec = new Vector3(GameData.ActiveTrack.transform.position.x + signum * GameData.ActiveTrack.renderer.bounds.size.x,
+                GameData.ActiveTrack.transform.position.y,
+                GameData.ActiveTrack.transform.position.z + 4000);
                     Instantiate(trackSpawn, vec, Quaternion.identity);
                     generatedPlatform = true;
                     yield return new WaitForSeconds(wait);
@@ -104,20 +104,20 @@ public class Spawns : MonoBehaviour
     {
         while (!endGame)
         {
-            if (Player != null && !PlayerMotion.Pause)
+            if (Player != null && !GameData.PauseGame)
             {
                 for (int i = 0; i <= Random.Range(2, 50); i++)
                 {
                     float hlp = Random.Range(0.0f, 300f);
                     if (Random.Range(0, 555) % 2 == 0)
                         hlp = -hlp;
-                    var vec = new Vector3(spwanStart.x + Player.activeTrack.transform.position.x + hlp,
+                    var vec = new Vector3(spwanStart.x + GameData.ActiveTrack.transform.position.x + hlp,
                             spwanStart.y,
-                            Player.activeTrack.transform.position.z + spwanStart.z);
+                            GameData.ActiveTrack.transform.position.z + spwanStart.z);
                     var obj = (GameObject)Instantiate(spawnObjects[Random.Range(0, 15642) % spawnObjects.Length],
                         vec,
                         Quaternion.identity);
-                    obj.transform.parent = Player.activeTrack.transform;
+                    obj.transform.parent = GameData.ActiveTrack.transform;
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(waitW);

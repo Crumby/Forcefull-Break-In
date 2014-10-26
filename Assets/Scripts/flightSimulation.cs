@@ -10,7 +10,7 @@ public class flightSimulation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMotion.Pause)
+        if (!GameData.PauseGame)
         {
             if (transform.position.z < -4500)
                 transform.position = new Vector3(transform.position.x,

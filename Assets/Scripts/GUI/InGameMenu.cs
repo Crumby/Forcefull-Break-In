@@ -9,12 +9,13 @@ public class InGameMenu : MonoBehaviour
     //redoo
     public void GameOver()
     {
-        PlayerMotion.Pause = true;
+        GameData.PauseGame = true;
         StartCoroutine(EndGame());
     }
 
     IEnumerator EndGame()
     {
+        GameData.ResetData();
         EndGameText.SetActive(true);
         yield return new WaitForSeconds(5);
         MainMenu();

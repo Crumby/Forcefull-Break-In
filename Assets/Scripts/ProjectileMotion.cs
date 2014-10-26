@@ -8,14 +8,14 @@ public class ProjectileMotion : MonoBehaviour
     public int Dmg = 50;
     public Stats OwnerStats;
     public GameObject explosion, bigExplosion;
-    public bool Forward = true;
+    public bool PlayerProjectile = true;
 
     void Update()
     {
-        if (!PlayerMotion.Pause)
+        if (!GameData.PauseGame)
         {
             timeToLive -= Time.deltaTime;
-            if (Forward)
+            if (PlayerProjectile)
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
             else
                 transform.Translate(Vector3.back * speed * Time.deltaTime);
@@ -46,7 +46,10 @@ public class ProjectileMotion : MonoBehaviour
                 {
                     Destroy(Instantiate(bigExplosion, collision.contacts[0].point, Quaternion.identity), 2);
                     OwnerStats.Score += stats.Score;
-                    Destroy(collision.gameObject);
+                    if (collision.gameObject.GetComponent<PlayerMotion>() != null)
+                        GameObject.Find("Canvas").GetComponent<InGameMenu>().GameOver();
+                    else
+                        Destroy(collision.gameObject);
                 }
             }
         }

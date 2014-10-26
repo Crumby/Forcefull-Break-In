@@ -5545,6 +5545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spwanStart: {x: 0, y: 58, z: 2450}
   spawnObjects:
+  - {fileID: 100002, guid: eb7da49798ac00f43b209e0832c7c3ac, type: 2}
   - {fileID: 100002, guid: 5b9d33e8d3d615a46a3fbf1c32723c5b, type: 2}
   - {fileID: 100000, guid: 616198a41ae3bbc4abb8d4ee7cf15c5b, type: 2}
   endGame: 0
@@ -8370,7 +8371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 200
   MaxShield: 150
-  ShieldRegeneration: .0500000007
+  ShieldRegeneration: .200000003
   InitScore: 0
   ScoreText: {fileID: 556369146}
   HpText: {fileID: 985054622}
@@ -8391,13 +8392,13 @@ MonoBehaviour:
   HeightLimit: 80
   ForwardLimit: 2000
   ForwardChange: 600
-  SideChange: 300
+  SideChange: 450
   AccelerationLimit: 200
   AccelerationChange: 50
   RotationLimit: .200000003
   RotationChange: 60
-  activeTrack: {fileID: 1847286576}
-  Fog: {fileID: 689213002}
+  initTrack: {fileID: 1847286576}
+  initFog: {fileID: 689213002}
   projectile: {fileID: 100000, guid: 7f7d188a31b7bf047804375a09f0bf1d, type: 2}
   projectileSpawn: {x: 0, y: 0, z: 250}
   CollisionDmg: 25

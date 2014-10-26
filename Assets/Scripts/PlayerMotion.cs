@@ -17,37 +17,8 @@ public class PlayerMotion : MonoBehaviour
     public float AccelerationLimit, AccelerationChange;
     public float RotationLimit, RotationChange;
 
-    //public GameObject ShipWraper;
-    public GameObject activeTrack;
-    public static List<GameObject> Tracks = new List<GameObject>();
-    public static float MaxTracksX
-    {
-        get
-        {
-            float res = float.MinValue;
-            foreach (var tr in Tracks)
-            {
-                res = Mathf.Max(res, tr.renderer.bounds.max.x);
-            }
-
-            return res;
-        }
-    }
-    public static float MinTracksX
-    {
-        get
-        {
-            float res = float.MaxValue;
-            foreach (var tr in Tracks)
-            {
-                res = Mathf.Min(res, tr.renderer.bounds.min.x);
-            }
-            return res;
-        }
-    }
-
-    public static bool Pause;
-    public GameObject Fog;
+    public GameObject initTrack;
+    public GameObject initFog;
 
     //fire things
     public GameObject projectile;
@@ -56,7 +27,9 @@ public class PlayerMotion : MonoBehaviour
 
     void Start()
     {
-        Pause = false;
+        GameData.InitData(this, initTrack, initFog);
+        initFog = null;
+        initTrack = null;
         projectile.GetComponent<ProjectileMotion>().OwnerStats = this.GetComponent<Stats>();
         CameraTransformation.Player = this;
         Spawns.Player = this;
@@ -68,7 +41,7 @@ public class PlayerMotion : MonoBehaviour
 
     void Update()
     {
-        if (!Pause)
+        if (!GameData.PauseGame)
         {
             xAxisMove();
             HooverJump(200, 30);
@@ -104,44 +77,37 @@ public class PlayerMotion : MonoBehaviour
             Destroy(collision.gameObject);
     }
 
-    void OnDestroy()
-    {
-        Tracks.Clear();
-        GameObject.Find("Canvas").GetComponent<InGameMenu>().GameOver();
-    }
 
     public void SetCurrentTrackActive()
     {
-        if (transform.collider.bounds.max.x > activeTrack.renderer.bounds.max.x)
+        if (transform.collider.bounds.max.x > GameData.ActiveTrack.renderer.bounds.max.x)
         {
-            foreach (var t in PlayerMotion.Tracks)
+            foreach (var t in GameData.Tracks)
             {
-                if (t != activeTrack && t.transform.position.x > activeTrack.transform.position.x)
+                if (t != GameData.ActiveTrack && t.transform.position.x > GameData.ActiveTrack.transform.position.x)
                 {
-                    activeTrack = t;
+                    GameData.ActiveTrack = t;
                     break;
                 }
             }
-            //CameraTransformation.MoveCameraToTrack(activeTrack);
         }
-        else if (transform.collider.bounds.min.x < activeTrack.renderer.bounds.min.x)
+        else if (transform.collider.bounds.min.x < GameData.ActiveTrack.renderer.bounds.min.x)
         {
-            foreach (var t in PlayerMotion.Tracks)
+            foreach (var t in GameData.Tracks)
             {
-                if (t != activeTrack && t.transform.position.x < activeTrack.transform.position.x)
+                if (t != GameData.ActiveTrack && t.transform.position.x < GameData.ActiveTrack.transform.position.x)
                 {
-                    activeTrack = t;
+                    GameData.ActiveTrack = t;
                     break;
                 }
             }
-            //CameraTransformation.MoveCameraToTrack(activeTrack);
         }
     }
 
     [System.Obsolete("Redooo")]
     public void PauseGame(bool val)
     {
-        Pause = val;
+        GameData.PauseGame = val;
     }
 
     private void fireObject()
@@ -151,7 +117,7 @@ public class PlayerMotion : MonoBehaviour
             var hlp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x,
                 transform.position.y,
                 projectileSpawn.z + transform.position.z), Quaternion.identity);
-            hlp.transform.parent = activeTrack.transform;
+            hlp.transform.parent = GameData.ActiveTrack.transform;
         }
     }
 
@@ -162,7 +128,7 @@ public class PlayerMotion : MonoBehaviour
             {
                 normalHeight = !normalHeight;
                 if (normalHeight)
-                    Fog.SetActive(false);
+                    GameData.Fog.SetActive(false);
                 changeHeight = true;
             }
         if (changeHeight)
@@ -176,7 +142,7 @@ public class PlayerMotion : MonoBehaviour
             {
                 if (transform.position.y <= yAxis + HeightLimit)
                     transform.Translate(0, zChange * Time.deltaTime, 0, Space.World);
-                else Fog.SetActive(true);
+                else GameData.Fog.SetActive(true);
             }
         }
 
@@ -200,7 +166,6 @@ public class PlayerMotion : MonoBehaviour
             }
             else
             {
-
                 if (transform.position.y <= yAxis + HeightLimit)
                 {
                     transform.Translate(0, zChange * Time.deltaTime, 0, Space.World);
@@ -209,12 +174,12 @@ public class PlayerMotion : MonoBehaviour
                 else if (transform.rotation.x < 0)
                 {
                     normalHeight = false;
-                    Fog.SetActive(true);
+                    GameData.Fog.SetActive(true);
                     transform.Rotate(xRotation * Time.deltaTime, 0, 0, Space.Self);
                 }
             }
         if (normalHeight)
-            Fog.SetActive(false);
+            GameData.Fog.SetActive(false);
     }
 
     private void GravityJump(float zChange)
@@ -233,22 +198,30 @@ public class PlayerMotion : MonoBehaviour
         if (Input.GetButton("Horizontal"))
             if (Input.GetAxis("Horizontal") > 0)
             {
-                if (MaxTracksX >= transform.position.x + (SideChange + Accelaration) * Time.deltaTime + collider.bounds.size.x)
+                if (GameData.MaxTracksX >= transform.position.x + (SideChange + Accelaration) * Time.deltaTime + collider.bounds.size.x)
                 {
-                    transform.Translate(SideChange * Time.deltaTime, 0, 0, Space.World);
-                    if (Accelaration <= AccelerationLimit)
-                        Accelaration += AccelerationChange;
+                    if (transform.rotation.z <= 0)
+                    {
+                        transform.Translate(SideChange * Time.deltaTime, 0, 0, Space.World);
+                        if (Accelaration <= AccelerationLimit)
+                            Accelaration += AccelerationChange;
+                    }
+                    else BalanceModel();
                     if (transform.rotation.z > -RotationLimit)
                         transform.Rotate(0, 0, -RotationChange * Time.deltaTime, Space.Self);
                 }
             }
             else
             {
-                if (MinTracksX <= transform.position.x + (-SideChange + Accelaration) * Time.deltaTime - collider.bounds.size.x)
+                if (GameData.MinTracksX <= transform.position.x + (-SideChange + Accelaration) * Time.deltaTime - collider.bounds.size.x)
                 {
-                    transform.Translate(-SideChange * Time.deltaTime, 0, 0, Space.World);
-                    if (Accelaration >= -AccelerationLimit)
-                        Accelaration -= AccelerationChange;
+                    if (transform.rotation.z >= 0)
+                    {
+                        transform.Translate(-SideChange * Time.deltaTime, 0, 0, Space.World);
+                        if (Accelaration >= -AccelerationLimit)
+                            Accelaration -= AccelerationChange;
+                    }
+                    else BalanceModel();
                     if (transform.rotation.z < RotationLimit)
                         transform.Rotate(0, 0, RotationChange * Time.deltaTime, Space.Self);
                 }
@@ -265,7 +238,7 @@ public class PlayerMotion : MonoBehaviour
             if (Accelaration > 0)
                 Accelaration = 0;
             else
-                if (activeTrack.renderer.bounds.min.x <= transform.position.x + Accelaration * Time.deltaTime - collider.bounds.size.x)
+                if (GameData.ActiveTrack.renderer.bounds.min.x <= transform.position.x + Accelaration * Time.deltaTime - collider.bounds.size.x)
                     transform.Translate(Accelaration * Time.deltaTime, 0, 0, Space.World);
         }
         else if (Accelaration > 0)
@@ -274,7 +247,7 @@ public class PlayerMotion : MonoBehaviour
             if (Accelaration < 0)
                 Accelaration = 0;
             else
-                if (activeTrack.renderer.bounds.max.x >= transform.position.x + Accelaration * Time.deltaTime + collider.bounds.size.x)
+                if (GameData.ActiveTrack.renderer.bounds.max.x >= transform.position.x + Accelaration * Time.deltaTime + collider.bounds.size.x)
                     transform.Translate(Accelaration * Time.deltaTime, 0, 0, Space.World);
         }
         if (transform.rotation.z != 0)

@@ -11,28 +11,28 @@ public class PlatformMotion : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        PlayerMotion.Tracks.Add(gameObject);
+        GameData.Tracks.Add(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!PlayerMotion.Pause)
+        if (!GameData.PauseGame)
         {
 
-            if (Player.activeTrack != this.gameObject)
+            if (GameData.ActiveTrack != this.gameObject)
             {
                 transform.Translate(Vector3.back * speed * Time.deltaTime);
             }
-            else if (Player.activeTrack.transform.position.z > z)
+            else if (GameData.ActiveTrack.transform.position.z > z)
             {
                 transform.Translate(Vector3.back * speed * Time.deltaTime);
             }
             if (renderer.bounds.max.z < z)
             {
-                PlayerMotion.Tracks.Remove(gameObject);
+                GameData.Tracks.Remove(gameObject);
                 Destroy(gameObject);
-                if (Player.activeTrack.transform.position.x < transform.position.x)
+                if (GameData.ActiveTrack.transform.position.x < transform.position.x)
                     Spawns.rightPlatform = false;
                 else
                     Spawns.leftPlatform = false;

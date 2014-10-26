@@ -11,11 +11,11 @@ GameObject:
   - 33: {fileID: 3300000}
   - 136: {fileID: 13600000}
   - 23: {fileID: 2300000}
-  - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
+  - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: projectile
+  m_Name: SpinerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 46.625, z: -113.620003}
-  m_LocalScale: {x: 12.5649204, y: 3.43111086, z: 76.8968277}
+  m_LocalPosition: {x: 0, y: 54.6967239, z: -170.675308}
+  m_LocalScale: {x: 100, y: 5, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cedb241f0cffaa34e9b9c6a2d7681aae, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -73,7 +73,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!82 &8200000
 AudioSource:
@@ -144,11 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d954a42e4871c408d59b932b340066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2000
-  Dmg: 50
+  speed: 2200
+  Dmg: 100
   OwnerStats: {fileID: 0}
-  explosion: {fileID: 100004, guid: 9ca6cf850aef36b4091ffac241612cef, type: 2}
-  bigExplosion: {fileID: 100012, guid: 3ca0d06e5dd205c4caf46612930f616b, type: 2}
+  explosion: {fileID: 100012, guid: 3ca0d06e5dd205c4caf46612930f616b, type: 2}
+  bigExplosion: {fileID: 100004, guid: 9ca6cf850aef36b4091ffac241612cef, type: 2}
   PlayerProjectile: 0
 --- !u!136 &13600000
 CapsuleCollider:

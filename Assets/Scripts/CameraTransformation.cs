@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace UnityEngine
-{
-    public enum CameraView { Perspective, Orthoraphic };
-}
-
 public class CameraTransformation : MonoBehaviour
 {
     public static CameraView CameraMode
@@ -24,6 +19,8 @@ public class CameraTransformation : MonoBehaviour
                 if (!persChange)
                 {
                     Camera.main.isOrthoGraphic = true;
+                    Camera.main.transform.rotation = new Quaternion(Camera.main.transform.rotation.x,
+                        0, 0, Camera.main.transform.rotation.w);
                     ortoChange = true;
                 }
             }
@@ -82,10 +79,9 @@ public class CameraTransformation : MonoBehaviour
         if (moveToStart)
             MoveToStart(200);
 
-        if (!PlayerMotion.Pause)
+        if (!GameData.PauseGame)
         {
             zRotation(Player.RotationChange / 4);
-
             xAxisMove(Player.SideChange);
             yAxisMove(5, 100);
         }
@@ -142,7 +138,7 @@ public class CameraTransformation : MonoBehaviour
                 if (CameraTransformation.CameraMode == CameraView.Perspective && Player.transform.position.z + Player.ForwardChange <= Player.zAxis + Player.ForwardLimit)
                     transform.Translate(0, 0, Player.ForwardChange * Time.deltaTime / 2, Space.World);
                 else if (CameraTransformation.CameraMode == CameraView.Orthoraphic &&
-                    Player.transform.position.z <= Player.activeTrack.renderer.bounds.max.z)
+                    Player.transform.position.z <= GameData.ActiveTrack.renderer.bounds.max.z)
                     transform.Translate(0, 0, Player.ForwardChange * Time.deltaTime / 2, Space.World);
             }
             else
@@ -150,39 +146,40 @@ public class CameraTransformation : MonoBehaviour
                 if (CameraTransformation.CameraMode == CameraView.Perspective && Player.transform.position.z - Player.ForwardChange >= Player.zAxis)
                     transform.Translate(0, 0, -Player.ForwardChange * Time.deltaTime / 2, Space.World);
                 else if (CameraTransformation.CameraMode == CameraView.Orthoraphic &&
-                    Player.transform.position.z >= Player.activeTrack.renderer.bounds.min.z)
+                    Player.transform.position.z >= GameData.ActiveTrack.renderer.bounds.min.z)
                     transform.Translate(0, 0, -Player.ForwardChange * Time.deltaTime / 2, Space.World);
             }
     }
 
     private void zRotation(float zRotation)
     {
-        if (Input.GetButton("Horizontal"))
-            if (Input.GetAxis("Horizontal") > 0)
-            {
-                if (transform.rotation.z >= -Player.RotationLimit)
-                    Camera.main.transform.Rotate(0, 0, -zRotation * Time.deltaTime, Space.Self);
-            }
+        if (CameraMode == CameraView.Perspective)
+            if (Input.GetButton("Horizontal"))
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    if (transform.rotation.z >= -Player.RotationLimit)
+                        Camera.main.transform.Rotate(0, 0, -zRotation * Time.deltaTime, Space.Self);
+                }
+                else
+                {
+                    if (transform.rotation.z <= Player.RotationLimit)
+                        Camera.main.transform.Rotate(0, 0, zRotation * Time.deltaTime, Space.Self);
+                }
             else
             {
-                if (transform.rotation.z <= Player.RotationLimit)
-                    Camera.main.transform.Rotate(0, 0, zRotation * Time.deltaTime, Space.Self);
-            }
-        else
-        {
-            if (Camera.main.transform.rotation.z < 0)
-            {
-                Camera.main.transform.Rotate(0, 0, zRotation * Time.deltaTime, Space.Self);
-                if (Camera.main.transform.rotation.z > 0)
-                    transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0, transform.rotation.w);
-            }
-            else if (Camera.main.transform.rotation.z > 0)
-            {
-                Camera.main.transform.Rotate(0, 0, -zRotation * Time.deltaTime, Space.Self);
                 if (Camera.main.transform.rotation.z < 0)
-                    transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0, transform.rotation.w);
+                {
+                    Camera.main.transform.Rotate(0, 0, zRotation * Time.deltaTime, Space.Self);
+                    if (Camera.main.transform.rotation.z > 0)
+                        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0, transform.rotation.w);
+                }
+                else if (Camera.main.transform.rotation.z > 0)
+                {
+                    Camera.main.transform.Rotate(0, 0, -zRotation * Time.deltaTime, Space.Self);
+                    if (Camera.main.transform.rotation.z < 0)
+                        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 0, transform.rotation.w);
+                }
             }
-        }
     }
 
     private void yAxisMove(float xRotation, float yChange)
@@ -211,7 +208,7 @@ public class CameraTransformation : MonoBehaviour
     //todo somting to change x of projectiles and spawns
     private void MoveToStart(float xChange)
     {
-        if (Player.activeTrack.transform.position.x > 0)
+        if (GameData.ActiveTrack.transform.position.x > 0)
             xChange = -xChange;
         if (signMTS == 0)
             signMTS = Mathf.Sign(xChange);
@@ -226,7 +223,7 @@ public class CameraTransformation : MonoBehaviour
         }
         transform.Translate(xChange * Time.deltaTime, 0, 0, Space.World);
         Player.transform.Translate(xChange * Time.deltaTime, 0, 0);
-        Player.activeTrack.transform.Translate(xChange * Time.deltaTime, 0, 0);
+        GameData.ActiveTrack.transform.Translate(xChange * Time.deltaTime, 0, 0);
     }
 
     [System.Obsolete("only for debug")]
@@ -238,7 +235,7 @@ public class CameraTransformation : MonoBehaviour
     //nvm dafuq
     public void RecalculateCamera()
     {
-        var track = Player.activeTrack;
+        var track = GameData.ActiveTrack;
         track.transform.position = new Vector3(track.transform.position.x,
             track.transform.position.y, 541.62f);
         //orto
@@ -274,7 +271,6 @@ public class CameraTransformation : MonoBehaviour
 
         if (Camera.main.transform.eulerAngles.x < angle)
         {
-            Camera.main.isOrthoGraphic = false;
             Camera.main.rect = new Rect(0, 0, 1, 1);
             Camera.main.farClipPlane = p_far;
             Camera.main.orthographicSize = p_size;
@@ -306,7 +302,6 @@ public class CameraTransformation : MonoBehaviour
 
         if (Camera.main.transform.eulerAngles.x > angle)
         {
-            Camera.main.isOrthoGraphic = true;
             Camera.main.rect = new Rect(0, 0, 1, 2);
             Camera.main.farClipPlane = o_far;
             Camera.main.orthographicSize = o_size;
