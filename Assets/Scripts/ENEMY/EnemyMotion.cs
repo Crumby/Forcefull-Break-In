@@ -11,12 +11,13 @@ public class EnemyMotion : MonoBehaviour
     {
     }
 
-    public void Fire(GameObject projectile, Vector3 projectileSpawn)
+    public void Fire(GameObject projectile, Vector3 projectileSpawn,Vector3 pointTo)
     {
         var hlp = (GameObject)Instantiate(projectile, new Vector3(transform.position.x,
             transform.position.y,
             projectileSpawn.z), Quaternion.identity);
         hlp.transform.parent = transform.parent;
+        hlp.GetComponent<ProjectileMotion>().forward = pointTo;
     }
 
     private void MoveLeft()

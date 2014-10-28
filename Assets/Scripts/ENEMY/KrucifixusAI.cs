@@ -22,17 +22,17 @@ public class KrucifixusAI : MonoBehaviour
     {
         if (Random.Range(0, 1000) % 100 == 0)
             if (Random.Range(0, 53) % 2 == 0)
-                enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.back);
             else
-                enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.back);
 
         if (isHard)
         {
             if (Random.Range(0, 1000) % 80 == 0)
                 if (Random.Range(0, 53) % 2 == 0)
-                    enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z * 0.5f));
+                    enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z * 0.5f), Vector3.back);
                 else
-                    enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z * 0.5f));
+                    enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z * 0.5f), Vector3.back);
         }
     }
 

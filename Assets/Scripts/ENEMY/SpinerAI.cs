@@ -21,17 +21,17 @@ public class SpinerAI : MonoBehaviour
     {
         if (Random.Range(0, 1000) % 100 == 0)
             if (normalCanon_1.transform.position.z < normalCanon_2.transform.position.z)
-                enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z),Vector3.back);
             else
-                enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.back);
 
         if (isHard)
         {
             if (Random.Range(0, 1000) % 80 == 0)
                 if (normalCanon_1.transform.position.z < normalCanon_2.transform.position.z)
-                    enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                    enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.back);
                 else
-                    enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+                    enemy.Fire(projectile, normalCanon_2.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.back);
         }
     }
 

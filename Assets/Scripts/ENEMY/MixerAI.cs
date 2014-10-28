@@ -22,14 +22,15 @@ public class MixerAI : MonoBehaviour
     {
         if (isHard && Random.Range(0, 100) % 40 == 0)
         {
-            enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+
+            enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.Normalize(GameData.PlayerPossition.position - transform.position));
             if (fireRotation + 90 == 360)
                 fireRotation = 360;
             else fireRotation = (fireRotation + 90) % 360;
         }
         else if (Random.Range(0, 1000) % 100 == 0)
         {
-            enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z));
+            enemy.Fire(projectile, normalCanon_1.transform.position + new Vector3(0, 0, -collider.bounds.size.z), Vector3.Normalize(GameData.PlayerPossition.position - transform.position));
             if (fireRotation + 90 == 360)
                 fireRotation = 360;
             else fireRotation = (fireRotation + 90) % 360;

@@ -8,17 +8,14 @@ public class ProjectileMotion : MonoBehaviour
     public int Dmg = 50;
     public Stats OwnerStats;
     public GameObject explosion, bigExplosion;
-    public bool PlayerProjectile = true;
+    public Vector3 forward = Vector3.forward;
 
     void Update()
     {
         if (!GameData.PauseGame)
         {
             timeToLive -= Time.deltaTime;
-            if (PlayerProjectile)
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            else
-                transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(forward * speed * Time.deltaTime);
         }
         if (timeToLive <= 0)
             Destroy(this.gameObject);
