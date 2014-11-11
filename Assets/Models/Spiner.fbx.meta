@@ -1,23 +1,14 @@
 fileFormatVersion: 2
-guid: cfaf864861454f14899841121722a9e6
+guid: 63f85a59a62ee954696e2b3ce08008a3
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Camera
-    100002: Lamp
-    100004: //RootNode
-    100006: Torus
-    400000: Camera
-    400002: Lamp
-    400004: //RootNode
-    400006: Torus
-    2300000: Torus
-    2300002: //RootNode
-    3300000: Torus
-    3300002: //RootNode
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Torus
-    6400000: Torus
-    6400002: //RootNode
+    6400000: //RootNode
     9500000: //RootNode
   materials:
     importMaterials: 1
