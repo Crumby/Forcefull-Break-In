@@ -4,20 +4,26 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Sphere
-    100004: Sphere.001
+    100002: Camera
+    100004: Cube
+    100006: Point
+    100008: Sphere
+    100010: Sphere.001
     400000: //RootNode
-    400002: Sphere
-    400004: Sphere.001
-    2300000: //RootNode
+    400002: Camera
+    400004: Cube
+    400006: Point
+    400008: Sphere
+    400010: Sphere.001
+    2300000: Cube
     2300002: Sphere
     2300004: Sphere.001
-    3300000: //RootNode
+    3300000: Cube
     3300002: Sphere
     3300004: Sphere.001
-    4300000: Cube
-    4300002: Sphere.001
-    4300004: Sphere
+    4300000: Sphere.001
+    4300002: Sphere
+    4300004: Cube
     9500000: //RootNode
   materials:
     importMaterials: 1
