@@ -8,6 +8,7 @@ public class motionPlayer : MonoBehaviour
     public float forwardSpeed, horizontalSpeed, verticalSpeed;
     [Range(0.0F, 60.0F)]
     public float horizontalRotation, maxAcceleration;
+	public Transform movingObject;
     private float acceleration;
 
     // Use this for initialization
@@ -18,16 +19,16 @@ public class motionPlayer : MonoBehaviour
 
     private void moveRight(float speed)
     {
-        if (collider.bounds.max.x + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.x && acceleration >= 0)
+        if (collider.bounds.max.x + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.x && acceleration >= 0 && movingObject.rotation.z <= 0.001f)
         {
-            transform.Translate(speed * Time.deltaTime, 0, 0, Space.World);
+			movingObject.Translate(speed * Time.deltaTime, 0, 0, Space.World);
             if (acceleration < maxAcceleration)
                 acceleration += speed * Time.deltaTime;
-            if (transform.rotation.eulerAngles.z > 180 || transform.rotation.eulerAngles.z <= 0.001f)
+			if (movingObject.rotation.eulerAngles.z > 180 || movingObject.rotation.eulerAngles.z <= 0.001f)
             {
-                transform.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.Self);
-                if (transform.rotation.eulerAngles.z < 360 - horizontalRotation)
-                    transform.rotation = Quaternion.Euler(0, 0, -horizontalRotation);
+				movingObject.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.World);
+				if (movingObject.rotation.eulerAngles.z < 360 - horizontalRotation)
+					movingObject.rotation = Quaternion.Euler(0, 0, -horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -35,16 +36,16 @@ public class motionPlayer : MonoBehaviour
 
     private void moveLeft(float speed)
     {
-        if (collider.bounds.min.x - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.x && acceleration <= 0)
+        if (collider.bounds.min.x - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.x && acceleration <= 0 && movingObject.rotation.z >= -0.001f)
         {
-            transform.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
+            movingObject.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
             if (acceleration > -maxAcceleration)
                 acceleration -= speed * Time.deltaTime;
-            if (transform.rotation.eulerAngles.z < horizontalRotation)
+            if (movingObject.rotation.eulerAngles.z < horizontalRotation)
             {
-                transform.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.Self);
-                if (transform.rotation.eulerAngles.z > horizontalRotation)
-                    transform.rotation = Quaternion.Euler(0, 0, horizontalRotation);
+                movingObject.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.World);
+                if (movingObject.rotation.eulerAngles.z > horizontalRotation)
+                    movingObject.rotation = Quaternion.Euler(0, 0, horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -55,14 +56,14 @@ public class motionPlayer : MonoBehaviour
     {
         if (acceleration > 0)
         {
-            transform.Translate(horizontalSpeed * Time.deltaTime, 0, 0, Space.World);
+            movingObject.Translate(horizontalSpeed * Time.deltaTime, 0, 0, Space.World);
             acceleration -= horizontalSpeed * Time.deltaTime;
             if (acceleration < 0)
                 acceleration = 0;
         }
         else if (acceleration < 0)
         {
-            transform.Translate(-horizontalSpeed * Time.deltaTime, 0, 0, Space.World);
+            movingObject.Translate(-horizontalSpeed * Time.deltaTime, 0, 0, Space.World);
             acceleration += horizontalSpeed * Time.deltaTime;
             if (acceleration > 0)
                 acceleration = 0;
@@ -71,31 +72,31 @@ public class motionPlayer : MonoBehaviour
 
     private void balanceSides()
     {
-        if (transform.rotation.eulerAngles.z > 180)
+        if (movingObject.rotation.eulerAngles.z > 180)
         {
-            transform.Rotate(0, 0, 2 * horizontalSpeed * Time.deltaTime, Space.Self);
-            if (transform.rotation.eulerAngles.z < 180)
-                transform.rotation = Quaternion.identity;
+            movingObject.Rotate(0, 0, 2 * horizontalSpeed * Time.deltaTime, Space.World);
+            if (movingObject.rotation.eulerAngles.z < 180)
+                movingObject.rotation = Quaternion.identity;
         }
-        else if (transform.rotation.eulerAngles.z > 0.001f)
+        else if (movingObject.rotation.eulerAngles.z > 0.001f)
         {
-            transform.Rotate(0, 0, -2 * horizontalSpeed * Time.deltaTime, Space.Self);
-            if (transform.rotation.eulerAngles.z > 180)
-                transform.rotation = Quaternion.identity;
+            movingObject.Rotate(0, 0, -2 * horizontalSpeed * Time.deltaTime, Space.World);
+            if (movingObject.rotation.eulerAngles.z > 180)
+                movingObject.rotation = Quaternion.identity;
         }
     }
 
     private void moveUp(float speed)
     {
         if (collider.bounds.max.y + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.y)
-            transform.Translate(0, speed * Time.deltaTime, 0, Space.World);
+            movingObject.Translate(0, speed * Time.deltaTime, 0, Space.World);
 
     }
 
     private void moveDown(float speed)
     {
         if (collider.bounds.min.y - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.y)
-            transform.Translate(0, -speed * Time.deltaTime, 0, Space.World);
+            movingObject.Translate(0, -speed * Time.deltaTime, 0, Space.World);
     }
 
     // Update is called once per frame
@@ -103,7 +104,8 @@ public class motionPlayer : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
-            transform.Translate(0, 0, forwardSpeed * Time.deltaTime, Space.World);
+            if (movingObject.position.z > gameData.gameBounds.collider.bounds.min.z && movingObject.position.z < gameData.gameBounds.collider.bounds.max.z)
+                movingObject.Translate(0, 0, forwardSpeed * Time.deltaTime, Space.World);
             if (Input.GetButton("Horizontal"))
             {
                 if (Input.GetAxis("Horizontal") > 0) moveRight(horizontalSpeed);

@@ -4,18 +4,20 @@ using System.Collections;
 public class shipSystemsPlayer : MonoBehaviour
 {
     [Range(0.0F, 500.0F)]
-    public float shieldRegen, collisionDmg;
+    public float shieldRegen, collisionDmg,powerDrain;
     [Range(0.0F, 500.0F)]
-    public int maxHealth, maxShield;
-    public int health { get; private set; }
-    public int shield { get; private set; }
+    public int maxHealth, maxShield,maxPower;
+    public int Health { get; private set; }
+	public int Shield { get; private set; }
+	public float Power { get; set; }
     public int Score
     {
         get { return score; }
         set { score = value; scoreText.text = score.ToString(); }
     }
     private int score;
-    public UnityEngine.UI.RawImage healthTexture, shieldTexture;
+	public Transform aim;
+	public UnityEngine.UI.RawImage healthTexture, shieldTexture ,powerTexture;
     public UnityEngine.UI.Text healthText, shieldText, scoreText;
     public weaponRocketLaucher weaponModel;
     public GameObject smallExplosion, bigExplosion, shieldField;
@@ -23,48 +25,64 @@ public class shipSystemsPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        health = maxHealth;
-        shield = maxShield;
+        Health = maxHealth;
+        Shield = maxShield;
+		Power=0;
     }
+
+	private void powerDraining(){
+		if(Power>0){
+			Power-=powerDrain*Time.deltaTime;
+			if(Power<0)
+				Power=0;
+			if(Power>maxPower)
+				powerTexture.rectTransform.localScale=Vector3.one;
+			else powerTexture.rectTransform.localScale=new Vector3(Power/maxPower,1,1);
+
+		}
+	}
 
     private void shieldRegeneration()
     {
-        if (shield < maxShield)
+        if (Shield < maxShield)
         {
-            if (Mathf.CeilToInt(shieldRegen * Time.deltaTime) + shield > maxShield)
-                shield = maxShield;
-            else shield += Mathf.CeilToInt(shieldRegen * Time.deltaTime);
+            if (Mathf.CeilToInt(shieldRegen * Time.deltaTime) + Shield > maxShield)
+                Shield = maxShield;
+            else Shield += Mathf.CeilToInt(shieldRegen * Time.deltaTime);
             shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
-                shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
-            shieldText.text = shield.ToString();
+                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
+            shieldText.text = Shield.ToString();
         }
 
     }
 
     public void fire()
     {
-        weaponModel.Fire(Vector3.forward, true);
+		//weaponModel.rotation=Quaternion.LookRotation(Vector3.Normalize(weaponModel.transform.position-gameData.aimPoint));
+		weaponModel.destination=gameData.aimPoint;
+		weaponModel.Fire(Vector3.forward, true);
     }
 
     public bool recieveDmg(float dmg, Vector3 where)
     {
         Instantiate(smallExplosion, where, Quaternion.identity);
-        if (shield - dmg <= 0)
+        if (Shield - dmg <= 0)
         {
-            shield = 0;
+            Shield = 0;
             shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
-                shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
-            shieldText.text = shield.ToString();
-            health += Mathf.CeilToInt(shield - dmg);
+                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
+            shieldText.text = Shield.ToString();
+            Health += Mathf.CeilToInt(Shield - dmg);
+            if (Health <= 0) Health = 0;
             healthTexture.rectTransform.localScale = new Vector3(healthTexture.rectTransform.localScale.x,
-                health / (float)maxHealth, healthTexture.rectTransform.localScale.z);
-            healthText.text = health.ToString();
-            return health <= 0;
+                Health / (float)maxHealth, healthTexture.rectTransform.localScale.z);
+            healthText.text = Health.ToString();
+            return Health == 0;
         }
-        else shield -= Mathf.CeilToInt(dmg);
-        shieldText.text = shield.ToString();
+        else Shield -= Mathf.CeilToInt(dmg);
+        shieldText.text = Shield.ToString();
         shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
-                shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
+                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
         return false;
     }
 
@@ -76,7 +94,7 @@ public class shipSystemsPlayer : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision)
-    {
+	{Debug.Log("C"+collision.collider.transform.gameObject);
         var enemy = collision.gameObject.GetComponent<shipSystemsEnemy>();
         if (enemy != null)
         {
@@ -84,7 +102,7 @@ public class shipSystemsPlayer : MonoBehaviour
             {
                 Score += enemy.score;
             }
-        }
+		}else if(collision.gameObject.GetComponent<TerrainCollider>()!=null) destroyShip();
     }
 
 
@@ -93,10 +111,11 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
+			powerDraining();
             shieldRegeneration();
-            if (health <= 0) destroyShip();
+            if (Health <= 0) destroyShip();
             if (Input.GetButtonDown("Fire1")) fire();
-            if (shield <= 0) shieldField.SetActive(false);
+            if (Shield <= 0) shieldField.SetActive(false);
             else if (!shieldField.activeInHierarchy) shieldField.SetActive(true);
 
         }

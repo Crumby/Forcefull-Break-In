@@ -16,7 +16,8 @@ public class motionProjectile : MonoBehaviour
             var enemy = collision.gameObject.GetComponent<shipSystemsEnemy>();
             if (enemy != null)
             {
-                if (enemy.recieveDmg(destroyDmg, collision.contacts[0].point))
+				gameData.addPower=5;
+                if (enemy.recieveDmg(destroyDmg, collider.bounds.max))
                     gameData.addScore = enemy.score;
                 Destroy(gameObject);
             }
@@ -44,7 +45,11 @@ public class motionProjectile : MonoBehaviour
         if (!gameData.pausedGame)
         {
             transform.Translate(direction * forwardSpeed * Time.deltaTime);
-            if (transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
+			if (transform.position.x > gameData.playerPosition.x + gameData.aiActivation) Destroy(gameObject);
+			else if (transform.position.x < -gameData.playerPosition.x - gameData.aiActivation) Destroy(gameObject);
+			else if (transform.position.y > gameData.playerPosition.y + gameData.aiActivation) Destroy(gameObject);
+			else if (transform.position.y < -gameData.playerPosition.y - gameData.aiActivation) Destroy(gameObject);
+			else if (transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
             else if (transform.position.z <= gameData.cameraOffsite.z + gameData.playerPosition.z) Destroy(gameObject);
         }
     }

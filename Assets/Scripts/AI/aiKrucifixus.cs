@@ -61,9 +61,9 @@ public class aiKrucifixus : MonoBehaviour
     {
         if (!gameData.pausedGame && gameData.inReach(transform.position))
         {
-            ThinkMove();
-            ThinkFire();
-            ThinkChangeHeight();
+            //ThinkMove();
+            //ThinkFire();
+            //ThinkChangeHeight();
         }
     }
 }
