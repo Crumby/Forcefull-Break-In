@@ -22,7 +22,7 @@ public class aiMixer : MonoBehaviour
             for (int i = 0; i < weapons.Length; i++)
                 if (Vector3.Distance(weapons[i].transform.position, gameData.playerPosition) < Vector3.Distance(weapons[weapon].transform.position, gameData.playerPosition))
                     weapon = i;
-            weapons[weapon].rotation = Quaternion.LookRotation(Vector3.Normalize(gameData.playerPosition - weapons[weapon].transform.position));
+			weapons[weapon].destination=gameData.playerPosition;
             weapons[weapon].Fire(Vector3.forward, false);
             transform.Rotate(0, fireSpeed * Time.deltaTime, 0, Space.Self);
             if (transform.rotation.eulerAngles.y > fireRotation)

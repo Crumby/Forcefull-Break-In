@@ -23,11 +23,15 @@ public class gameData : MonoBehaviour
         get { if (player != null)return player.verticalSpeed; else return 0; }
     }
     public static float aiActivation { get; private set; }
-    public static int addScore
-    {
-        set { if (player != null)player.GetComponent<shipSystemsPlayer>().Score += value; }
-    }
-
+	public static int addScore
+	{
+		set { if (player != null)player.GetComponent<shipSystemsPlayer>().Score += value; }
+	}
+	public static int addPower
+	{
+		set { if (player != null)player.GetComponent<shipSystemsPlayer>().Power += value; }
+	}
+	public static Vector3 aimPoint { get; set;}
     private static motionPlayer player;
     public GameObject bounds;
     [Range(0.0F, 1000.0F)]
