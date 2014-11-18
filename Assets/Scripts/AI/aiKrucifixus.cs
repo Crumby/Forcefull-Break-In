@@ -15,7 +15,7 @@ public class aiKrucifixus : MonoBehaviour
     {
         if (Random.Range(0, 150) % 50 == 0)
         {
-            weapons[Random.Range(0, weapons.Length)].Fire(Vector3.back, false);
+            weapons[Random.Range(0, weapons.Length)].Fire(null,Vector3.back, false);
         }
     }
 
@@ -24,17 +24,13 @@ public class aiKrucifixus : MonoBehaviour
         if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
-            if (tmp < 0)
+            if (tmp < -0.15*gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical -= tmp;
-                //if (Random.Range(0, 50) % 4 == 0)
-                //    motionEnemy.moveVertical += Random.Range(-tmp / 2, -3 * tmp);
             }
-            else if (tmp > 0)
+            else if (tmp > 0.15 * gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical -= tmp;
-                //if (Random.Range(0, 50) % 4 == 0)
-                //    motionEnemy.moveVertical -= Random.Range(tmp / 2, 3 * tmp);
             }
 
         }
@@ -61,9 +57,9 @@ public class aiKrucifixus : MonoBehaviour
     {
         if (!gameData.pausedGame && gameData.inReach(transform.position))
         {
-            //ThinkMove();
-            //ThinkFire();
-            //ThinkChangeHeight();
+            ThinkMove();
+            ThinkFire();
+            ThinkChangeHeight();
         }
     }
 }

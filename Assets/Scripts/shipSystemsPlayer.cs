@@ -4,22 +4,21 @@ using System.Collections;
 public class shipSystemsPlayer : MonoBehaviour
 {
     [Range(0.0F, 500.0F)]
-    public float shieldRegen, collisionDmg,powerDrain;
+    public float shieldRegen, collisionDmg, powerDrain;
     [Range(0.0F, 500.0F)]
-    public int maxHealth, maxShield,maxPower;
+    public int maxHealth, maxShield, maxPower;
     public int Health { get; private set; }
-	public int Shield { get; private set; }
-	public float Power { get; set; }
+    public int Shield { get; private set; }
+    public float Power { get; set; }
     public int Score
     {
         get { return score; }
         set { score = value; scoreText.text = score.ToString(); }
     }
     private int score;
-	public Transform aim;
-	public UnityEngine.UI.RawImage healthTexture, shieldTexture ,powerTexture;
+    public UnityEngine.UI.RawImage healthTexture, shieldTexture, powerTexture;
     public UnityEngine.UI.Text healthText, shieldText, scoreText;
-    public weaponRocketLaucher weaponModel;
+    public weaponRocketLaucher[] Rockets;
     public GameObject smallExplosion, bigExplosion, shieldField;
 
     // Use this for initialization
@@ -27,20 +26,22 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         Health = maxHealth;
         Shield = maxShield;
-		Power=0;
+        Power = 0;
     }
 
-	private void powerDraining(){
-		if(Power>0){
-			Power-=powerDrain*Time.deltaTime;
-			if(Power<0)
-				Power=0;
-			if(Power>maxPower)
-				powerTexture.rectTransform.localScale=Vector3.one;
-			else powerTexture.rectTransform.localScale=new Vector3(Power/maxPower,1,1);
+    private void powerDraining()
+    {
+        if (Power > 0)
+        {
+            Power -= powerDrain * Time.deltaTime;
+            if (Power < 0)
+                Power = 0;
+            if (Power > maxPower)
+                powerTexture.rectTransform.localScale = Vector3.one;
+            else powerTexture.rectTransform.localScale = new Vector3(Power / maxPower, 1, 1);
 
-		}
-	}
+        }
+    }
 
     private void shieldRegeneration()
     {
@@ -58,9 +59,15 @@ public class shipSystemsPlayer : MonoBehaviour
 
     public void fire()
     {
-		//weaponModel.rotation=Quaternion.LookRotation(Vector3.Normalize(weaponModel.transform.position-gameData.aimPoint));
-		weaponModel.destination=gameData.aimPoint;
-		weaponModel.Fire(Vector3.forward, true);
+        foreach (var rocket in Rockets)
+        {
+            if (rocket.charged)
+            {
+                rocket.destination = gameData.aimPoint;
+                rocket.Fire(gameData.aimNavigation, Vector3.forward, true);
+                break;
+            }
+        }
     }
 
     public bool recieveDmg(float dmg, Vector3 where)
@@ -94,7 +101,7 @@ public class shipSystemsPlayer : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision)
-	{Debug.Log("C"+collision.collider.transform.gameObject);
+    {
         var enemy = collision.gameObject.GetComponent<shipSystemsEnemy>();
         if (enemy != null)
         {
@@ -102,7 +109,8 @@ public class shipSystemsPlayer : MonoBehaviour
             {
                 Score += enemy.score;
             }
-		}else if(collision.gameObject.GetComponent<TerrainCollider>()!=null) destroyShip();
+        }
+        else if (collision.gameObject.GetComponent<TerrainCollider>() != null) destroyShip();
     }
 
 
@@ -111,7 +119,7 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
-			powerDraining();
+            powerDraining();
             shieldRegeneration();
             if (Health <= 0) destroyShip();
             if (Input.GetButtonDown("Fire1")) fire();

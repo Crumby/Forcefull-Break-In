@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 54: {fileID: 5400000}
@@ -163,7 +162,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0e32c80181177c84da838b2b6bb683f2, type: 2}
+  - {fileID: 2100000, guid: 56f3cb36d0694fd409f463211e4ef09f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -205,21 +204,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.06078529, y: .64828366, z: 8.12313652}
   m_Center: {x: 0, y: .334249526, z: 0}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 82fa434ccfcc2884da5ff9868d43b88e, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,7 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 0}
+  reloadTime: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 0}
+  reloadTime: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 0}
+  reloadTime: 0
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 0}
+  reloadTime: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
