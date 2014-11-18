@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0feff811a62f43478c10c6d694f5a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalMargin: 15.8999996
-  verticalMargin: 6.9000001
+  horizontalMargin: 0
+  verticalMargin: 0
 --- !u!81 &131858935
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bb2e13ae258294599a30baeb4257fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 0
+  forwardSpeed: 30
   horizontalSpeed: 17
   verticalSpeed: 15
   horizontalRotation: 10
@@ -2114,7 +2114,7 @@ Prefab:
       objectReference: {fileID: 1177084046}
     - target: {fileID: 11400004, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
       propertyPath: forwardSpeed
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
       propertyPath: horizontalSpeed
@@ -2126,7 +2126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
       propertyPath: aiActivationOffsite
-      value: 743
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2147,6 +2147,18 @@ Prefab:
     - target: {fileID: 400030, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
+      propertyPath: bounds
+      value: 
+      objectReference: {fileID: 1639493255}
+    - target: {fileID: 11400006, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
+      propertyPath: horizontalMargin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
+      propertyPath: verticalMargin
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27eac1c54bd70ef46b4df2134dc4c1a5, type: 2}
@@ -3345,7 +3357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds: {fileID: 1639493255}
-  aiActivationOffsite: 743
+  aiActivationOffsite: 1000
 --- !u!1 &2022703097
 GameObject:
   m_ObjectHideFlags: 0
