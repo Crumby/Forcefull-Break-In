@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
   - 54: {fileID: 5400000}
@@ -76,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: -4.37113918e-08, w: 1}
-  m_LocalPosition: {x: -2.4849999, y: .00905899983, z: -5.93219995}
+  m_LocalPosition: {x: -2.17619991, y: -1.07050002, z: -1.15579998}
   m_LocalScale: {x: 1.00261593, y: 1.00261593, z: 1.66168094}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -88,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: -4.37113918e-08, w: 1}
-  m_LocalPosition: {x: 2.51169991, y: .00905899983, z: -5.93219995}
+  m_LocalPosition: {x: 2.8204999, y: -1.07050002, z: -1.15579998}
   m_LocalScale: {x: 1.00261593, y: 1.00261593, z: 1.66168094}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -105,7 +104,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: fa93a3acc11488140bd04f70803879df, type: 2}
+  - {fileID: 2100000, guid: 27f2ebc4324580e4aadfe28906473dbd, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -147,21 +146,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.5557394, y: .98495096, z: 16.9085674}
   m_Center: {x: -2.38418579e-07, y: -.036700204, z: 1.52481973}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d82cb084f72d77c4385d2b23e11180fa, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  reloadTime: .189999998
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95322df6abe662c4386e083b66e2da63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  projectilePrefab: {fileID: 100000, guid: 7d2af91662b47664fbb97404af9bdb4d, type: 2}
+  reloadTime: .189999998
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

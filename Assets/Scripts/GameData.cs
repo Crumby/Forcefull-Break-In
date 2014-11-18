@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace UnityEngine
+{
+    public enum EnemyCollision { RIGTH, LEFT, FRONT, BACK, UP, DOWN, NONE }
+}
+
 public class gameData : MonoBehaviour
 {
     public static bool pausedGame { get; set; }
@@ -23,15 +28,16 @@ public class gameData : MonoBehaviour
         get { if (player != null)return player.verticalSpeed; else return 0; }
     }
     public static float aiActivation { get; private set; }
-	public static int addScore
-	{
-		set { if (player != null)player.GetComponent<shipSystemsPlayer>().Score += value; }
-	}
-	public static int addPower
-	{
-		set { if (player != null)player.GetComponent<shipSystemsPlayer>().Power += value; }
-	}
-	public static Vector3 aimPoint { get; set;}
+    public static int addScore
+    {
+        set { if (player != null)player.GetComponent<shipSystemsPlayer>().Score += value; }
+    }
+    public static int addPower
+    {
+        set { if (player != null)player.GetComponent<shipSystemsPlayer>().Power += value; }
+    }
+    public static Vector3 aimPoint { get; set; }
+    public static Transform aimNavigation { get; set; }
     private static motionPlayer player;
     public GameObject bounds;
     [Range(0.0F, 1000.0F)]
@@ -80,6 +86,7 @@ public class gameData : MonoBehaviour
         gameBounds = null;
         Time.timeScale = 1;
         cameraOffsite = Vector3.zero;
+        aimNavigation = null;
     }
 
     public void PauseGame()

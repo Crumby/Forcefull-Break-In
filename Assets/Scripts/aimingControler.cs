@@ -27,9 +27,11 @@ public class aimingControler : MonoBehaviour {
 		{
 			GetComponent<UnityEngine.UI.RawImage>().color=Color.green;
 			gameData.aimPoint = contact.transform.position;
+            gameData.aimNavigation = contact.transform;
 		}else
 		{ 
-			gameData.aimPoint= pointToCover.position;
+			gameData.aimPoint= Vector3.zero;
+            gameData.aimNavigation = null;
 			GetComponent<UnityEngine.UI.RawImage>().color=Color.white;
 		}
 	}

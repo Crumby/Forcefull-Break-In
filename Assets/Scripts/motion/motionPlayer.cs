@@ -24,11 +24,11 @@ public class motionPlayer : MonoBehaviour
 			movingObject.Translate(speed * Time.deltaTime, 0, 0, Space.World);
             if (acceleration < maxAcceleration)
                 acceleration += speed * Time.deltaTime;
-			if (movingObject.rotation.eulerAngles.z > 180 || movingObject.rotation.eulerAngles.z <= 0.001f)
+            if (Camera.main.transform.rotation.eulerAngles.z > 180 || Camera.main.transform.rotation.eulerAngles.z <= 0.001f)
             {
-				movingObject.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.World);
-				if (movingObject.rotation.eulerAngles.z < 360 - horizontalRotation)
-					movingObject.rotation = Quaternion.Euler(0, 0, -horizontalRotation);
+                Camera.main.transform.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.World);
+                if (Camera.main.transform.rotation.eulerAngles.z < 360 - horizontalRotation)
+                    Camera.main.transform.rotation = Quaternion.Euler(0, 0, -horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -41,11 +41,11 @@ public class motionPlayer : MonoBehaviour
             movingObject.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
             if (acceleration > -maxAcceleration)
                 acceleration -= speed * Time.deltaTime;
-            if (movingObject.rotation.eulerAngles.z < horizontalRotation)
+            if (Camera.main.transform.rotation.eulerAngles.z < horizontalRotation)
             {
-                movingObject.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.World);
-                if (movingObject.rotation.eulerAngles.z > horizontalRotation)
-                    movingObject.rotation = Quaternion.Euler(0, 0, horizontalRotation);
+                Camera.main.transform.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.World);
+                if (Camera.main.transform.rotation.eulerAngles.z > horizontalRotation)
+                    Camera.main.transform.rotation = Quaternion.Euler(0, 0, horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -72,17 +72,17 @@ public class motionPlayer : MonoBehaviour
 
     private void balanceSides()
     {
-        if (movingObject.rotation.eulerAngles.z > 180)
+        if (Camera.main.transform.rotation.eulerAngles.z > 180)
         {
-            movingObject.Rotate(0, 0, 2 * horizontalSpeed * Time.deltaTime, Space.World);
-            if (movingObject.rotation.eulerAngles.z < 180)
-                movingObject.rotation = Quaternion.identity;
+            Camera.main.transform.Rotate(0, 0, 2 * horizontalSpeed * Time.deltaTime, Space.World);
+            if (Camera.main.transform.rotation.eulerAngles.z < 180)
+                Camera.main.transform.rotation = Quaternion.identity;
         }
-        else if (movingObject.rotation.eulerAngles.z > 0.001f)
+        else if (Camera.main.transform.rotation.eulerAngles.z > 0.001f)
         {
-            movingObject.Rotate(0, 0, -2 * horizontalSpeed * Time.deltaTime, Space.World);
-            if (movingObject.rotation.eulerAngles.z > 180)
-                movingObject.rotation = Quaternion.identity;
+            Camera.main.transform.Rotate(0, 0, -2 * horizontalSpeed * Time.deltaTime, Space.World);
+            if (Camera.main.transform.rotation.eulerAngles.z > 180)
+                Camera.main.transform.rotation = Quaternion.identity;
         }
     }
 

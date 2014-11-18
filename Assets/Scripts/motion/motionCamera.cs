@@ -40,8 +40,8 @@ public class motionCamera : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
-			if (gameData.playerPosition.z > gameData.gameBounds.collider.bounds.min.z && gameData.playerPosition.z < gameData.gameBounds.collider.bounds.max.z)
-            transform.Translate(Vector3.forward * gameData.forwardSpeed * Time.deltaTime,Space.World);
+            if (gameData.playerPosition.z > gameData.gameBounds.collider.bounds.min.z && gameData.playerPosition.z < gameData.gameBounds.collider.bounds.max.z)
+                transform.Translate(Vector3.forward * gameData.forwardSpeed * Time.deltaTime, Space.World);
             moveLeft(gameData.horizontalSpeed);
             moveRight(gameData.horizontalSpeed);
             moveUp(gameData.verticalSpeed);

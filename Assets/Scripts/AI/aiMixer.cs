@@ -23,10 +23,7 @@ public class aiMixer : MonoBehaviour
                 if (Vector3.Distance(weapons[i].transform.position, gameData.playerPosition) < Vector3.Distance(weapons[weapon].transform.position, gameData.playerPosition))
                     weapon = i;
 			weapons[weapon].destination=gameData.playerPosition;
-            weapons[weapon].Fire(Vector3.forward, false);
-            transform.Rotate(0, fireSpeed * Time.deltaTime, 0, Space.Self);
-            if (transform.rotation.eulerAngles.y > fireRotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, fireSpeed, transform.rotation.eulerAngles.z);
+            weapons[weapon].Fire(null,Vector3.forward, false);
         }
         else if (Random.Range(0, 100) % 80 == 0)
         {
@@ -42,15 +39,15 @@ public class aiMixer : MonoBehaviour
         if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
-            if (tmp < 0)
+            if (tmp > -0.5 * gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical -= tmp;
                 //if (Random.Range(0, 50) % 4 == 0)
                 //    motionEnemy.moveVertical += Random.Range(-tmp / 2, -3 * tmp);
             }
-            else if (tmp > 0)
+            else if (tmp < 0.5 * gameData.gameBounds.collider.bounds.size.y)
             {
-                motionEnemy.moveVertical -= tmp;
+                motionEnemy.moveVertical += tmp;
                 //if (Random.Range(0, 50) % 4 == 0)
                 //    motionEnemy.moveVertical -= Random.Range(tmp / 2, 3 * tmp);
             }
@@ -80,6 +77,12 @@ public class aiMixer : MonoBehaviour
             ThinkMove();
             ThinkFire();
             ThinkChangeHeight();
+            if (transform.rotation.eulerAngles.y < fireRotation)
+            {
+                transform.Rotate(0, fireSpeed * Time.deltaTime, 0, Space.Self);
+                if (transform.rotation.eulerAngles.y > fireRotation)
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, fireSpeed, transform.rotation.eulerAngles.z);
+            }
         }
     }
 }

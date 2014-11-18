@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: rocket_p
   m_TagString: Untagged
@@ -71,15 +71,15 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.1796999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .144558325, y: 1.15510809, z: .246049076}
   m_Children:
   - {fileID: 400006}
@@ -379,6 +379,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 21.1000004
   destroyDmg: 25.7000008
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60fee049a4014b4d996afff96fa6c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 100006}
+  timeDown: .400000006
+  timeBackward: .200000003
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
