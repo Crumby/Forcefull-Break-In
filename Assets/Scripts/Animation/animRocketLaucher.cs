@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class motionRocketLaucher : MonoBehaviour
+public class animRocketLaucher : MonoBehaviour
 {
 
     public GameObject engine;

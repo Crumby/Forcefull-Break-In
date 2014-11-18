@@ -376,7 +376,7 @@ EllipsoidParticleEmitter:
   minEmission: 35
   maxEmission: 35
   worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 0, z: 1}
+  localVelocity: {x: 0, y: 0, z: -1}
   rndVelocity: {x: 0, y: 0, z: 0}
   emitterVelocityScale: .0500000007
   tangentVelocity: {x: 0, y: 0, z: 0}
@@ -403,8 +403,8 @@ EllipsoidParticleEmitter:
   minEmission: 30
   maxEmission: 30
   worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 0, z: 1.75}
-  rndVelocity: {x: 0, y: 0, z: .25}
+  localVelocity: {x: 0, y: 0, z: -1.75}
+  rndVelocity: {x: 0, y: 0, z: -.25}
   emitterVelocityScale: .0500000007
   tangentVelocity: {x: 0, y: 0, z: 0}
   angularVelocity: 85
@@ -429,7 +429,7 @@ EllipsoidParticleEmitter:
   maxEnergy: 3
   minEmission: 15
   maxEmission: 25
-  worldVelocity: {x: 0, y: 0, z: 1}
+  worldVelocity: {x: 0, y: 0, z: -1}
   localVelocity: {x: 0, y: 0, z: 0}
   rndVelocity: {x: 0, y: 0, z: 0}
   emitterVelocityScale: .0500000007
@@ -456,7 +456,7 @@ EllipsoidParticleEmitter:
   maxEnergy: 3
   minEmission: 5
   maxEmission: 10
-  worldVelocity: {x: 0, y: 0, z: 1}
+  worldVelocity: {x: 0, y: 0, z: -1}
   localVelocity: {x: 0, y: 0, z: 0}
   rndVelocity: {x: 0, y: 0, z: 0}
   emitterVelocityScale: .0500000007
@@ -605,10 +605,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!108 &10800000
 Light:
@@ -658,6 +658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 12.3999996
   destroyDmg: 7.5
+  isPlayers: 0
+  launch: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

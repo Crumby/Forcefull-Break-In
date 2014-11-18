@@ -393,6 +393,7 @@ MonoBehaviour:
   engine: {fileID: 100006}
   timeDown: .400000006
   timeBackward: .200000003
+  navigation: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

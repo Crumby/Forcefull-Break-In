@@ -104,7 +104,7 @@ public class motionEnemy : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<motionEnemy>() == null)
+        if (collision.gameObject.GetComponent<motionEnemy>() != null)
         {
             Vector3 point = collision.contacts[0].point;
             if (point.x > transform.position.x)
@@ -119,7 +119,7 @@ public class motionEnemy : MonoBehaviour
                 colided = EnemyCollision.DOWN;
             else if (point.y < transform.position.y)
                 colided = EnemyCollision.UP;
-            Debug.Log("COLISION");
+            //Debug.Log("COLISION");
         }
         else
         {

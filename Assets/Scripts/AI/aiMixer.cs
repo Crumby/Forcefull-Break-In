@@ -5,7 +5,7 @@ public class aiMixer : MonoBehaviour
 {
     [Range(0.0F, 720.0F)]
     public float fireSpeed;
-    public weaponRocketLaucher[] weapons;
+    public weaponBlastCanon[] weapons;
     private motionEnemy motionEnemy = null;
     private float fireRotation = 0;
 
@@ -22,9 +22,7 @@ public class aiMixer : MonoBehaviour
             for (int i = 0; i < weapons.Length; i++)
                 if (Vector3.Distance(weapons[i].transform.position, gameData.playerPosition) < Vector3.Distance(weapons[weapon].transform.position, gameData.playerPosition))
                     weapon = i;
-            weapons[weapon].destination = gameData.playerPosition;
-            weapons[weapon].roateAround = true;
-            weapons[weapon].Fire(null,Vector3.forward, false);
+            weapons[weapon].Fire(gameData.playerPosition);
         }
         else if (Random.Range(0, 100) % 80 == 0)
         {

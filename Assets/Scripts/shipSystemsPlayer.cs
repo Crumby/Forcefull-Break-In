@@ -19,6 +19,8 @@ public class shipSystemsPlayer : MonoBehaviour
     public UnityEngine.UI.RawImage healthTexture, shieldTexture, powerTexture;
     public UnityEngine.UI.Text healthText, shieldText, scoreText;
     public weaponRocketLaucher[] Rockets;
+    public weaponRailGun railGun;
+    public GameObject powerWeapon;
     public GameObject smallExplosion, bigExplosion, shieldField;
 
     // Use this for initialization
@@ -57,17 +59,26 @@ public class shipSystemsPlayer : MonoBehaviour
 
     }
 
-    public void fire()
+    public void firePrimary()
     {
-        foreach (var rocket in Rockets)
+        int charg = 0;
+        for (int i = 0; i < Rockets.Length; i++)
         {
-            if (rocket.charged)
-            {
-                rocket.destination = gameData.aimPoint;
-                rocket.Fire(gameData.aimNavigation, Vector3.forward, true);
-                break;
-            }
+            if (Rockets[i].charged)
+                charg++;
         }
+        if (charg == Rockets.Length)
+            Rockets[Random.Range(0, 153) % Rockets.Length].Fire(gameData.aimNavigation, Vector3.forward, true);
+        else
+            foreach (var rocket in Rockets)
+            {
+                if (rocket.charged)
+                {
+                    //rocket.destination = gameData.aimPoint;
+                    rocket.Fire(gameData.aimNavigation, Vector3.forward, true);
+                    break;
+                }
+            }
     }
 
     public bool recieveDmg(float dmg, Vector3 where)
@@ -122,10 +133,24 @@ public class shipSystemsPlayer : MonoBehaviour
             powerDraining();
             shieldRegeneration();
             if (Health <= 0) destroyShip();
-            if (Input.GetButtonDown("Fire1")) fire();
+            if (Input.GetButtonDown("Fire1")) firePrimary();
+            if (Input.GetButton("Fire2")) fireSecondary();
+            if (Input.GetButton("Fire3")) fireUlti();
             if (Shield <= 0) shieldField.SetActive(false);
             else if (!shieldField.activeInHierarchy) shieldField.SetActive(true);
 
         }
+    }
+    private void fireUlti()
+    {
+        if (Power >= maxPower) {
+            Instantiate(powerWeapon, gameData.playerPosition, Quaternion.identity);
+            Power = 0;
+        }
+    }
+
+    private void fireSecondary()
+    {
+        railGun.Fire();
     }
 }

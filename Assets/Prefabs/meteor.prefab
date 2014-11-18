@@ -27,8 +27,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.98390007, y: 4.84779978, z: 24.2099991}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -.983160019, y: 0, z: 100.110001}
+  m_LocalScale: {x: 5.86249971, y: 5, z: 13.7421331}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,9 +68,9 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -85,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574f50bf4e96d2e4ebfdee10d194cada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  smalExplosion: {fileID: 0}
-  bugexplosion: {fileID: 0}
+  speed: 3.0999999
+  smalExplosion: {fileID: 100000, guid: b9dd5ecd168e0b54295932b5b107b983, type: 2}
+  bugexplosion: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

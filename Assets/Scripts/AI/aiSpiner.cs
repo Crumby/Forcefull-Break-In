@@ -5,6 +5,7 @@ public class aiSpiner : MonoBehaviour
 {
     [Range(0.0F, 720.0F)]
     public float rotationSpeed;
+    public weaponEnergyBlaster[] blasters;
     private motionEnemy motionEnemy = null;
 
     void Start()
@@ -14,7 +15,17 @@ public class aiSpiner : MonoBehaviour
 
     private void ThinkFire()
     {
-
+        if (Random.Range(0, 150) % 50 == 0)
+        {
+            int blster = 0;
+            for (int i = 0; i < blasters.Length; i++)
+                if (Vector3.Distance(blasters[i].transform.position, gameData.playerPosition) < Vector3.Distance(blasters[blster].transform.position, gameData.playerPosition))
+                    blster = i;
+            if(Random.Range(0,25)%5==0)
+                blasters[blster].Fire(gameData.playerPosition+Vector3.forward*Time.deltaTime*gameData.forwardSpeed);
+            else
+                blasters[blster].Fire(gameData.playerPosition);
+        }
     }
 
     private void ThinkChangeHeight()
@@ -22,17 +33,17 @@ public class aiSpiner : MonoBehaviour
         if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
-            if (tmp < 0)
+            if (tmp < -0.25 * gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical -= tmp;
                 if (Random.Range(0, 50) % 4 == 0)
-                    motionEnemy.moveVertical += Random.Range(-tmp / 2, -3*tmp);
+                    motionEnemy.moveVertical += Random.Range(-tmp / 2, -3 * tmp);
             }
-            else if (tmp > 0)
+            else if (tmp > 0.25 * gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical -= tmp;
                 if (Random.Range(0, 50) % 4 == 0)
-                    motionEnemy.moveVertical -= Random.Range(tmp / 2, 3*tmp);
+                    motionEnemy.moveVertical -= Random.Range(tmp / 2, 3 * tmp);
             }
 
         }

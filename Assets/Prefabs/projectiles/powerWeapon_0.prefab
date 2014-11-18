@@ -86,7 +86,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .40625, y: .40625, z: .40625}
   m_Children:
   - {fileID: 400002}
   - {fileID: 400000}
@@ -116,7 +116,7 @@ ParticleAnimator:
     rgba: 3670027
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: -.150000006
+  sizeGrow: -.25
   rndForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: .300000012, z: 0}
   damping: .850000024
@@ -146,7 +146,7 @@ ParticleAnimator:
     rgba: 16777215
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: -.25
+  sizeGrow: 0
   rndForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: .200000003, z: 0}
   damping: .899999976
@@ -177,7 +177,7 @@ EllipsoidParticleEmitter:
   rndRotation: 1
   Simulate in Worldspace?: 1
   m_OneShot: 0
-  m_Ellipsoid: {x: 20, y: 1, z: 10}
+  m_Ellipsoid: {x: 20, y: 5, z: 5}
   m_MinEmitterRange: 1
 --- !u!15 &1500002
 EllipsoidParticleEmitter:
@@ -189,7 +189,7 @@ EllipsoidParticleEmitter:
   m_Enabled: 1
   m_Emit: 1
   minSize: 1
-  maxSize: 1
+  maxSize: 3
   minEnergy: 3
   maxEnergy: 3
   minEmission: 40
@@ -204,7 +204,7 @@ EllipsoidParticleEmitter:
   rndRotation: 1
   Simulate in Worldspace?: 1
   m_OneShot: 0
-  m_Ellipsoid: {x: 20, y: 1, z: 10}
+  m_Ellipsoid: {x: 20, y: 5, z: 5}
   m_MinEmitterRange: 1
 --- !u!26 &2600000
 ParticleRenderer:
@@ -276,10 +276,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -291,7 +291,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40.6699982, y: 7.42999983, z: 21.6000004}
+  m_Size: {x: 103.5, y: 29.7000008, z: 30.6000004}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -301,11 +301,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a87d8cafdadec44791b806f1222421d, type: 3}
+  m_Script: {fileID: 11500000, guid: 75b06abbedf41b24ab2ab9710d27e0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 20
-  destroyDmg: 100
+  forwardSpeed: 75
+  hitScore: 65
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
