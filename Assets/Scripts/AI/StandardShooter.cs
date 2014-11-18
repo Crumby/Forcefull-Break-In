@@ -8,7 +8,7 @@ public class StandardShooter : MonoBehaviour {
 	public float fireRate;
 	private float nextFire = 0.0f;
 
-	public GameObject target;
+	private GameObject target;
 	public float minRange;
 	public float maxRange;
 	private float distance;
@@ -17,11 +17,12 @@ public class StandardShooter : MonoBehaviour {
 	{
 		target = GameObject.FindGameObjectWithTag("BullsEye");
 		distance = Vector3.Distance(transform.position,target.transform.position);
-		if((distance > minRange) && (distance < maxRange))
+		if((distance > minRange) && (distance < maxRange)) {
 			if (Time.time > nextFire) {
 				nextFire = Time.time + fireRate;
 				Instantiate (shot, shotSpawn.position, shotSpawn.rotation);
 				//audio.Play ();
+			}
 		}
 	}
 }

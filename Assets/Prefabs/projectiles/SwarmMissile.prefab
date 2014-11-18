@@ -66,7 +66,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: HomingRocket
+  m_Name: SwarmMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,9 +379,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 90
-  autoDestroyAfter: 20
+  autoDestroyAfter: 13
   explosion: {fileID: 100004, guid: 169b10ce10f4327cb9f40f6b117ed8d7, type: 2}
-  homingSensitivity: .0700000003
+  homingSensitivity: .0350000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
