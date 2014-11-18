@@ -101,7 +101,7 @@ public class motionPlayer : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         if (!gameData.pausedGame)
         {
             if (movingObject.position.z > gameData.gameBounds.collider.bounds.min.z && movingObject.position.z < gameData.gameBounds.collider.bounds.max.z)

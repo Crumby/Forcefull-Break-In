@@ -62,7 +62,15 @@ public class MenusLogic : MonoBehaviour
 
     public void LoadLevel()
     {
-            Application.LoadLevel("game");
+        switch (planetName.text)
+        {
+            case ("Karin"):
+                Application.LoadLevel("lvl1");
+                break;
+            case ("Anet"):
+                Application.LoadLevel("lvl2");
+                break;
+        }
     }
 
     public void QuitGame()

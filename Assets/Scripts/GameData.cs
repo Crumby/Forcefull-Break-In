@@ -102,4 +102,8 @@ public class gameData : MonoBehaviour
     {
         aiActivation = aiActivationOffsite;
     }
+
+    public void LoadMenu() {
+        Application.LoadLevel("welcomeMenu");
+    }
 }

@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0101000000
+  LevelsLock: 0101010101
   PlanetName: sdf
   LevelScene: 1
 --- !u!1 &437409783
@@ -3641,7 +3641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0101000000
+  LevelsLock: 0101010101
   PlanetName: sdf
   LevelScene: 1
 --- !u!1 &674146499
@@ -4387,8 +4387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0101000000
-  PlanetName: adw
+  LevelsLock: 0101010100
+  PlanetName: Anet
   LevelScene: 1
 --- !u!1 &874004636
 GameObject:
@@ -4449,15 +4449,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Crsef  s efsef
+  m_Text: 'Standa Spacek
 
-    esfesfsfsef
+    Pavel Drobek
 
-    sef sef
-
-    sefh dthd
-
-    d hrh tdhd '
+    Martin Mihalek'
 --- !u!222 &874004639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4506,7 +4502,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 888058023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -7480,8 +7476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0101000000
-  PlanetName: json
+  LevelsLock: 0101010100
+  PlanetName: Karin
   LevelScene: 1
 --- !u!114 &1438702413
 MonoBehaviour:
@@ -9051,8 +9047,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 453415315}
   m_RootOrder: 0
-  m_AnchorMin: {x: .800000012, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}
@@ -9849,7 +9845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.77731955
+  m_AspectRatio: 1.77684212
 --- !u!1 &2111355752
 GameObject:
   m_ObjectHideFlags: 0

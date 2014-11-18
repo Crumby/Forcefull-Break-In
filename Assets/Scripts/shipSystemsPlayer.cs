@@ -22,6 +22,7 @@ public class shipSystemsPlayer : MonoBehaviour
     public weaponRailGun railGun;
     public GameObject powerWeapon;
     public GameObject smallExplosion, bigExplosion, shieldField;
+    public lvl1Temp gameOver;
 
     // Use this for initialization
     void Start()
@@ -108,6 +109,7 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         Instantiate(bigExplosion, transform.position, Quaternion.identity);
         gameData.pausedGame = true;
+        gameOver.end();
         DestroyObject(gameObject);
     }
 
@@ -146,6 +148,7 @@ public class shipSystemsPlayer : MonoBehaviour
         if (Power >= maxPower) {
             Instantiate(powerWeapon, gameData.playerPosition, Quaternion.identity);
             Power = 0;
+            powerTexture.rectTransform.localScale = new Vector3(Power / maxPower, 1, 1);
         }
     }
 

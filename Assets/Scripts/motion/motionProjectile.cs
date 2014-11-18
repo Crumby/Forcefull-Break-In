@@ -57,10 +57,10 @@ public class motionProjectile : MonoBehaviour
         if (!gameData.pausedGame && launch)
         {
             transform.Translate(directionVector * forwardSpeed * Time.deltaTime);
-            if (transform.position.x > gameData.playerPosition.x + gameData.aiActivation) Destroy(gameObject);
-            else if (transform.position.x < -gameData.playerPosition.x - gameData.aiActivation) Destroy(gameObject);
-            else if (transform.position.y > gameData.playerPosition.y + gameData.aiActivation) Destroy(gameObject);
-            else if (transform.position.y < -gameData.playerPosition.y - gameData.aiActivation) Destroy(gameObject);
+            if (transform.position.x > gameData.gameBounds.collider.bounds.max.x) Destroy(gameObject);
+            else if (transform.position.x < gameData.gameBounds.collider.bounds.min.x) Destroy(gameObject);
+            else if (transform.position.y > gameData.gameBounds.collider.bounds.max.y) Destroy(gameObject);
+            else if (transform.position.y < gameData.gameBounds.collider.bounds.min.y) Destroy(gameObject);
             else if (transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
             else if (transform.position.z <= gameData.cameraOffsite.z + gameData.playerPosition.z) Destroy(gameObject);
         }

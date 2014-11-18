@@ -6,7 +6,7 @@ public class motionCamera : MonoBehaviour
 
     [Range(0.0F, 50.0F)]
     public float horizontalMargin, verticalMargin;
-
+    public lvl1Temp temp;
     // Use this for initialization
     void Start()
     {
@@ -40,8 +40,9 @@ public class motionCamera : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
-            if (gameData.playerPosition.z > gameData.gameBounds.collider.bounds.min.z && gameData.playerPosition.z < gameData.gameBounds.collider.bounds.max.z)
+            if (transform.position.z + gameData.aiActivation < gameData.gameBounds.collider.bounds.max.z)
                 transform.Translate(Vector3.forward * gameData.forwardSpeed * Time.deltaTime, Space.World);
+            else temp.endG();
             moveLeft(gameData.horizontalSpeed);
             moveRight(gameData.horizontalSpeed);
             moveUp(gameData.verticalSpeed);
