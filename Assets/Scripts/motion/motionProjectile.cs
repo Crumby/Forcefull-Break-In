@@ -14,15 +14,14 @@ public class motionProjectile : MonoBehaviour
         get { return p_launch; }
         set { p_launch = value;
         if (p_launch && destinationPoint != Vector3.zero)
-            transform.LookAt(destinationPoint);
-    
+            transform.LookAt(destinationPoint,Vector3.up);    
         }
     }
 	
 	void Start(){
 		directionVector=Vector3.forward;
         destinationPoint = Vector3.zero;
-        launch = false;
+        p_launch = false;
 	}
     
     void OnCollisionEnter(Collision collision)

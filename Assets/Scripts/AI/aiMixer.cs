@@ -22,7 +22,8 @@ public class aiMixer : MonoBehaviour
             for (int i = 0; i < weapons.Length; i++)
                 if (Vector3.Distance(weapons[i].transform.position, gameData.playerPosition) < Vector3.Distance(weapons[weapon].transform.position, gameData.playerPosition))
                     weapon = i;
-			weapons[weapon].destination=gameData.playerPosition;
+            weapons[weapon].destination = gameData.playerPosition;
+            weapons[weapon].roateAround = true;
             weapons[weapon].Fire(null,Vector3.forward, false);
         }
         else if (Random.Range(0, 100) % 80 == 0)
@@ -39,17 +40,13 @@ public class aiMixer : MonoBehaviour
         if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
-            if (tmp > -0.5 * gameData.gameBounds.collider.bounds.size.y)
-            {
-                motionEnemy.moveVertical -= tmp;
-                //if (Random.Range(0, 50) % 4 == 0)
-                //    motionEnemy.moveVertical += Random.Range(-tmp / 2, -3 * tmp);
-            }
-            else if (tmp < 0.5 * gameData.gameBounds.collider.bounds.size.y)
+            if (tmp < -0.25 * gameData.gameBounds.collider.bounds.size.y)
             {
                 motionEnemy.moveVertical += tmp;
-                //if (Random.Range(0, 50) % 4 == 0)
-                //    motionEnemy.moveVertical -= Random.Range(tmp / 2, 3 * tmp);
+            }
+            else if (tmp > 0.25 * gameData.gameBounds.collider.bounds.size.y)
+            {
+                motionEnemy.moveVertical += tmp;
             }
 
         }

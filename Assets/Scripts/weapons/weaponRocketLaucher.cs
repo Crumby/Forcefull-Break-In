@@ -10,11 +10,13 @@ public class weaponRocketLaucher : MonoBehaviour
     public bool charged { get; private set; }
     private GameObject projetile;
     private float timer;
+    public bool roateAround { get; set; }
     // Use this for initialization
     void Start()
     {
         destination = Vector3.zero;
         charged = false;
+        roateAround = false;
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class weaponRocketLaucher : MonoBehaviour
     {
         if (charged && projetile != null)
         {
-            if (navigation != null && isPlayer)
+            if (navigation != null )
                 projetile.GetComponent<motionRocketLaucher>().navigation = navigation;
             if (destination != Vector3.zero)
                 projetile.GetComponent<motionProjectile>().destinationPoint = destination;
@@ -58,6 +60,8 @@ public class weaponRocketLaucher : MonoBehaviour
                 projetile.GetComponent<motionRocketLaucher>().Fire();
             else
             {
+                if(roateAround)
+                    projetile.transform.rotation=Quaternion.Euler(0,180,0);
                 projetile.GetComponent<motionProjectile>().launch = true;
                 projetile.transform.parent = null;
             }
