@@ -8,6 +8,7 @@ namespace UnityEngine
 
 public class gameData : MonoBehaviour
 {
+
     public static bool pausedGame { get; set; }
     public static GameObject gameBounds { get; private set; }
     public static Vector3 cameraOffsite { get; private set; }
@@ -38,18 +39,29 @@ public class gameData : MonoBehaviour
     }
     public static Vector3 aimPoint { get; set; }
     public static Transform aimNavigation { get; set; }
+    public static float endOffsite { get; private set; }
     private static motionPlayer player;
+    [Range(0, 5)]
+    public float startDelay;
+    [Range(0, 500)]
+    public float endOff;
     public GameObject bounds;
     [Range(0.0F, 1000.0F)]
     public float aiActivationOffsite;
+    public inGameMenu menus;
 
 
     // Use this for initialization
     void Start()
     {
-        pausedGame = false;
+        if (startDelay != 0)
+        {
+            pausedGame = true;
+            Time.timeScale = 0;
+        }
         gameBounds = bounds;
         aiActivation = aiActivationOffsite;
+        endOffsite = endOff;
     }
 
     public static bool isChildOfPlayer(Transform who)
@@ -87,9 +99,18 @@ public class gameData : MonoBehaviour
         Time.timeScale = 1;
         cameraOffsite = Vector3.zero;
         aimNavigation = null;
+        endOffsite = 0;
+        menus.reset();
+        pausedGame = false;
     }
 
-    public void PauseGame()
+    public void pauseGame()
+    {
+        gameData.PauseGame();
+        menus.showMenu();
+    }
+
+    public static void PauseGame()
     {
         if (Time.timeScale == 0)
             Time.timeScale = 1;
@@ -100,10 +121,23 @@ public class gameData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aiActivation = aiActivationOffsite;
+        if (startDelay > 0)
+        {
+            if (Input.anyKeyDown)
+            {
+                PauseGame();
+                startDelay = 0;
+            }
+            else
+            {
+                startDelay -= 0.01f;
+                if (startDelay < 0) PauseGame();
+            }
+        }
     }
 
-    public void LoadMenu() {
+    void LoadMenu()
+    {
         Application.LoadLevel("welcomeMenu");
     }
 }

@@ -22,6 +22,8 @@ public class weaponRocketLaucher : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
+            if (GetComponentInParent<motionPlayer>() != null)
+//                Debug.Log("P" + charged + " " + timer + " " + projetile);
             if (projetile != null && projetile.GetComponent<motionProjectile>().launch)
             {
                 projetile = null;
@@ -40,7 +42,8 @@ public class weaponRocketLaucher : MonoBehaviour
         }
     }
 
-    private void addParentSpeed(bool isPlayer) {
+    private void addParentSpeed(bool isPlayer)
+    {
         if (isPlayer)
             projetile.GetComponent<motionProjectile>().forwardSpeed += GetComponentInParent<motionPlayer>().forwardSpeed;
         else
@@ -51,8 +54,10 @@ public class weaponRocketLaucher : MonoBehaviour
     {
         if (charged && projetile != null)
         {
-            if (navigation != null )
+            if (navigation != null)
                 projetile.GetComponent<animRocketLaucher>().navigation = navigation;
+            if (isPlayer)
+                projetile.transform.LookAt(gameData.aimPoint, Vector3.up);
             addParentSpeed(isPlayer);
             projetile.GetComponent<motionProjectile>().directionVector = to;
             projetile.GetComponent<motionProjectile>().isPlayers = isPlayer;
@@ -60,8 +65,8 @@ public class weaponRocketLaucher : MonoBehaviour
                 projetile.GetComponent<animRocketLaucher>().Fire();
             else
             {   //bug as hell so workaround needed
-                if(roateAround)
-                    projetile.transform.rotation=Quaternion.Euler(0,180,0);
+                if (roateAround)
+                    projetile.transform.rotation = Quaternion.Euler(0, 180, 0);
                 projetile.GetComponent<motionProjectile>().launch = true;
                 projetile.transform.parent = null;
             }

@@ -225,8 +225,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 570.619995, y: 73.0329971, z: 627.960022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 653.640015, y: 74.2259979, z: 645.209961}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400012}
@@ -344,7 +344,6 @@ MonoBehaviour:
   shot: {fileID: 100000, guid: 5d50e78cc6712ce4fbd8f7de30fba884, type: 2}
   shotSpawn: {fileID: 400002}
   fireRate: .800000012
-  target: {fileID: 0}
   minRange: 200
   maxRange: 500
 --- !u!114 &11400002
@@ -361,7 +360,6 @@ MonoBehaviour:
   shot: {fileID: 100000, guid: 5d50e78cc6712ce4fbd8f7de30fba884, type: 2}
   shotSpawn: {fileID: 400000}
   fireRate: .5
-  target: {fileID: 0}
   minRange: 200
   maxRange: 500
 --- !u!114 &11400004

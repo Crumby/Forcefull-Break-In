@@ -3,8 +3,10 @@ using System.Collections;
 
 public class shipSystemsEnemy : MonoBehaviour
 {
+    [Range(0.0F, 5.0F)]
+    public float shieldRegen;
     [Range(0.0F, 500.0F)]
-    public float shieldRegen, collisionDmg;
+    public float collisionDmg;
     [Range(0.0F, 500.0F)]
     public int maxHealth, maxShield, score;
     public int health { get; private set; }

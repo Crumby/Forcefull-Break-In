@@ -25,12 +25,12 @@ public class aiMeteor : MonoBehaviour
         if (collision.gameObject.GetComponent<shipSystemsEnemy>() != null)
         {
             var tmp = (shipSystemsEnemy)collision.gameObject.GetComponent<shipSystemsEnemy>();
-            tmp.recieveDmg(hp, tmp.transform.position);
+            tmp.recieveDmg(float.MaxValue, tmp.transform.position);
         }
         else if (collision.gameObject.GetComponent<motionPlayer>() != null)
         {
             var tmp = (shipSystemsPlayer)collision.gameObject.GetComponent<shipSystemsPlayer>();
-            tmp.recieveDmg(hp, tmp.transform.position);
+            tmp.recieveDmg(float.MaxValue, tmp.transform.position);
         }
     }
 

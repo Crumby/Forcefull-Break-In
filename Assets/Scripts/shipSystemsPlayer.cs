@@ -3,8 +3,10 @@ using System.Collections;
 
 public class shipSystemsPlayer : MonoBehaviour
 {
+    [Range(0.0F, 5.0F)]
+    public float shieldRegen; 
     [Range(0.0F, 500.0F)]
-    public float shieldRegen, collisionDmg, powerDrain;
+    public float collisionDmg, powerDrain;
     [Range(0.0F, 500.0F)]
     public int maxHealth, maxShield, maxPower;
     public int Health { get; private set; }
@@ -22,7 +24,7 @@ public class shipSystemsPlayer : MonoBehaviour
     public weaponRailGun railGun;
     public GameObject powerWeapon;
     public GameObject smallExplosion, bigExplosion, shieldField;
-    public lvl1Temp gameOver;
+    public inGameMenu menus;
 
     // Use this for initialization
     void Start()
@@ -75,7 +77,6 @@ public class shipSystemsPlayer : MonoBehaviour
             {
                 if (rocket.charged)
                 {
-                    //rocket.destination = gameData.aimPoint;
                     rocket.Fire(gameData.aimNavigation, Vector3.forward, true);
                     break;
                 }
@@ -109,7 +110,8 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         Instantiate(bigExplosion, transform.position, Quaternion.identity);
         gameData.pausedGame = true;
-        gameOver.end();
+        menus.showMenu();
+        menus.showGameOver();
         DestroyObject(gameObject);
     }
 
@@ -145,7 +147,8 @@ public class shipSystemsPlayer : MonoBehaviour
     }
     private void fireUlti()
     {
-        if (Power >= maxPower) {
+        if (Power >= maxPower)
+        {
             Instantiate(powerWeapon, gameData.playerPosition, Quaternion.identity);
             Power = 0;
             powerTexture.rectTransform.localScale = new Vector3(Power / maxPower, 1, 1);
