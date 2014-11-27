@@ -28,6 +28,17 @@ public class motionProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (isPlayers && collision.gameObject.GetComponent<basicEnemySystems>() != null && transform.parent == null)
+        {
+            var enemy = collision.gameObject.GetComponent<basicEnemySystems>();
+            if (enemy != null)
+            {
+                gameData.addPower = 5;
+                if (enemy.recieveDmg(destroyDmg, collider.bounds.max))
+                    gameData.addScore = enemy.score;
+                Destroy(gameObject);
+            }
+        }
         else if (!isPlayers && collision.gameObject.GetComponent<shipSystemsPlayer>() != null && transform.parent == null)
         {
             var player = collision.gameObject.GetComponent<shipSystemsPlayer>();

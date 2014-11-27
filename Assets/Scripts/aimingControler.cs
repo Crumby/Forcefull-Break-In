@@ -14,7 +14,7 @@ public class aimingControler : MonoBehaviour
     private void targetFinder()
     {
         RaycastHit contact;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(transform.position), out contact, gameData.aiActivation) && contact.transform.gameObject.GetComponent<motionEnemy>() != null)
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(transform.position), out contact, gameData.aiActivation) && (contact.transform.gameObject.GetComponent<motionEnemy>() != null || contact.transform.gameObject.GetComponent<basicEnemySystems>() != null))
         {
             GetComponent<UnityEngine.UI.RawImage>().color = Color.red;
             gameData.aimPoint = contact.transform.position;
