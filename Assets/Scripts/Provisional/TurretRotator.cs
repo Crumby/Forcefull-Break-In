@@ -8,7 +8,7 @@ public class TurretRotator : MonoBehaviour
 
     void Update()
     {
-        if (!gameData.pausedGame)
+        if (!gameData.pausedGame && GetComponentInParent<basicEnemySystems>() != null && GetComponentInParent<basicEnemySystems>().health > 0)
         {
             target = GameObject.FindGameObjectWithTag("BullsEye");
             if (target != null)

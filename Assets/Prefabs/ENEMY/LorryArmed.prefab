@@ -108,7 +108,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400012}
-  - 95: {fileID: 9500000}
+  - 65: {fileID: 6500000}
+  - 54: {fileID: 5400000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: LorryArmed
   m_TagString: Untagged
@@ -513,21 +515,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_Mesh: {fileID: 4300008, guid: 06e563b6b9eee4a4399b012a0dc335bd, type: 3}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
+--- !u!54 &5400000
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 06e563b6b9eee4a4399b012a0dc335bd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 2
+  m_Size: {x: 9.01000023, y: 14.9700003, z: 28.6000004}
+  m_Center: {x: 0, y: 8.60000038, z: -2.51999998}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,6 +582,24 @@ MonoBehaviour:
   launchEffect: {fileID: 100000, guid: 2b0c7163432e2d7429238591760c0840, type: 2}
   minRange: 150
   maxRange: 700
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 139
+  maxHealth: 83
+  score: 99
+  smallExplosion: {fileID: 100000, guid: 8e02e06584f51ab42986fd44c73d976e, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  endEplosionPos: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

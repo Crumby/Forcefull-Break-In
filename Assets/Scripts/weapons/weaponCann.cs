@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class weaponRailGun : MonoBehaviour
-{
+public class weaponCann : MonoBehaviour {
 
     public GameObject projectile;
+    public GameObject fireExplision;
     public Transform[] spawns;
     [HideInInspector]
     public GameObject[] bullets;
@@ -16,7 +16,7 @@ public class weaponRailGun : MonoBehaviour
     {
         get
         {
-            bullets[p_rail] = (GameObject)Instantiate(projectile, spawns[p_rail].position, Quaternion.identity);
+            bullets[p_rail] = (GameObject)Instantiate(projectile, spawns[p_rail].position, Quaternion.Euler(new Vector3(0,180,0)));
             bullets[p_rail].SetActive(false);
             bullets[p_rail].transform.parent = transform;
             p_rail = (p_rail + 1) % spawns.Length;
@@ -43,15 +43,12 @@ public class weaponRailGun : MonoBehaviour
             var tmp_1 = bullets[Rail];
             if (tmp_1 != null)
             {
-                bullets[p_rail].transform.parent = null; 
+                Instantiate(fireExplision,tmp_1.transform.position,Quaternion.identity);
+                bullets[p_rail].transform.parent = null;
                 tmp_1.SetActive(true);
                 var tmp = bullets[p_rail].GetComponent<motionProjectile>();
-                tmp.forwardSpeed += GetComponentInParent<motionPlayer>().forwardSpeed;
-                if (gameData.aimPoint != Vector3.zero)
-                    tmp.transform.LookAt(gameData.aimPoint);
-                else
-                    tmp.transform.rotation = transform.rotation;
-                tmp.isPlayers = true;
+                tmp.forwardSpeed += GetComponentInParent<motionEnemy>().forwardSpeed;
+                tmp.isPlayers = false;
                 tmp.launch = true;
             }
         }

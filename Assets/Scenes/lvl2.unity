@@ -4568,7 +4568,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 54876616}
-  - 95: {fileID: 54876617}
+  - 65: {fileID: 54876619}
+  - 54: {fileID: 54876618}
+  - 114: {fileID: 54876617}
   m_Layer: 0
   m_Name: LorryArmed
   m_TagString: Untagged
@@ -4595,23 +4597,55 @@ Transform:
   - {fileID: 1666664240}
   - {fileID: 384858003}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
---- !u!95 &54876617
-Animator:
-  serializedVersion: 3
+  m_RootOrder: 5
+--- !u!114 &54876617
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: b12dba588345da6448d6f0bf600e889e,
+  m_PrefabParentObject: {fileID: 11400004, guid: b12dba588345da6448d6f0bf600e889e,
     type: 2}
   m_PrefabInternal: {fileID: 2043955628}
   m_GameObject: {fileID: 54876615}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 06e563b6b9eee4a4399b012a0dc335bd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 139
+  maxHealth: 83
+  score: 99
+  smallExplosion: {fileID: 100000, guid: 8e02e06584f51ab42986fd44c73d976e, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  endEplosionPos: []
+--- !u!54 &54876618
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2043955628}
+  m_GameObject: {fileID: 54876615}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &54876619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2043955628}
+  m_GameObject: {fileID: 54876615}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.01000023, y: 14.9700003, z: 28.6000004}
+  m_Center: {x: 0, y: 8.60000038, z: -2.51999998}
 --- !u!1 &60673861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,7 +5297,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 94221086}
-  - 95: {fileID: 94221087}
+  - 65: {fileID: 94221089}
+  - 114: {fileID: 94221087}
+  - 54: {fileID: 94221088}
   m_Layer: 0
   m_Name: BankrArmed3
   m_TagString: Untagged
@@ -5286,22 +5322,55 @@ Transform:
   - {fileID: 665977329}
   m_Father: {fileID: 163156906}
   m_RootOrder: 2
---- !u!95 &94221087
-Animator:
-  serializedVersion: 3
+--- !u!114 &94221087
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 540980509}
   m_GameObject: {fileID: 94221085}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &94221088
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 540980509}
+  m_GameObject: {fileID: 94221085}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &94221089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 540980509}
+  m_GameObject: {fileID: 94221085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &95069723
 GameObject:
   m_ObjectHideFlags: 0
@@ -5900,7 +5969,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 150371212}
-  - 95: {fileID: 150371213}
+  - 65: {fileID: 150371215}
+  - 54: {fileID: 150371214}
+  - 114: {fileID: 150371213}
   m_Layer: 0
   m_Name: LorryArmed
   m_TagString: Untagged
@@ -5927,23 +5998,55 @@ Transform:
   - {fileID: 2111990828}
   - {fileID: 1771041594}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
---- !u!95 &150371213
-Animator:
-  serializedVersion: 3
+  m_RootOrder: 6
+--- !u!114 &150371213
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: b12dba588345da6448d6f0bf600e889e,
+  m_PrefabParentObject: {fileID: 11400004, guid: b12dba588345da6448d6f0bf600e889e,
     type: 2}
   m_PrefabInternal: {fileID: 405918151}
   m_GameObject: {fileID: 150371211}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 06e563b6b9eee4a4399b012a0dc335bd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 139
+  maxHealth: 83
+  score: 99
+  smallExplosion: {fileID: 100000, guid: 8e02e06584f51ab42986fd44c73d976e, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  endEplosionPos: []
+--- !u!54 &150371214
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 405918151}
+  m_GameObject: {fileID: 150371211}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &150371215
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 405918151}
+  m_GameObject: {fileID: 150371211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.01000023, y: 14.9700003, z: 28.6000004}
+  m_Center: {x: 0, y: 8.60000038, z: -2.51999998}
 --- !u!1 &150551632
 GameObject:
   m_ObjectHideFlags: 0
@@ -11588,7 +11691,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: b12dba588345da6448d6f0bf600e889e, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b12dba588345da6448d6f0bf600e889e, type: 2}
@@ -11955,66 +12058,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1413440865}
   m_RootOrder: 1
---- !u!1 &434879006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 434879008}
-  - 20: {fileID: 434879007}
-  m_Layer: 0
-  m_Name: Water4Example (Advanced)ReflectionSceneCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &434879007
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434879006}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
---- !u!4 &434879008
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434879006}
-  m_LocalRotation: {x: .168666616, y: .0162627175, z: .00278325984, w: -.985535085}
-  m_LocalPosition: {x: 327.253937, y: -3340.16089, z: -9790.07227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
 --- !u!1 &437230275
 GameObject:
   m_ObjectHideFlags: 0
@@ -14605,7 +14648,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 609247988}
-  - 95: {fileID: 609247989}
+  - 65: {fileID: 609247991}
+  - 114: {fileID: 609247989}
+  - 54: {fileID: 609247990}
   m_Layer: 0
   m_Name: BankrArmed2
   m_TagString: Untagged
@@ -14628,22 +14673,55 @@ Transform:
   - {fileID: 2036678986}
   m_Father: {fileID: 1399004709}
   m_RootOrder: 1
---- !u!95 &609247989
-Animator:
-  serializedVersion: 3
+--- !u!114 &609247989
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1526275737}
   m_GameObject: {fileID: 609247987}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &609247990
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1526275737}
+  m_GameObject: {fileID: 609247987}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &609247991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1526275737}
+  m_GameObject: {fileID: 609247987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &613467354
 GameObject:
   m_ObjectHideFlags: 0
@@ -14917,7 +14995,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 634365036}
-  - 95: {fileID: 634365037}
+  - 65: {fileID: 634365039}
+  - 114: {fileID: 634365037}
+  - 54: {fileID: 634365038}
   m_Layer: 0
   m_Name: BankrArmed1
   m_TagString: Untagged
@@ -14940,22 +15020,55 @@ Transform:
   - {fileID: 1359839754}
   m_Father: {fileID: 1323057570}
   m_RootOrder: 0
---- !u!95 &634365037
-Animator:
-  serializedVersion: 3
+--- !u!114 &634365037
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 904550861}
   m_GameObject: {fileID: 634365035}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &634365038
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 904550861}
+  m_GameObject: {fileID: 634365035}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &634365039
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 904550861}
+  m_GameObject: {fileID: 634365035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &638688749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15485,7 +15598,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 653951075}
-  - 95: {fileID: 653951076}
+  - 65: {fileID: 653951078}
+  - 114: {fileID: 653951076}
+  - 54: {fileID: 653951077}
   m_Layer: 0
   m_Name: BankrArmed5
   m_TagString: Untagged
@@ -15508,22 +15623,55 @@ Transform:
   - {fileID: 216076525}
   m_Father: {fileID: 163156906}
   m_RootOrder: 4
---- !u!95 &653951076
-Animator:
-  serializedVersion: 3
+--- !u!114 &653951076
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1546548401}
   m_GameObject: {fileID: 653951074}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &653951077
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546548401}
+  m_GameObject: {fileID: 653951074}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &653951078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546548401}
+  m_GameObject: {fileID: 653951074}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &655449011
 GameObject:
   m_ObjectHideFlags: 0
@@ -17065,7 +17213,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 672252237}
-  - 95: {fileID: 672252238}
+  - 65: {fileID: 672252240}
+  - 114: {fileID: 672252238}
+  - 54: {fileID: 672252239}
   m_Layer: 0
   m_Name: BankrArmed3
   m_TagString: Untagged
@@ -17088,22 +17238,55 @@ Transform:
   - {fileID: 1831350877}
   m_Father: {fileID: 1399004709}
   m_RootOrder: 2
---- !u!95 &672252238
-Animator:
-  serializedVersion: 3
+--- !u!114 &672252238
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 251165877}
   m_GameObject: {fileID: 672252236}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &672252239
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 251165877}
+  m_GameObject: {fileID: 672252236}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &672252240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 251165877}
+  m_GameObject: {fileID: 672252236}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &673525101
 GameObject:
   m_ObjectHideFlags: 0
@@ -17281,66 +17464,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 374941591}
   m_GameObject: {fileID: 676298609}
   m_Mesh: {fileID: 4300004, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
---- !u!1 &682813889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 682813891}
-  - 20: {fileID: 682813890}
-  m_Layer: 0
-  m_Name: LakeReflectionSceneCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &682813890
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 682813889}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
---- !u!4 &682813891
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 682813889}
-  m_LocalRotation: {x: .168666616, y: .0162627175, z: .00278325984, w: -.985535085}
-  m_LocalPosition: {x: 327.253937, y: -3340.16089, z: -9790.07227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &687911077
 GameObject:
   m_ObjectHideFlags: 0
@@ -17568,7 +17691,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 705388710}
-  - 95: {fileID: 705388711}
+  - 65: {fileID: 705388713}
+  - 114: {fileID: 705388711}
+  - 54: {fileID: 705388712}
   m_Layer: 0
   m_Name: BankrArmed1
   m_TagString: Untagged
@@ -17591,22 +17716,55 @@ Transform:
   - {fileID: 1838163222}
   m_Father: {fileID: 163156906}
   m_RootOrder: 0
---- !u!95 &705388711
-Animator:
-  serializedVersion: 3
+--- !u!114 &705388711
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1142015543}
   m_GameObject: {fileID: 705388709}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &705388712
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1142015543}
+  m_GameObject: {fileID: 705388709}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &705388713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1142015543}
+  m_GameObject: {fileID: 705388709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &705482278
 GameObject:
   m_ObjectHideFlags: 0
@@ -17746,7 +17904,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 721324855}
-  - 95: {fileID: 721324856}
+  - 65: {fileID: 721324858}
+  - 114: {fileID: 721324856}
+  - 54: {fileID: 721324857}
   m_Layer: 0
   m_Name: BankrArmed5
   m_TagString: Untagged
@@ -17769,22 +17929,55 @@ Transform:
   - {fileID: 2118416708}
   m_Father: {fileID: 1323057570}
   m_RootOrder: 4
---- !u!95 &721324856
-Animator:
-  serializedVersion: 3
+--- !u!114 &721324856
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 438130401}
   m_GameObject: {fileID: 721324854}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &721324857
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 438130401}
+  m_GameObject: {fileID: 721324854}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &721324858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 438130401}
+  m_GameObject: {fileID: 721324854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &722049204
 GameObject:
   m_ObjectHideFlags: 0
@@ -18715,7 +18908,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 752899982}
-  - 95: {fileID: 752899983}
+  - 65: {fileID: 752899985}
+  - 114: {fileID: 752899983}
+  - 54: {fileID: 752899984}
   m_Layer: 0
   m_Name: BankrArmed6
   m_TagString: Untagged
@@ -18738,22 +18933,55 @@ Transform:
   - {fileID: 1005018489}
   m_Father: {fileID: 163156906}
   m_RootOrder: 5
---- !u!95 &752899983
-Animator:
-  serializedVersion: 3
+--- !u!114 &752899983
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 355453663}
   m_GameObject: {fileID: 752899981}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &752899984
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 355453663}
+  m_GameObject: {fileID: 752899981}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &752899985
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 355453663}
+  m_GameObject: {fileID: 752899981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &753653216
 GameObject:
   m_ObjectHideFlags: 0
@@ -19603,7 +19831,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 807245500}
-  - 95: {fileID: 807245501}
+  - 65: {fileID: 807245503}
+  - 114: {fileID: 807245501}
+  - 54: {fileID: 807245502}
   m_Layer: 0
   m_Name: BankrArmed2
   m_TagString: Untagged
@@ -19626,22 +19856,55 @@ Transform:
   - {fileID: 1094368627}
   m_Father: {fileID: 1323057570}
   m_RootOrder: 1
---- !u!95 &807245501
-Animator:
-  serializedVersion: 3
+--- !u!114 &807245501
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 374941591}
   m_GameObject: {fileID: 807245499}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &807245502
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 374941591}
+  m_GameObject: {fileID: 807245499}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &807245503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 374941591}
+  m_GameObject: {fileID: 807245499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &812553568
 GameObject:
   m_ObjectHideFlags: 0
@@ -20065,7 +20328,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 848687753}
-  - 95: {fileID: 848687754}
+  - 65: {fileID: 848687756}
+  - 114: {fileID: 848687754}
+  - 54: {fileID: 848687755}
   m_Layer: 0
   m_Name: BankrArmed1
   m_TagString: Untagged
@@ -20088,22 +20353,55 @@ Transform:
   - {fileID: 1855890423}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 0
---- !u!95 &848687754
-Animator:
-  serializedVersion: 3
+--- !u!114 &848687754
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1579332268}
   m_GameObject: {fileID: 848687752}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &848687755
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1579332268}
+  m_GameObject: {fileID: 848687752}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &848687756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1579332268}
+  m_GameObject: {fileID: 848687752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1001 &852677126
 Prefab:
   m_ObjectHideFlags: 0
@@ -21088,7 +21386,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 923226488}
-  - 95: {fileID: 923226489}
+  - 65: {fileID: 923226491}
+  - 114: {fileID: 923226489}
+  - 54: {fileID: 923226490}
   m_Layer: 0
   m_Name: BankrArmed6
   m_TagString: Untagged
@@ -21111,22 +21411,55 @@ Transform:
   - {fileID: 961815769}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 5
---- !u!95 &923226489
-Animator:
-  serializedVersion: 3
+--- !u!114 &923226489
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1822717184}
   m_GameObject: {fileID: 923226487}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &923226490
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1822717184}
+  m_GameObject: {fileID: 923226487}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &923226491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1822717184}
+  m_GameObject: {fileID: 923226487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &924119170
 GameObject:
   m_ObjectHideFlags: 0
@@ -23411,7 +23744,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1030909813}
-  - 95: {fileID: 1030909814}
+  - 65: {fileID: 1030909816}
+  - 54: {fileID: 1030909815}
+  - 114: {fileID: 1030909814}
   m_Layer: 0
   m_Name: LorryArmed
   m_TagString: Untagged
@@ -23439,22 +23774,54 @@ Transform:
   - {fileID: 247061700}
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!95 &1030909814
-Animator:
-  serializedVersion: 3
+--- !u!114 &1030909814
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: b12dba588345da6448d6f0bf600e889e,
+  m_PrefabParentObject: {fileID: 11400004, guid: b12dba588345da6448d6f0bf600e889e,
     type: 2}
   m_PrefabInternal: {fileID: 510470454}
   m_GameObject: {fileID: 1030909812}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 06e563b6b9eee4a4399b012a0dc335bd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 139
+  maxHealth: 83
+  score: 99
+  smallExplosion: {fileID: 100000, guid: 8e02e06584f51ab42986fd44c73d976e, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  endEplosionPos: []
+--- !u!54 &1030909815
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 510470454}
+  m_GameObject: {fileID: 1030909812}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1030909816
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: b12dba588345da6448d6f0bf600e889e,
+    type: 2}
+  m_PrefabInternal: {fileID: 510470454}
+  m_GameObject: {fileID: 1030909812}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.01000023, y: 14.9700003, z: 28.6000004}
+  m_Center: {x: 0, y: 8.60000038, z: -2.51999998}
 --- !u!1 &1036057403
 GameObject:
   m_ObjectHideFlags: 0
@@ -23850,7 +24217,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1070423466}
-  - 95: {fileID: 1070423467}
+  - 65: {fileID: 1070423469}
+  - 114: {fileID: 1070423467}
+  - 54: {fileID: 1070423468}
   m_Layer: 0
   m_Name: BankrArmed7
   m_TagString: Untagged
@@ -23873,22 +24242,55 @@ Transform:
   - {fileID: 447961344}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 6
---- !u!95 &1070423467
-Animator:
-  serializedVersion: 3
+--- !u!114 &1070423467
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1564736265}
   m_GameObject: {fileID: 1070423465}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1070423468
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1564736265}
+  m_GameObject: {fileID: 1070423465}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1070423469
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1564736265}
+  m_GameObject: {fileID: 1070423465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1074156793
 GameObject:
   m_ObjectHideFlags: 0
@@ -24138,7 +24540,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1082603116}
-  - 95: {fileID: 1082603117}
+  - 65: {fileID: 1082603119}
+  - 114: {fileID: 1082603117}
+  - 54: {fileID: 1082603118}
   m_Layer: 0
   m_Name: BankrArmed4
   m_TagString: Untagged
@@ -24161,22 +24565,55 @@ Transform:
   - {fileID: 1966224224}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 3
---- !u!95 &1082603117
-Animator:
-  serializedVersion: 3
+--- !u!114 &1082603117
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1313829971}
   m_GameObject: {fileID: 1082603115}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1082603118
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1313829971}
+  m_GameObject: {fileID: 1082603115}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1082603119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1313829971}
+  m_GameObject: {fileID: 1082603115}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1084587087
 GameObject:
   m_ObjectHideFlags: 0
@@ -24433,66 +24870,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1435273802}
   m_GameObject: {fileID: 1089994159}
   m_Mesh: {fileID: 4300000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
---- !u!1 &1090393958
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1090393960}
-  - 20: {fileID: 1090393959}
-  m_Layer: 0
-  m_Name: Water4Example (Advanced)ReflectionPreview Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &1090393959
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1090393958}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
---- !u!4 &1090393960
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1090393958}
-  m_LocalRotation: {x: -.282741725, y: .489057779, z: .171259567, w: .807186365}
-  m_LocalPosition: {x: 146.171509, y: -319.526184, z: 535.927368}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1 &1091696516
 GameObject:
   m_ObjectHideFlags: 0
@@ -24795,7 +25172,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1106932626}
-  - 95: {fileID: 1106932627}
+  - 65: {fileID: 1106932629}
+  - 114: {fileID: 1106932627}
+  - 54: {fileID: 1106932628}
   m_Layer: 0
   m_Name: BankrArmed4
   m_TagString: Untagged
@@ -24818,22 +25197,55 @@ Transform:
   - {fileID: 1970559852}
   m_Father: {fileID: 1399004709}
   m_RootOrder: 3
---- !u!95 &1106932627
-Animator:
-  serializedVersion: 3
+--- !u!114 &1106932627
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 2113320902}
   m_GameObject: {fileID: 1106932625}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1106932628
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 2113320902}
+  m_GameObject: {fileID: 1106932625}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1106932629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 2113320902}
+  m_GameObject: {fileID: 1106932625}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1108352470
 GameObject:
   m_ObjectHideFlags: 0
@@ -25022,7 +25434,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1111843746}
-  - 95: {fileID: 1111843747}
+  - 65: {fileID: 1111843749}
+  - 114: {fileID: 1111843747}
+  - 54: {fileID: 1111843748}
   m_Layer: 0
   m_Name: BankrArmed2
   m_TagString: Untagged
@@ -25045,22 +25459,55 @@ Transform:
   - {fileID: 662321146}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 1
---- !u!95 &1111843747
-Animator:
-  serializedVersion: 3
+--- !u!114 &1111843747
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 887589086}
   m_GameObject: {fileID: 1111843745}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1111843748
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 887589086}
+  m_GameObject: {fileID: 1111843745}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1111843749
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 887589086}
+  m_GameObject: {fileID: 1111843745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1116438065
 GameObject:
   m_ObjectHideFlags: 0
@@ -31400,7 +31847,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1496490771}
-  - 95: {fileID: 1496490772}
+  - 65: {fileID: 1496490774}
+  - 114: {fileID: 1496490772}
+  - 54: {fileID: 1496490773}
   m_Layer: 0
   m_Name: BankrArmed3
   m_TagString: Untagged
@@ -31423,22 +31872,55 @@ Transform:
   - {fileID: 1057466081}
   m_Father: {fileID: 1323057570}
   m_RootOrder: 2
---- !u!95 &1496490772
-Animator:
-  serializedVersion: 3
+--- !u!114 &1496490772
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1571117405}
   m_GameObject: {fileID: 1496490770}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1496490773
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1571117405}
+  m_GameObject: {fileID: 1496490770}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1496490774
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1571117405}
+  m_GameObject: {fileID: 1496490770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1500944000
 GameObject:
   m_ObjectHideFlags: 0
@@ -35080,7 +35562,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1626315690}
-  - 95: {fileID: 1626315691}
+  - 65: {fileID: 1626315693}
+  - 114: {fileID: 1626315691}
+  - 54: {fileID: 1626315692}
   m_Layer: 0
   m_Name: BankrArmed4
   m_TagString: Untagged
@@ -35103,22 +35587,55 @@ Transform:
   - {fileID: 623178217}
   m_Father: {fileID: 1323057570}
   m_RootOrder: 3
---- !u!95 &1626315691
-Animator:
-  serializedVersion: 3
+--- !u!114 &1626315691
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1435273802}
   m_GameObject: {fileID: 1626315689}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1626315692
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1435273802}
+  m_GameObject: {fileID: 1626315689}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1626315693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1435273802}
+  m_GameObject: {fileID: 1626315689}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1001 &1640347432
 Prefab:
   m_ObjectHideFlags: 0
@@ -35699,7 +36216,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1684825815}
-  - 95: {fileID: 1684825816}
+  - 65: {fileID: 1684825818}
+  - 114: {fileID: 1684825816}
+  - 54: {fileID: 1684825817}
   m_Layer: 0
   m_Name: BankrArmed3
   m_TagString: Untagged
@@ -35722,22 +36241,55 @@ Transform:
   - {fileID: 179045715}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 2
---- !u!95 &1684825816
-Animator:
-  serializedVersion: 3
+--- !u!114 &1684825816
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 2066022095}
   m_GameObject: {fileID: 1684825814}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1684825817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 2066022095}
+  m_GameObject: {fileID: 1684825814}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1684825818
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 2066022095}
+  m_GameObject: {fileID: 1684825814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1685698983
 GameObject:
   m_ObjectHideFlags: 0
@@ -37513,7 +38065,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1720458270}
-  - 95: {fileID: 1720458269}
+  - 65: {fileID: 1720458272}
+  - 114: {fileID: 1720458269}
+  - 54: {fileID: 1720458271}
   m_Layer: 0
   m_Name: BankrArmed2
   m_TagString: Untagged
@@ -37521,22 +38075,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1720458269
-Animator:
-  serializedVersion: 3
+--- !u!114 &1720458269
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1827095599}
   m_GameObject: {fileID: 1720458268}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
 --- !u!4 &1720458270
 Transform:
   m_ObjectHideFlags: 0
@@ -37552,6 +38110,35 @@ Transform:
   - {fileID: 1413440865}
   m_Father: {fileID: 163156906}
   m_RootOrder: 1
+--- !u!54 &1720458271
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827095599}
+  m_GameObject: {fileID: 1720458268}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1720458272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827095599}
+  m_GameObject: {fileID: 1720458268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1725157661
 GameObject:
   m_ObjectHideFlags: 0
@@ -38156,7 +38743,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1753366112}
-  - 95: {fileID: 1753366113}
+  - 65: {fileID: 1753366115}
+  - 114: {fileID: 1753366113}
+  - 54: {fileID: 1753366114}
   m_Layer: 0
   m_Name: BankrArmed5
   m_TagString: Untagged
@@ -38179,82 +38768,55 @@ Transform:
   - {fileID: 981075309}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 4
---- !u!95 &1753366113
-Animator:
-  serializedVersion: 3
+--- !u!114 &1753366113
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 1768975341}
   m_GameObject: {fileID: 1753366111}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &1755172191
-GameObject:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1753366114
+Rigidbody:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1755172193}
-  - 20: {fileID: 1755172192}
-  m_Layer: 0
-  m_Name: Water4Example (Advanced)ReflectionMain Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &1755172192
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755172191}
-  m_Enabled: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1768975341}
+  m_GameObject: {fileID: 1753366111}
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_RenderingPath: 1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
---- !u!4 &1755172193
-Transform:
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1753366115
+BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1755172191}
-  m_LocalRotation: {x: .168666616, y: .0162627175, z: .00278325984, w: -.985535085}
-  m_LocalPosition: {x: 327.253937, y: -3340.16089, z: -9790.07227}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 1768975341}
+  m_GameObject: {fileID: 1753366111}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1755948504
 GameObject:
   m_ObjectHideFlags: 0
@@ -38483,7 +39045,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1772814231}
-  - 95: {fileID: 1772814232}
+  - 65: {fileID: 1772814234}
+  - 114: {fileID: 1772814232}
+  - 54: {fileID: 1772814233}
   m_Layer: 0
   m_Name: BankrArmed8
   m_TagString: Untagged
@@ -38506,22 +39070,55 @@ Transform:
   - {fileID: 1206613669}
   m_Father: {fileID: 1620869418}
   m_RootOrder: 7
---- !u!95 &1772814232
-Animator:
-  serializedVersion: 3
+--- !u!114 &1772814232
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 63595235}
   m_GameObject: {fileID: 1772814230}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1772814233
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 63595235}
+  m_GameObject: {fileID: 1772814230}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1772814234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 63595235}
+  m_GameObject: {fileID: 1772814230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1776671194
 GameObject:
   m_ObjectHideFlags: 0
@@ -41041,7 +41638,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1894102920}
-  - 95: {fileID: 1894102921}
+  - 65: {fileID: 1894102923}
+  - 114: {fileID: 1894102921}
+  - 54: {fileID: 1894102922}
   m_Layer: 0
   m_Name: BankrArmed1
   m_TagString: Untagged
@@ -41064,22 +41663,55 @@ Transform:
   - {fileID: 1012458887}
   m_Father: {fileID: 1399004709}
   m_RootOrder: 0
---- !u!95 &1894102921
-Animator:
-  serializedVersion: 3
+--- !u!114 &1894102921
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 228517180}
   m_GameObject: {fileID: 1894102919}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &1894102922
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 228517180}
+  m_GameObject: {fileID: 1894102919}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &1894102923
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 228517180}
+  m_GameObject: {fileID: 1894102919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &1896772888
 GameObject:
   m_ObjectHideFlags: 0
@@ -43860,7 +44492,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: b12dba588345da6448d6f0bf600e889e, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b12dba588345da6448d6f0bf600e889e, type: 2}
@@ -45121,7 +45753,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2136907943}
-  - 95: {fileID: 2136907944}
+  - 65: {fileID: 2136907946}
+  - 114: {fileID: 2136907944}
+  - 54: {fileID: 2136907945}
   m_Layer: 0
   m_Name: BankrArmed4
   m_TagString: Untagged
@@ -45144,22 +45778,55 @@ Transform:
   - {fileID: 143192770}
   m_Father: {fileID: 163156906}
   m_RootOrder: 3
---- !u!95 &2136907944
-Animator:
-  serializedVersion: 3
+--- !u!114 &2136907944
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: 007db7578986df54194765348f630996,
+  m_PrefabParentObject: {fileID: 11400008, guid: 007db7578986df54194765348f630996,
     type: 2}
   m_PrefabInternal: {fileID: 952023577}
   m_GameObject: {fileID: 2136907942}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 110fe0fb6fee41741bc6c75cbf419a78, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbc48bef0ee50743924975861bdd890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDmg: 124
+  maxHealth: 124
+  score: 94
+  smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
+  fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+  destroyExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
+  endEplosionPos:
+  - {fileID: 400000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
+--- !u!54 &2136907945
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 952023577}
+  m_GameObject: {fileID: 2136907942}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &2136907946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 007db7578986df54194765348f630996,
+    type: 2}
+  m_PrefabInternal: {fileID: 952023577}
+  m_GameObject: {fileID: 2136907942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.29, y: 10.6700001, z: 19.3700008}
+  m_Center: {x: 0, y: 5.30000019, z: 2.9000001}
 --- !u!1 &2137643100
 GameObject:
   m_ObjectHideFlags: 0
