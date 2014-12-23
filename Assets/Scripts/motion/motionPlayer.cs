@@ -9,6 +9,8 @@ public class motionPlayer : MonoBehaviour
     [Range(0.0F, 60.0F)]
     public float horizontalRotation, maxAcceleration;
     public Transform movingObject;
+    [HideInInspector]
+    public float movementReverse = 1;
     private float acceleration;
 
     // Use this for initialization
@@ -34,7 +36,7 @@ public class motionPlayer : MonoBehaviour
             {
                 Camera.main.transform.Rotate(0, 0, -0.5f * horizontalSpeed * Time.deltaTime, Space.World);
                 if (Camera.main.transform.rotation.eulerAngles.z < 360 - horizontalRotation)
-					Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, -horizontalRotation);
+                    Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, -horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -57,7 +59,7 @@ public class motionPlayer : MonoBehaviour
             {
                 Camera.main.transform.Rotate(0, 0, 0.5f * horizontalSpeed * Time.deltaTime, Space.World);
                 if (Camera.main.transform.rotation.eulerAngles.z > horizontalRotation)
-					Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, horizontalRotation);
+                    Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, horizontalRotation);
             }
         }
         else { balanceSides(); accelerateSides(); }
@@ -106,7 +108,7 @@ public class motionPlayer : MonoBehaviour
         {
             Camera.main.transform.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.World);
             if (Camera.main.transform.rotation.eulerAngles.z > 180)
-				Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
+                Camera.main.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
         }
     }
 
@@ -132,8 +134,8 @@ public class motionPlayer : MonoBehaviour
                 movingObject.Translate(0, 0, forwardSpeed * Time.deltaTime, Space.World);
             if (Input.GetButton("Horizontal"))
             {
-                if (Input.GetAxis("Horizontal") > 0) moveRight(horizontalSpeed);
-                else if (Input.GetAxis("Horizontal") < 0) moveLeft(horizontalSpeed);
+                if (movementReverse * Input.GetAxis("Horizontal") > 0) moveRight(horizontalSpeed);
+                else if (movementReverse * Input.GetAxis("Horizontal") < 0) moveLeft(horizontalSpeed);
             }
             else
             {
@@ -142,8 +144,8 @@ public class motionPlayer : MonoBehaviour
             }
             if (Input.GetButton("Vertical"))
             {
-                if (Input.GetAxis("Vertical") > 0) moveUp(horizontalSpeed);
-                else if (Input.GetAxis("Vertical") < 0) moveDown(horizontalSpeed);
+                if (movementReverse * Input.GetAxis("Vertical") > 0) moveUp(horizontalSpeed);
+                else if (movementReverse * Input.GetAxis("Vertical") < 0) moveDown(horizontalSpeed);
             }
         }
     }

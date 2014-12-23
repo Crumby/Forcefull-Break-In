@@ -12,6 +12,7 @@ public class shipSystemsEnemy : MonoBehaviour
     public int health { get; private set; }
     public int shield { get; private set; }
     public GameObject smallExplosion, bigExplosion;
+    public GameObject[] bonuses;
 
     // Use this for initialization
     void Start()
@@ -45,6 +46,8 @@ public class shipSystemsEnemy : MonoBehaviour
     private void destroyShip()
     {
         Instantiate(bigExplosion, transform.position, Quaternion.identity);
+        if (Random.Range(0, 50) % 2 == 0 && bonuses.Length > 0)
+            Instantiate(bonuses[Random.Range(0, bonuses.Length - 1)], transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

@@ -814,13 +814,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746dbc0a2e949f04b8c8bf43bbb9a1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldRegen: 2
+  shieldRegen: 0
   collisionDmg: 5
   maxHealth: 20
   maxShield: 20
   score: 450
   smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
   bigExplosion: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 2}
+  bonuses:
+  - {fileID: 100000, guid: b710a6fc3798fe04394380e0db588f41, type: 2}
+  - {fileID: 100000, guid: 7eaebd0da706a5f43a95702363bb2046, type: 2}
+  - {fileID: 100000, guid: 74aada6f71490844ba7c5b3b1f353731, type: 2}
+  - {fileID: 100000, guid: b5a1c3ea9a84d7b489732e9286ad2b1a, type: 2}
+  - {fileID: 100000, guid: 631fc35df3b842548bb5401b2e4dde72, type: 2}
+  - {fileID: 100000, guid: 64b301ecd02ce4e4495f45162b1d39b3, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

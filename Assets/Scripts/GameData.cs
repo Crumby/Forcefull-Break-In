@@ -14,33 +14,35 @@ public class gameData : MonoBehaviour
     public static Vector3 cameraOffsite { get; private set; }
     public static Vector3 playerPosition
     {
-        get { if (player != null)return player.transform.position; else return Vector3.one; }
+        get { if (playerMotion != null)return playerMotion.transform.position; else return Vector3.one; }
     }
     public static float forwardSpeed
     {
-        get { if (player != null)return player.forwardSpeed; else return 0; }
+        get { if (playerMotion != null)return playerMotion.forwardSpeed; else return 0; }
     }
     public static float horizontalSpeed
     {
-        get { if (player != null)return player.horizontalSpeed; else return 0; }
+        get { if (playerMotion != null)return playerMotion.horizontalSpeed; else return 0; }
     }
     public static float verticalSpeed
     {
-        get { if (player != null)return player.verticalSpeed; else return 0; }
+        get { if (playerMotion != null)return playerMotion.verticalSpeed; else return 0; }
     }
     public static float aiActivation { get; private set; }
     public static int addScore
     {
-        set { if (player != null)player.GetComponent<shipSystemsPlayer>().Score += value; }
+        set { if (playerSystems != null)playerSystems.Score += value * ScoreMultiplier; }
     }
+    public static int ScoreMultiplier=1;
     public static int addPower
     {
-        set { if (player != null)player.GetComponent<shipSystemsPlayer>().Power += value; }
+        set { if (playerSystems != null)playerSystems.Power += value; }
     }
     public static Vector3 aimPoint { get; set; }
     public static Transform aimNavigation { get; set; }
     public static float endOffsite { get; private set; }
-    private static motionPlayer player;
+    public static motionPlayer playerMotion { get; private set; }
+    public static shipSystemsPlayer playerSystems { get; private set; }
     [Range(0, 5)]
     public float startDelay;
     [Range(0, 500)]
@@ -66,7 +68,7 @@ public class gameData : MonoBehaviour
 
     public static bool isChildOfPlayer(Transform who)
     {
-        if (player != null) return who.IsChildOf(player.transform);
+        if (playerMotion != null) return who.IsChildOf(playerMotion.transform);
         return false;
     }
 
@@ -77,7 +79,8 @@ public class gameData : MonoBehaviour
 
     public static void initPlayer(motionPlayer pl)
     {
-        player = pl;
+        playerMotion = pl;
+        playerSystems = pl.GetComponent<shipSystemsPlayer>();
         cameraOffsite -= playerPosition;
     }
 
@@ -94,7 +97,8 @@ public class gameData : MonoBehaviour
 
     public void reset()
     {
-        player = null;
+        playerMotion = null;
+        playerSystems = null;
         gameBounds = null;
         Time.timeScale = 1;
         cameraOffsite = Vector3.zero;

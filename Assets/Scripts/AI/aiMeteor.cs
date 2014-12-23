@@ -15,7 +15,7 @@ public class aiMeteor : MonoBehaviour
     {
         moving = new Vector3(Random.Range(0, 5), Random.Range(0, 5), Random.Range(0, 5));
         moving = Vector3.Normalize(moving);
-        transform.localScale= new Vector3(Random.Range(2, 25), Random.Range(2, 25), Random.Range(2, 25));
+        transform.localScale = new Vector3(Random.Range(2, 25), Random.Range(2, 25), Random.Range(2, 25));
         hp = transform.localScale.x + transform.localScale.y + transform.localScale.z;
         hp = hp * Random.Range(0, 10);
     }
@@ -54,13 +54,14 @@ public class aiMeteor : MonoBehaviour
         if (!gameData.pausedGame)
         {
             //redoo next time
-            if (transform.position.x <= gameData.gameBounds.collider.bounds.max.x &&
-                transform.position.x >= gameData.gameBounds.collider.bounds.min.x &&
-                transform.position.y <= gameData.gameBounds.collider.bounds.max.y &&
-                transform.position.y >= gameData.gameBounds.collider.bounds.min.y &&
-                transform.position.z <= gameData.playerPosition.z + gameData.aiActivation &&
-                transform.position.z > gameData.cameraOffsite.z + gameData.playerPosition.z)
-                transform.Translate(moving * speed * Time.deltaTime);
+            if (gameData.gameBounds != null)
+                if (transform.position.x <= gameData.gameBounds.collider.bounds.max.x &&
+                    transform.position.x >= gameData.gameBounds.collider.bounds.min.x &&
+                    transform.position.y <= gameData.gameBounds.collider.bounds.max.y &&
+                    transform.position.y >= gameData.gameBounds.collider.bounds.min.y &&
+                    transform.position.z <= gameData.playerPosition.z + gameData.aiActivation &&
+                    transform.position.z > gameData.cameraOffsite.z + gameData.playerPosition.z)
+                    transform.Translate(moving * speed * Time.deltaTime);
             if (hp <= 0) Destroy();
         }
     }

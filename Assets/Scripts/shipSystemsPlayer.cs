@@ -4,7 +4,7 @@ using System.Collections;
 public class shipSystemsPlayer : MonoBehaviour
 {
     [Range(0.0F, 5.0F)]
-    public float shieldRegen; 
+    public float shieldRegen;
     [Range(0.0F, 500.0F)]
     public float collisionDmg, powerDrain;
     [Range(0.0F, 500.0F)]
@@ -25,6 +25,8 @@ public class shipSystemsPlayer : MonoBehaviour
     public GameObject powerWeapon;
     public GameObject smallExplosion, bigExplosion, shieldField;
     public inGameMenu menus;
+    [HideInInspector]
+    public bool idkfa = false, noShield;
 
     // Use this for initialization
     void Start()
@@ -50,7 +52,7 @@ public class shipSystemsPlayer : MonoBehaviour
 
     private void shieldRegeneration()
     {
-        if (Shield < maxShield)
+        if (Shield < maxShield && !noShield)
         {
             if (Mathf.CeilToInt(shieldRegen * Time.deltaTime) + Shield > maxShield)
                 Shield = maxShield;
@@ -58,6 +60,13 @@ public class shipSystemsPlayer : MonoBehaviour
             shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
                 Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
             shieldText.text = Shield.ToString();
+        }
+        else if (noShield && shieldText.text != "0")
+        {
+            Shield = 0;
+            shieldText.text = Shield.ToString();
+            shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
+                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
         }
 
     }
@@ -86,23 +95,26 @@ public class shipSystemsPlayer : MonoBehaviour
     public bool recieveDmg(float dmg, Vector3 where)
     {
         Instantiate(smallExplosion, where, Quaternion.identity);
-        if (Shield - dmg <= 0)
+        if (idkfa)
         {
-            Shield = 0;
-            shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
-                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
+            if (Shield - dmg <= 0)
+            {
+                Shield = 0;
+                shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
+                    Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
+                shieldText.text = Shield.ToString();
+                Health += Mathf.CeilToInt(Shield - dmg);
+                if (Health <= 0) Health = 0;
+                healthTexture.rectTransform.localScale = new Vector3(healthTexture.rectTransform.localScale.x,
+                    Health / (float)maxHealth, healthTexture.rectTransform.localScale.z);
+                healthText.text = Health.ToString();
+                return Health == 0;
+            }
+            else Shield -= Mathf.CeilToInt(dmg);
             shieldText.text = Shield.ToString();
-            Health += Mathf.CeilToInt(Shield - dmg);
-            if (Health <= 0) Health = 0;
-            healthTexture.rectTransform.localScale = new Vector3(healthTexture.rectTransform.localScale.x,
-                Health / (float)maxHealth, healthTexture.rectTransform.localScale.z);
-            healthText.text = Health.ToString();
-            return Health == 0;
+            shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
+                    Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
         }
-        else Shield -= Mathf.CeilToInt(dmg);
-        shieldText.text = Shield.ToString();
-        shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
-                Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
         return false;
     }
 
@@ -127,7 +139,6 @@ public class shipSystemsPlayer : MonoBehaviour
         }
         else if (collision.gameObject.GetComponent<TerrainCollider>() != null) destroyShip();
     }
-
 
     // Update is called once per frame
     void Update()
