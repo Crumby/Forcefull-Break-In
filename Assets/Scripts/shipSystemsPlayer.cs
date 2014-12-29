@@ -9,8 +9,8 @@ public class shipSystemsPlayer : MonoBehaviour
     public float collisionDmg, powerDrain;
     [Range(0.0F, 500.0F)]
     public int maxHealth, maxShield, maxPower;
-    public int Health { get; private set; }
-    public int Shield { get; private set; }
+    public float Health { get; private set; }
+    public float Shield { get; private set; }
     public float Power { get; set; }
     public int Score
     {
@@ -26,7 +26,7 @@ public class shipSystemsPlayer : MonoBehaviour
     public GameObject smallExplosion, bigExplosion, shieldField;
     public inGameMenu menus;
     [HideInInspector]
-    public bool idkfa = false, noShield;
+    public bool idkfa = false, noShield=false;
 
     // Use this for initialization
     void Start()
@@ -54,12 +54,12 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (Shield < maxShield && !noShield)
         {
-            if (Mathf.CeilToInt(shieldRegen * Time.deltaTime) + Shield > maxShield)
+            if (shieldRegen * Time.deltaTime + Shield > maxShield)
                 Shield = maxShield;
-            else Shield += Mathf.CeilToInt(shieldRegen * Time.deltaTime);
+            else Shield += shieldRegen * Time.deltaTime;
             shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
                 Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
-            shieldText.text = Shield.ToString();
+            shieldText.text = Mathf.CeilToInt(Shield).ToString();
         }
         else if (noShield && shieldText.text != "0")
         {
@@ -95,7 +95,7 @@ public class shipSystemsPlayer : MonoBehaviour
     public bool recieveDmg(float dmg, Vector3 where)
     {
         Instantiate(smallExplosion, where, Quaternion.identity);
-        if (idkfa)
+        if (!idkfa)
         {
             if (Shield - dmg <= 0)
             {

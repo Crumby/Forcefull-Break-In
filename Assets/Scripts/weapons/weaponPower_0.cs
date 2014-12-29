@@ -17,7 +17,7 @@ public class weaponPower_0 : MonoBehaviour
             collision.gameObject.GetComponent<aiMeteor>() != null)
         {
             Destroy(collision.gameObject);
-            gameData.addScore = hitScore;
+            gameData.score = hitScore;
         }
     }
 

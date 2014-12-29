@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.0999999
   smalExplosion: {fileID: 100000, guid: b9dd5ecd168e0b54295932b5b107b983, type: 2}
-  bugexplosion: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 2}
+  bigexplosion: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

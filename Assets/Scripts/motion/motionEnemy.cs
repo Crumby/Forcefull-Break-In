@@ -11,8 +11,7 @@ public class motionEnemy : MonoBehaviour
     public float waitInFrontPlayer, colisionWait;
     public float moveHorizontal { get; set; }
     public float moveVertical { get; set; }
-    public EnemyCollision colided { get; private set; }
-    private float timerColide, timerForPlayer;
+    private float timerForPlayer;
 
     void Start()
     {
@@ -22,44 +21,46 @@ public class motionEnemy : MonoBehaviour
 
     private void moveRight(float speed)
     {
-        if (collider.bounds.max.x + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.x && transform.rotation.z <= 0.001f)
-        {
-            transform.Translate(speed * Time.deltaTime, 0, 0, Space.World);
-            moveHorizontal -= speed * Time.deltaTime;
-            if (moveHorizontal < 0) moveHorizontal = 0;
-            if (transform.rotation.eulerAngles.z > 180 || transform.rotation.eulerAngles.z == 0.001f)
+        if (gameData.gameBounds != null)
+            if (collider.bounds.max.x + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.x && transform.rotation.z <= 0.001f)
             {
-                transform.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.Self);
-                if (transform.rotation.eulerAngles.z < 360 - horizontalRotation)
-                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -horizontalRotation);
+                transform.Translate(speed * Time.deltaTime, 0, 0, Space.World);
+                moveHorizontal -= speed * Time.deltaTime;
+                if (moveHorizontal < 0) moveHorizontal = 0;
+                if (transform.rotation.eulerAngles.z > 180 || transform.rotation.eulerAngles.z == 0.001f)
+                {
+                    transform.Rotate(0, 0, -horizontalSpeed * Time.deltaTime, Space.Self);
+                    if (transform.rotation.eulerAngles.z < 360 - horizontalRotation)
+                        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, -horizontalRotation);
+                }
             }
-        }
-        else
-        {
-            moveHorizontal = -moveHorizontal / 2;
-            balanceSides();
-        }
+            else
+            {
+                moveHorizontal = -moveHorizontal / 2;
+                balanceSides();
+            }
     }
 
     private void moveLeft(float speed)
     {
-        if (collider.bounds.min.x - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.x && transform.rotation.z >= -0.001f)
-        {
-            transform.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
-            moveHorizontal += speed * Time.deltaTime;
-            if (moveHorizontal > 0) moveHorizontal = 0;
-            if (transform.rotation.eulerAngles.z < horizontalRotation)
+        if (gameData.gameBounds != null)
+            if (collider.bounds.min.x - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.x && transform.rotation.z >= -0.001f)
             {
-                transform.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.Self);
-                if (transform.rotation.eulerAngles.z > horizontalRotation)
-                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, horizontalRotation);
+                transform.Translate(-speed * Time.deltaTime, 0, 0, Space.World);
+                moveHorizontal += speed * Time.deltaTime;
+                if (moveHorizontal > 0) moveHorizontal = 0;
+                if (transform.rotation.eulerAngles.z < horizontalRotation)
+                {
+                    transform.Rotate(0, 0, horizontalSpeed * Time.deltaTime, Space.Self);
+                    if (transform.rotation.eulerAngles.z > horizontalRotation)
+                        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, horizontalRotation);
+                }
             }
-        }
-        else
-        {
-            moveHorizontal = -moveHorizontal / 2;
-            balanceSides();
-        }
+            else
+            {
+                moveHorizontal = -moveHorizontal / 2;
+                balanceSides();
+            }
 
     }
 
@@ -81,51 +82,97 @@ public class motionEnemy : MonoBehaviour
 
     private void moveUp(float speed)
     {
-        if (collider.bounds.max.y + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.y && transform.rotation.x <= 0)
-        {
-            transform.Translate(0, speed * Time.deltaTime, 0, Space.World);
-            moveVertical -= speed * Time.deltaTime;
-            if (moveVertical < 0) moveVertical = 0;
-        }
-        else moveVertical = -moveVertical / 2;
+        if (gameData.gameBounds != null)
+            if (collider.bounds.max.y + speed * Time.deltaTime < gameData.gameBounds.collider.bounds.max.y && transform.rotation.x <= 0)
+            {
+                transform.Translate(0, speed * Time.deltaTime, 0, Space.World);
+                moveVertical -= speed * Time.deltaTime;
+                if (moveVertical < 0) moveVertical = 0;
+            }
+            else moveVertical = -moveVertical / 2;
 
     }
 
     private void moveDown(float speed)
     {
-        if (collider.bounds.min.y - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.y && transform.rotation.x >= 0)
-        {
-            transform.Translate(0, -speed * Time.deltaTime, 0, Space.World);
-            moveVertical += speed * Time.deltaTime;
-            if (moveVertical > 0) moveVertical = 0;
-        }
-        else moveVertical = -moveVertical / 2;
+        if (gameData.gameBounds != null)
+            if (collider.bounds.min.y - speed * Time.deltaTime > gameData.gameBounds.collider.bounds.min.y && transform.rotation.x >= 0)
+            {
+                transform.Translate(0, -speed * Time.deltaTime, 0, Space.World);
+                moveVertical += speed * Time.deltaTime;
+                if (moveVertical > 0) moveVertical = 0;
+            }
+            else moveVertical = -moveVertical / 2;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<motionEnemy>() != null)
+        if (collision.gameObject.GetComponent<motionPlayer>() == null && collision.gameObject.GetComponent<motionProjectile>() == null)
         {
             Vector3 point = collision.contacts[0].point;
             if (point.x > transform.position.x)
-                colided = EnemyCollision.RIGTH;
+                Collisions(EnemyCollision.RIGTH);
             else if (point.x < transform.position.x)
-                colided = EnemyCollision.LEFT;
-            else if (point.z < transform.position.z)
-                colided = EnemyCollision.FRONT;
-            else if (point.z < transform.position.z)
-                colided = EnemyCollision.BACK;
+                Collisions(EnemyCollision.LEFT);
+
+            if (point.y < transform.position.y)
+                Collisions(EnemyCollision.DOWN);
             else if (point.y < transform.position.y)
-                colided = EnemyCollision.DOWN;
-            else if (point.y < transform.position.y)
-                colided = EnemyCollision.UP;
-            //Debug.Log("COLISION");
+                Collisions(EnemyCollision.UP);
+
+            if (point.z < transform.position.z)
+                Collisions(EnemyCollision.FRONT);
+            else if (point.z < transform.position.z)
+                Collisions(EnemyCollision.BACK);
         }
-        else
+    }
+
+    private void Collisions(EnemyCollision col)
+    {
+        switch (col)
         {
-            colided = EnemyCollision.NONE;
-            moveHorizontal = -2 * moveHorizontal;
-            moveVertical = -2 * moveVertical;
+            case EnemyCollision.RIGTH:
+                if (moveHorizontal > 0)
+                    if (Random.Range(0, 100) % 5 != 0)
+                        moveHorizontal *= -0.5f * Random.Range(0, 100) / 100f;
+                    else
+                        moveHorizontal = 0;
+                break;
+            case EnemyCollision.LEFT:
+                if (moveHorizontal < 0)
+                    if (Random.Range(0, 100) % 5 != 0)
+                        moveHorizontal *= -0.5f * Random.Range(0, 100) / 100f;
+                    else
+                        moveHorizontal = 0;
+                break;
+            case EnemyCollision.FRONT:
+                if (Random.Range(0, 100) % 2 == 0)
+                    moveHorizontal *= Random.Range(0, 100) / 100f;
+                else
+                    moveVertical *= Random.Range(0, 100) / 100f;
+                break;
+            case EnemyCollision.BACK:
+                if (Random.Range(0, 100) % 2 == 0)
+                    moveHorizontal *= Random.Range(0, 100) / 100f;
+                else
+                    moveVertical *= Random.Range(0, 100) / 100f;
+                break;
+            case EnemyCollision.UP:
+                if (moveVertical > 0)
+                    if (Random.Range(0, 100) % 3 != 0)
+                        moveVertical *= -0.5f * Random.Range(0, 100) / 100f;
+                    else
+                        moveVertical = 0;
+                break;
+            case EnemyCollision.DOWN:
+                if (moveVertical < 0)
+                    if (Random.Range(0, 100) % 3 != 0)
+                        moveVertical *= -0.5f * Random.Range(0, 100) / 100f;
+                    else
+                        moveVertical = 0;
+                break;
+            default:
+                break;
         }
     }
 
@@ -137,36 +184,24 @@ public class motionEnemy : MonoBehaviour
         }
         else if (!gameData.pausedGame && gameData.inReach(transform.position))
         {
-            if (colided != EnemyCollision.FRONT)
-            {
-                if (transform.position.z > waitOffset + gameData.playerPosition.z)
-                    transform.Translate(0, 0, -forwardSpeed * Time.deltaTime, Space.World);
-                else
-                    transform.Translate(0, 0, gameData.forwardSpeed * Time.deltaTime, Space.World);
-            }
+            if (transform.position.z > waitOffset + gameData.playerPosition.z)
+                transform.Translate(0, 0, -forwardSpeed * Time.deltaTime, Space.World);
+            else
+                transform.Translate(0, 0, gameData.forwardSpeed * Time.deltaTime, Space.World);
             if (transform.position.z > waitOffset + gameData.playerPosition.z)
                 timerForPlayer += Time.deltaTime;
             if (timerForPlayer > waitInFrontPlayer)
                 waitOffset = float.MinValue;
             if (moveHorizontal != 0)
             {
-                if (moveHorizontal > 0 && colided != EnemyCollision.RIGTH) moveRight(horizontalSpeed);
-                else if (moveHorizontal < 0 && colided != EnemyCollision.LEFT) moveLeft(horizontalSpeed);
+                if (moveHorizontal > 0) moveRight(horizontalSpeed);
+                else if (moveHorizontal < 0) moveLeft(horizontalSpeed);
             }
             else balanceSides();
             if (moveVertical != 0)
             {
-                if (moveVertical > 0 && colided != EnemyCollision.UP) moveUp(horizontalSpeed);
-                else if (moveVertical < 0 && colided != EnemyCollision.DOWN) moveDown(horizontalSpeed);
-            }
-            if (colided != EnemyCollision.NONE)
-            {
-                timerColide += Time.deltaTime;
-                if (timerColide > colisionWait)
-                {
-                    colided = EnemyCollision.NONE;
-                    timerColide = 0;
-                }
+                if (moveVertical > 0) moveUp(horizontalSpeed);
+                else if (moveVertical < 0) moveDown(horizontalSpeed);
             }
         }
     }

@@ -629,9 +629,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -684,10 +684,10 @@ MonoBehaviour:
   forwardSpeed: 9.39999962
   horizontalSpeed: 15.3999996
   verticalSpeed: 9.89999962
-  waitOffset: 27.6000004
+  waitOffset: 20
   horizontalRotation: 6
   waitInFrontPlayer: 19.2999992
-  colisionWait: 2.79999995
+  colisionWait: 1.29999995
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

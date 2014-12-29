@@ -5,8 +5,7 @@ public class UIShopMenus : MonoBehaviour
 {
 
     public UnityEngine.UI.Button[] buttonsToSlide;
-    //public GameObject panel;
-    public GameObject panel;
+    public UnityEngine.RectTransform panel;
     private static UIShopMenus openedTab = null;
 
     public void SlideDown()
@@ -18,13 +17,12 @@ public class UIShopMenus : MonoBehaviour
         }
         if (openedTab != null)
             openedTab.SlideUp();
-        panel.SetActive(true);
-        float toMove = -panel.GetComponent<RectTransform>().rect.height * panel.GetComponent<RectTransform>().localScale.y;
-        Debug.Log("O " + toMove);
+        panel.gameObject.SetActive(true);
+        float toMove = -panel.rect.height;
         foreach (var button in buttonsToSlide)
         {
             button.transform.position = new Vector3(button.transform.position.x,
-                button.transform.position.y + toMove,
+                button.transform.position.y + toMove + button.GetComponent<UnityEngine.RectTransform>().rect.height * 2.5f,
                 button.transform.position.z);
         }
         openedTab = this;
@@ -32,13 +30,12 @@ public class UIShopMenus : MonoBehaviour
 
     private void SlideUp()
     {
-        panel.SetActive(false);
-        float toMove = panel.GetComponent<RectTransform>().rect.height * panel.GetComponent<RectTransform>().localScale.y;
-        Debug.Log(toMove);
+        panel.gameObject.SetActive(false);
+        float toMove = panel.rect.height;
         foreach (var button in buttonsToSlide)
         {
             button.transform.position = new Vector3(button.transform.position.x,
-                button.transform.position.y + toMove,
+                button.transform.position.y + toMove - button.GetComponent<UnityEngine.RectTransform>().rect.height * 2.5f,
                 button.transform.position.z);
         }
         openedTab = null;

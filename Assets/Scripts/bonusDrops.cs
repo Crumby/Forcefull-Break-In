@@ -5,7 +5,7 @@ public enum typeOfBonus { SPEEDUP, SPEEDDOWN, IDKFA, NOSHIELD, REVERSECONSTROL, 
 
 public class bonusDrops : MonoBehaviour
 {
-    [Range(0.5f, 5f)]
+    [Range(0.5f, 50f)]
     public float duration;
     public typeOfBonus type;
     private float timer = 0;
@@ -22,7 +22,7 @@ public class bonusDrops : MonoBehaviour
         if (!gameData.pausedGame)
         {
             if (activated)
-                timer += Time.deltaTime;
+                timer += Time.fixedDeltaTime;
             if (timer >= duration)
                 DeActivate();
             if (gameData.gameBounds != null)
@@ -35,7 +35,7 @@ public class bonusDrops : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         var tmp = other.gameObject.GetComponent<motionPlayer>();
         if (tmp != null)
@@ -73,6 +73,8 @@ public class bonusDrops : MonoBehaviour
                 break;
         }
         activated = true;
+        gameData.nonStatic.bonusPopup = type.ToString();
+        this.audio.Play();
     }
 
     public void DeActivate()
@@ -99,6 +101,7 @@ public class bonusDrops : MonoBehaviour
                 break;
         }
         activated = false;
+        if (gameData.nonStatic.bonusPopup == type.ToString()) gameData.nonStatic.bonusPopup = "";
         Destroy(gameObject);
     }
 }

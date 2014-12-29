@@ -128,7 +128,7 @@ public class motionPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameData.pausedGame)
+        if (!gameData.pausedGame && gameData.gameBounds != null)
         {
             if (movingObject.position.z > gameData.gameBounds.collider.bounds.min.z && movingObject.position.z + gameData.endOffsite < gameData.gameBounds.collider.bounds.max.z)
                 movingObject.Translate(0, 0, forwardSpeed * Time.deltaTime, Space.World);

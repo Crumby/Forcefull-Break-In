@@ -9,8 +9,8 @@ public class shipSystemsEnemy : MonoBehaviour
     public float collisionDmg;
     [Range(0.0F, 500.0F)]
     public int maxHealth, maxShield, score;
-    public int health { get; private set; }
-    public int shield { get; private set; }
+    public float health { get; private set; }
+    public float shield { get; private set; }
     public GameObject smallExplosion, bigExplosion;
     public GameObject[] bonuses;
 
@@ -24,9 +24,9 @@ public class shipSystemsEnemy : MonoBehaviour
     private void shieldRegeneration()
     {
         if (shield < maxShield)
-            if (Mathf.CeilToInt(shieldRegen * Time.deltaTime) + shield > maxShield)
+            if (shieldRegen * Time.deltaTime + shield > maxShield)
                 shield = maxShield;
-            else shield += Mathf.CeilToInt(shieldRegen * Time.deltaTime);
+            else shield += shieldRegen * Time.deltaTime;
 
     }
 
@@ -47,7 +47,7 @@ public class shipSystemsEnemy : MonoBehaviour
     {
         Instantiate(bigExplosion, transform.position, Quaternion.identity);
         if (Random.Range(0, 50) % 2 == 0 && bonuses.Length > 0)
-            Instantiate(bonuses[Random.Range(0, bonuses.Length - 1)], transform.position, Quaternion.identity);
+            Instantiate(bonuses[Random.Range(0, bonuses.Length)], transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

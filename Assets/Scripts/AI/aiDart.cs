@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class aiDart : MonoBehaviour {
+public class aiDart : MonoBehaviour
+{
 
     private motionEnemy motionEnemy = null;
     public weaponCann weapon;
@@ -13,15 +14,13 @@ public class aiDart : MonoBehaviour {
 
     private void ThinkFire()
     {
-        if (Random.Range(0, 150) % 50 == 0)
-        {
+        if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
             weapon.Fire();
-        }
     }
 
     private void ThinkChangeHeight()
     {
-        if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
+        if (motionEnemy.moveVertical == 0 && Random.Range(0, 100) % (12 / (int)gameData.difficulty) == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
             if (tmp < -0.15 * gameData.gameBounds.collider.bounds.size.y)
@@ -38,7 +37,7 @@ public class aiDart : MonoBehaviour {
 
     private void ThinkMove()
     {
-        if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % 5 == 0)
+        if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % (12 / (int)gameData.difficulty) == 0)
         {
             float tmp = transform.position.x - gameData.playerPosition.x;
             if (tmp < 0)

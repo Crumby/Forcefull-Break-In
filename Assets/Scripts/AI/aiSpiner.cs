@@ -15,7 +15,7 @@ public class aiSpiner : MonoBehaviour
 
     private void ThinkFire()
     {
-        if (Random.Range(0, 150) % 50 == 0)
+        if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
         {
             int blster = 0;
             for (int i = 0; i < blasters.Length; i++)
@@ -30,7 +30,7 @@ public class aiSpiner : MonoBehaviour
 
     private void ThinkChangeHeight()
     {
-        if (motionEnemy.moveVertical == 0 && Random.Range(0, 50) % 3 == 0)
+        if (motionEnemy.moveVertical == 0 && Random.Range(0, 100) % (12 / (int)gameData.difficulty) == 0)
         {
             float tmp = transform.position.y - gameData.playerPosition.y;
             if (tmp < -0.25 * gameData.gameBounds.collider.bounds.size.y)
@@ -51,18 +51,16 @@ public class aiSpiner : MonoBehaviour
 
     private void ThinkMove()
     {
-        if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % 5 == 0)
+        if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % (12 / (int)gameData.difficulty) == 0)
         {
             float tmp = transform.position.x - gameData.playerPosition.x;
             if (tmp < 0)
             {
                 motionEnemy.moveHorizontal -= tmp;
-                //motionEnemy.moveHorizontal += Random.Range(-tmp / 2, -3*tmp);
             }
             else if (tmp > 0)
             {
                 motionEnemy.moveHorizontal -= tmp;
-                //motionEnemy.moveHorizontal -= Random.Range(tmp / 2, 3*tmp);
             }
         }
     }

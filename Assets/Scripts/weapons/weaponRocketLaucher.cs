@@ -6,14 +6,13 @@ public class weaponRocketLaucher : MonoBehaviour
     public GameObject projectilePrefab;
     [Range(0.0F, 5.0F)]
     public float reloadTime;
-    public bool charged { get; private set; }
+    public bool charged { get { if (projetile == null)return false; else return true; } }
     private GameObject projetile;
     private float timer;
     public bool roateAround { get; set; }
     // Use this for initialization
     void Start()
     {
-        charged = false;
         roateAround = false;
     }
 
@@ -23,12 +22,11 @@ public class weaponRocketLaucher : MonoBehaviour
         if (!gameData.pausedGame)
         {
             if (GetComponentInParent<motionPlayer>() != null)
-//                Debug.Log("P" + charged + " " + timer + " " + projetile);
-            if (projetile != null && projetile.GetComponent<motionProjectile>().launch)
-            {
-                projetile = null;
-                charged = false;
-            }
+                //                Debug.Log("P" + charged + " " + timer + " " + projetile);
+                if (charged && projetile.GetComponent<motionProjectile>().launch)
+                {
+                    projetile = null;
+                }
             if (!charged)
                 timer += Time.deltaTime;
             if (timer >= reloadTime && !charged)
@@ -36,7 +34,6 @@ public class weaponRocketLaucher : MonoBehaviour
                 projetile = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                 projetile.transform.localRotation = transform.rotation;
                 projetile.transform.parent = transform;
-                charged = true;
                 timer = 0;
             }
         }
@@ -52,7 +49,7 @@ public class weaponRocketLaucher : MonoBehaviour
 
     public void Fire(Transform navigation, Vector3 to, bool isPlayer)
     {
-        if (charged && projetile != null)
+        if (charged)
         {
             if (navigation != null)
                 projetile.GetComponent<animRocketLaucher>().navigation = navigation;
@@ -64,7 +61,7 @@ public class weaponRocketLaucher : MonoBehaviour
             if (projetile.GetComponent<animRocketLaucher>() != null)
                 projetile.GetComponent<animRocketLaucher>().Fire();
             else
-            {   //bug as hell so workaround needed
+            {
                 if (roateAround)
                     projetile.transform.rotation = Quaternion.Euler(0, 180, 0);
                 projetile.GetComponent<motionProjectile>().launch = true;

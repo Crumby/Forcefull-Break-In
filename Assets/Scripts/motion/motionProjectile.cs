@@ -24,7 +24,7 @@ public class motionProjectile : MonoBehaviour
             {
                 gameData.addPower = 5;
                 if (enemy.recieveDmg(destroyDmg, collider.bounds.max))
-                    gameData.addScore = enemy.score;
+                    gameData.score = enemy.score;
                 Destroy(gameObject);
             }
         }
@@ -35,7 +35,7 @@ public class motionProjectile : MonoBehaviour
             {
                 gameData.addPower = 5;
                 if (enemy.recieveDmg(destroyDmg, collider.bounds.max))
-                    gameData.addScore = enemy.score;
+                    gameData.score = enemy.score;
                 Destroy(gameObject);
             }
         }

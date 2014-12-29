@@ -39,7 +39,7 @@ public class motionCamera : MonoBehaviour
     {
         if (!gameData.pausedGame)
         {
-            if (gameData.gameBounds.collider.bounds.max.z - gameData.endOffsite > transform.position.z - gameData.cameraOffsite.z)
+            if (gameData.gameBounds !=null&& gameData.gameBounds.collider.bounds.max.z - gameData.endOffsite > transform.position.z - gameData.cameraOffsite.z)
                 transform.Translate(Vector3.forward * gameData.forwardSpeed * Time.deltaTime, Space.World);
             moveLeft(gameData.horizontalSpeed);
             moveRight(gameData.horizontalSpeed);

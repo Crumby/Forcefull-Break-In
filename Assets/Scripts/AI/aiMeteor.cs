@@ -8,7 +8,7 @@ public class aiMeteor : MonoBehaviour
     public float speed;
     private Vector3 moving;
     private float hp;
-    public GameObject smalExplosion, bugexplosion;
+    public GameObject smalExplosion, bigexplosion;
 
     // Use this for initialization
     void Start()
@@ -36,7 +36,7 @@ public class aiMeteor : MonoBehaviour
 
     private void Destroy()
     {
-        Instantiate(bugexplosion, transform.position, Quaternion.identity);
+        Instantiate(bigexplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

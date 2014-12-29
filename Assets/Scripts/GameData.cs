@@ -4,11 +4,19 @@ using System.Collections;
 namespace UnityEngine
 {
     public enum EnemyCollision { RIGTH, LEFT, FRONT, BACK, UP, DOWN, NONE }
+    public enum Difficulty { EASY = 1, NORMAL = 2, HARD = 4, GODLIKE = 6 }
+    [System.Serializable]
+    public class SaveData
+    {
+        public Difficulty difficulty;
+        public float score, volume;
+        //public bool soundMute;
+    }
 }
 
 public class gameData : MonoBehaviour
 {
-
+    public const string dataFile = "./FBI.save";
     public static bool pausedGame { get; set; }
     public static GameObject gameBounds { get; private set; }
     public static Vector3 cameraOffsite { get; private set; }
@@ -29,11 +37,12 @@ public class gameData : MonoBehaviour
         get { if (playerMotion != null)return playerMotion.verticalSpeed; else return 0; }
     }
     public static float aiActivation { get; private set; }
-    public static int addScore
+    public static int score
     {
+        get { if (playerSystems != null)return playerSystems.Score; return 0; }
         set { if (playerSystems != null)playerSystems.Score += value * ScoreMultiplier; }
     }
-    public static int ScoreMultiplier=1;
+    public static int ScoreMultiplier = 1;
     public static int addPower
     {
         set { if (playerSystems != null)playerSystems.Power += value; }
@@ -41,8 +50,11 @@ public class gameData : MonoBehaviour
     public static Vector3 aimPoint { get; set; }
     public static Transform aimNavigation { get; set; }
     public static float endOffsite { get; private set; }
+    public static float totalScore { get; private set; }
     public static motionPlayer playerMotion { get; private set; }
     public static shipSystemsPlayer playerSystems { get; private set; }
+    public static gameData nonStatic { get; private set; }
+    public string bonusPopup { get { return menus.getBonus(); } set { menus.setBonus(value); } }
     [Range(0, 5)]
     public float startDelay;
     [Range(0, 500)]
@@ -51,6 +63,7 @@ public class gameData : MonoBehaviour
     [Range(0.0F, 1000.0F)]
     public float aiActivationOffsite;
     public inGameMenu menus;
+    public static Difficulty difficulty { get; set; }
 
 
     // Use this for initialization
@@ -64,6 +77,9 @@ public class gameData : MonoBehaviour
         gameBounds = bounds;
         aiActivation = aiActivationOffsite;
         endOffsite = endOff;
+        if (difficulty == 0)
+            difficulty = Difficulty.EASY;
+        gameData.nonStatic = this;
     }
 
     public static bool isChildOfPlayer(Transform who)
@@ -104,8 +120,9 @@ public class gameData : MonoBehaviour
         cameraOffsite = Vector3.zero;
         aimNavigation = null;
         endOffsite = 0;
-        menus.reset();
         pausedGame = false;
+        ScoreMultiplier = 1;
+        nonStatic = null;
     }
 
     public void pauseGame()
@@ -142,6 +159,51 @@ public class gameData : MonoBehaviour
 
     void LoadMenu()
     {
+        reset();
+        Screen.showCursor = true;
         Application.LoadLevel("welcomeMenu");
+    }
+
+    public static void EndRoundSave()
+    {
+        var obj = new UnityEngine.SaveData();
+        obj.difficulty = difficulty;
+        obj.volume = AudioListener.volume;
+        obj.score = totalScore + score;
+        Save(obj);
+    }
+
+    public static void PeriodicSave()
+    {
+        var obj = new UnityEngine.SaveData();
+        obj.difficulty = difficulty;
+        obj.volume = AudioListener.volume;
+        obj.score = totalScore;
+        Save(obj);
+    }
+
+    private static void Save(UnityEngine.SaveData obj)
+    {
+        System.IO.Stream stream = System.IO.File.Open(gameData.dataFile, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None);
+        System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+        formatter.Serialize(stream, obj);
+        stream.Close();
+    }
+
+    public static bool LoadData()
+    {
+        if (!System.IO.File.Exists(gameData.dataFile))
+            return false;
+        System.IO.Stream stream = System.IO.File.Open(gameData.dataFile, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
+        if (!stream.CanRead)
+            return false;
+        System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+        var obj = (UnityEngine.SaveData)formatter.Deserialize(stream);
+        stream.Close();
+
+        totalScore = obj.score;
+        difficulty = obj.difficulty;
+        AudioListener.volume = obj.volume;
+        return true;
     }
 }
