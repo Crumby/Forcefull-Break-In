@@ -24,12 +24,14 @@ public class StandardShooter : MonoBehaviour
                 distance = Vector3.Distance(transform.position, target.transform.position);
                 if ((distance > minRange) && (distance < maxRange))
                 {
-                    if (Time.time > nextFire)
-                    {
-                        nextFire = Time.time + fireRate;
-                        Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                        //audio.Play ();
-                    }
+                    var hits = Physics.RaycastAll(transform.position, gameData.playerPosition - transform.position);
+                    if (hits.Length == 0)
+                        if (Time.time > nextFire && this.renderer.isVisible)
+                        {
+                            nextFire = Time.time + fireRate;
+                            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                            //audio.Play ();
+                        }
                 }
             }
         }

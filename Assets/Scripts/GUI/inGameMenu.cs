@@ -47,6 +47,8 @@ public class inGameMenu : MonoBehaviour
         Screen.showCursor = true;
         bonusPopup.enabled = false;
         menu.gameObject.SetActive(false);
+        options.gameObject.SetActive(false);
+        exit.transform.position = options.transform.position;
         gameOver.gameObject.SetActive(!gameOver.gameObject.activeSelf);
     }
 

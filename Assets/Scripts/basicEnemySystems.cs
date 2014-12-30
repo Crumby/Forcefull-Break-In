@@ -21,8 +21,10 @@ public class basicEnemySystems : MonoBehaviour
     public bool recieveDmg(float dmg, Vector3 where)
     {
         Instantiate(smallExplosion, where, Quaternion.identity);
-        health += -Mathf.CeilToInt(dmg);
-        return health <= 0;
+        if (dmg >= health && health > 0)
+            destroyEnemy();
+        health -= Mathf.CeilToInt(dmg);
+        return health > 0;
     }
 
     private void destroyEnemy()
