@@ -4,17 +4,16 @@ using System.Collections;
 public class PlanetEntity : MonoBehaviour
 {
     public bool[] LevelsLock;
-    public string PlanetName, LevelScene;
-    public int SelectedLevel { get; private set; }
-
-    public void Start()
-    {
-        SelectedLevel = 1;
-    }
+    public PlanetNames PlanetName;
+    [HideInInspector]
+    public int SelectedLevel = 1;
 
     public bool IsLocked()
     {
-        return LevelsLock[SelectedLevel - 1];
+        if (LevelsLock.Length > 0)
+            return LevelsLock[SelectedLevel - 1];
+        else
+            return true;
     }
 
     public void NextLevel()

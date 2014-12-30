@@ -182,6 +182,15 @@ public class gameData : MonoBehaviour
         Save(obj);
     }
 
+    public static void NewSave()
+    {
+        var obj = new UnityEngine.SaveData();
+        obj.difficulty = difficulty;
+        obj.volume = AudioListener.volume;
+        obj.score = 0;
+        Save(obj);
+    }
+
     private static void Save(UnityEngine.SaveData obj)
     {
         System.IO.Stream stream = System.IO.File.Open(gameData.dataFile, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.None);

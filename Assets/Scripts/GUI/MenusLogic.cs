@@ -2,36 +2,53 @@
 using System.Collections;
 using UnityEngine.UI;
 
+public enum MenuScreen { NONE, WELCOME, LEVEL }
+namespace UnityEngine
+{
+    public enum PlanetNames { Garuz, Figil, Prezz, Bcolg }
+}
 public class MenusLogic : MonoBehaviour
 {
     public PlanetEntity initValue;
-    public UnityEngine.UI.Scrollbar volume;
-    public UnityEngine.UI.Text difficulutyText;
-    public UnityEngine.UI.Toggle sound;
-    public static PlanetEntity SelectedPlanet { get; private set; }
-    private static Component panel;
-    private static Button stage;
-    private static Text planetName, stageT, start;
+    public Scrollbar volume;
+    public Text difficulutyText, totalScore;
+    public Toggle sound;
+    public GameObject welcomeSC, levelSC, panel;
+    public Text planetName, stageT, start;
+    public Button stage, contin;
+    public PlanetEntity[] planets;
+    private PlanetEntity selectedPlanet;
+    private static PlanetNames SelectedPlanet;
+    private static MenuScreen loadedScreen = MenuScreen.NONE;
     // Use this for initialization
     void Start()
     {
         initGame();
-        var hlp = GameObject.Find("LevelScreen");
-        hlp.SetActive(true);
-        panel = GetObject<Component>("LV_Panel");
-        planetName = GetObject<Text>("S_Name");
-        stageT = GetObject<Text>("ST_Text");
-        stage = GetObject<Button>("ST_Button");
-        start = GetObject<Text>("S_Text");
-        hlp.SetActive(false);
-        LevelPanelMove(initValue);
-        initValue = null;
+        if (loadedScreen == MenuScreen.LEVEL)
+        {
+            welcomeSC.SetActive(false);
+            levelSC.SetActive(true);
+            LevelPanelMove(planets[(int)SelectedPlanet]);
+        }
+        else
+        {
+            welcomeSC.SetActive(true);
+            levelSC.SetActive(false);
+            loadedScreen = MenuScreen.WELCOME;
+            LevelPanelMove(initValue);
+        }
+        ReloadTotalScore();
     }
 
     private void initGame()
     {
         if (!gameData.LoadData())
+        {
             gameData.difficulty = Difficulty.EASY;
+            contin.interactable = false;
+        }
+        else
+            contin.interactable = true;
         volume.value = AudioListener.volume;
         if (AudioListener.volume == 0)
         {
@@ -43,49 +60,46 @@ public class MenusLogic : MonoBehaviour
 
     public void ChangeStage()
     {
-        SelectedPlanet.NextLevel();
+        selectedPlanet.NextLevel();
         updateStage();
     }
 
     private void updateStage()
     {
-        stageT.text = SelectedPlanet.SelectedLevel.ToString();
-        start.enabled = SelectedPlanet.IsLocked();
+        stageT.text = selectedPlanet.SelectedLevel.ToString();
+        start.enabled = selectedPlanet.IsLocked();
     }
 
     public void LevelPanelMove(PlanetEntity o)
     {
-        MenusLogic.SelectedPlanet = o;
+        selectedPlanet = o;
         if (panel != null)
             panel.transform.position = new Vector3(o.transform.position.x, panel.transform.position.y, panel.transform.position.z);
         if (stage != null)
             stage.transform.position = new Vector3(o.transform.position.x, stage.transform.position.y, stage.transform.position.z);
         if (planetName != null)
-            planetName.text = SelectedPlanet.PlanetName;
+            planetName.text = selectedPlanet.PlanetName.ToString();
+        SelectedPlanet = selectedPlanet.PlanetName;
         updateStage();
-    }
-
-    public static T GetObject<T>(string name) where T : UnityEngine.Component
-    {
-        var obj = GameObject.Find(name);
-        if (obj != null)
-        {
-            var sobj = obj.GetComponent<T>();
-            if (sobj != null)
-                return sobj;
-        }
-        return null;
     }
 
     public void LoadLevel()
     {
-        switch (planetName.text)
+        switch (selectedPlanet.PlanetName)
         {
-            case ("Karin"):
+            case PlanetNames.Garuz:
                 Application.LoadLevel("lvl1");
                 break;
-            case ("Anet"):
+            case PlanetNames.Figil:
                 Application.LoadLevel("lvl2");
+                break;
+            case PlanetNames.Prezz:
+                Application.LoadLevel("lvl1");
+                break;
+            case PlanetNames.Bcolg:
+                Application.LoadLevel("lvl2");
+                break;
+            default:
                 break;
         }
     }
@@ -93,6 +107,17 @@ public class MenusLogic : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ChangeScreen()
+    {
+        if (MenusLogic.loadedScreen == MenuScreen.WELCOME)
+        {
+            MenusLogic.loadedScreen = MenuScreen.LEVEL;
+            contin.interactable = true;
+        }
+        else if (MenusLogic.loadedScreen == MenuScreen.LEVEL)
+            MenusLogic.loadedScreen = MenuScreen.WELCOME;
     }
 
     public void SetDifficulty()
@@ -128,11 +153,21 @@ public class MenusLogic : MonoBehaviour
         gameData.PeriodicSave();
     }
 
+    public void NewGameSave()
+    {
+        gameData.NewSave();
+    }
+
     public void SoundEnable(bool val)
     {
         if (val)
             AudioListener.volume = volume.value;
         else
             AudioListener.volume = 0;
+    }
+
+    public void ReloadTotalScore()
+    {
+        totalScore.text = gameData.totalScore.ToString();
     }
 }
