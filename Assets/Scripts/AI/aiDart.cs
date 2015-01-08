@@ -18,47 +18,16 @@ public class aiDart : MonoBehaviour
             weapon.Fire();
     }
 
-    private void ThinkChangeHeight()
-    {
-        if (motionEnemy.moveVertical == 0 && Random.Range(0, 100) % (12 / (int)gameData.difficulty) == 0)
-        {
-            float tmp = transform.position.y - gameData.playerPosition.y;
-            if (tmp < -0.15 * gameData.gameBounds.collider.bounds.size.y)
-            {
-                motionEnemy.moveVertical -= tmp;
-            }
-            else if (tmp > 0.15 * gameData.gameBounds.collider.bounds.size.y)
-            {
-                motionEnemy.moveVertical -= tmp;
-            }
-
-        }
-    }
-
-    private void ThinkMove()
-    {
-        if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % (12 / (int)gameData.difficulty) == 0)
-        {
-            float tmp = transform.position.x - gameData.playerPosition.x;
-            if (tmp < 0)
-            {
-                motionEnemy.moveHorizontal -= tmp;
-                motionEnemy.moveHorizontal += Random.Range(-tmp / 2, -3 * tmp);
-            }
-            else if (tmp > 0)
-            {
-                motionEnemy.moveHorizontal -= tmp;
-                motionEnemy.moveHorizontal -= Random.Range(tmp / 2, 3 * tmp);
-            }
-        }
-    }
     void Update()
     {
         if (!gameData.pausedGame && gameData.inReach(transform.position))
         {
-            ThinkMove();
             ThinkFire();
-            ThinkChangeHeight();
         }
     }
+
+    //lode naskriptuj
+    //koec lvl1
+    //gameprefab do all scenes
+    //lvl2 bos scripty
 }
