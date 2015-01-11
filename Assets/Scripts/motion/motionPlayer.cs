@@ -147,6 +147,8 @@ public class motionPlayer : MonoBehaviour
                 if (movementReverse * Input.GetAxis("Vertical") > 0) moveUp(horizontalSpeed);
                 else if (movementReverse * Input.GetAxis("Vertical") < 0) moveDown(horizontalSpeed);
             }
+            if (movingObject.position.z + gameData.endOffsite >= gameData.gameBounds.collider.bounds.max.z)
+                gameData.gameEnded++;
         }
     }
 }

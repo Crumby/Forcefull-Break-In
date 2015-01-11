@@ -20,6 +20,7 @@ public class MenusLogic : MonoBehaviour
     private PlanetEntity selectedPlanet;
     private static PlanetNames SelectedPlanet;
     private static MenuScreen loadedScreen = MenuScreen.NONE;
+    public loadingScrren loadingScreen;
     // Use this for initialization
     void Start()
     {
@@ -88,20 +89,32 @@ public class MenusLogic : MonoBehaviour
         switch (selectedPlanet.PlanetName)
         {
             case PlanetNames.Garuz:
-                Application.LoadLevel("lvl1");
+                StartCoroutine(LoadLevelAsync("lvl1"));
                 break;
             case PlanetNames.Figil:
-                Application.LoadLevel("lvl2");
+                StartCoroutine(LoadLevelAsync("lvl2"));
                 break;
             case PlanetNames.Prezz:
-                Application.LoadLevel("lvl1");
+                StartCoroutine(LoadLevelAsync("lvl1"));
                 break;
             case PlanetNames.Bcolg:
-                Application.LoadLevel("lvl2");
+                StartCoroutine(LoadLevelAsync("lvl2"));
                 break;
             default:
                 break;
         }
+    }
+
+    IEnumerator LoadLevelAsync(string name)
+    {
+        loadingScreen.gameObject.SetActive(true);        
+        AsyncOperation sceneLoadingOperation = Application.LoadLevelAsync(name);
+        while (!sceneLoadingOperation.isDone)
+        {
+            loadingScreen.MoveDot();
+            yield return new WaitForSeconds(0.2f);
+        }
+        loadingScreen.gameObject.SetActive(false);
     }
 
     public void QuitGame()

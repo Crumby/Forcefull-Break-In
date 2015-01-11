@@ -5635,6 +5635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDelay: 2
+  gameEnd: 1
   endOff: 50
   bounds: {fileID: 1293914107}
   aiActivationOffsite: 127
@@ -6726,7 +6727,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
       propertyPath: bounds

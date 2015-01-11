@@ -57,6 +57,7 @@ public class gameData : MonoBehaviour
     public string bonusPopup { get { return menus.getBonus(); } set { menus.setBonus(value); } }
     [Range(0, 5)]
     public float startDelay;
+    public int gameEnd = 1;
     [Range(0, 500)]
     public float endOff;
     public GameObject bounds;
@@ -64,6 +65,7 @@ public class gameData : MonoBehaviour
     public float aiActivationOffsite;
     public inGameMenu menus;
     public static Difficulty difficulty { get; set; }
+    public static int gameEnded { get; set; }
 
 
     // Use this for initialization
@@ -80,6 +82,7 @@ public class gameData : MonoBehaviour
         if (difficulty == 0)
             difficulty = Difficulty.EASY;
         gameData.nonStatic = this;
+        gameData.gameEnded = 0;
     }
 
     public static bool isChildOfPlayer(Transform who)
@@ -123,6 +126,7 @@ public class gameData : MonoBehaviour
         pausedGame = false;
         ScoreMultiplier = 1;
         nonStatic = null;
+        gameData.gameEnded = 0;
     }
 
     public void pauseGame()
@@ -153,6 +157,12 @@ public class gameData : MonoBehaviour
             {
                 startDelay -= 0.01f;
                 if (startDelay < 0) PauseGame();
+            }
+        }
+        if (!gameData.pausedGame) {
+            if (gameData.gameEnded == gameEnd) {
+                gameData.EndRoundSave();
+                LoadMenu();
             }
         }
     }

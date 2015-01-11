@@ -23,6 +23,13 @@ public class bonusDrops : MonoBehaviour
         {
             if (activated)
                 timer += Time.fixedDeltaTime;
+            else if (Random.Range(0, 5) <= 3)
+            {
+                if (type == typeOfBonus.SCOREBONUS)
+                    type = typeOfBonus.SPEEDUP;
+                else
+                    type++;
+            }
             if (timer >= duration)
                 DeActivate();
             if (gameData.gameBounds != null)
@@ -52,10 +59,10 @@ public class bonusDrops : MonoBehaviour
         switch (type)
         {
             case typeOfBonus.SPEEDUP:
-                Time.timeScale = 2;
+                Time.timeScale *= 2;
                 break;
             case typeOfBonus.SPEEDDOWN:
-                Time.timeScale = 0.5f;
+                Time.timeScale *= 0.5f;
                 break;
             case typeOfBonus.IDKFA:
                 gameData.playerSystems.noShield = false;
@@ -66,7 +73,7 @@ public class bonusDrops : MonoBehaviour
                 gameData.playerSystems.noShield = true;
                 break;
             case typeOfBonus.REVERSECONSTROL:
-                gameData.playerMotion.movementReverse = -1;
+                gameData.playerMotion.movementReverse *= -1;
                 break;
             case typeOfBonus.SCOREBONUS:
                 gameData.ScoreMultiplier *= 2;
@@ -82,10 +89,10 @@ public class bonusDrops : MonoBehaviour
         switch (type)
         {
             case typeOfBonus.SPEEDUP:
-                Time.timeScale = 1;
+                Time.timeScale *= 0.5f;
                 break;
             case typeOfBonus.SPEEDDOWN:
-                Time.timeScale = 1;
+                Time.timeScale *= 2;
                 break;
             case typeOfBonus.IDKFA:
                 gameData.playerSystems.idkfa = false;
@@ -94,7 +101,7 @@ public class bonusDrops : MonoBehaviour
                 gameData.playerSystems.noShield = false;
                 break;
             case typeOfBonus.REVERSECONSTROL:
-                gameData.playerMotion.movementReverse = 1;
+                gameData.playerMotion.movementReverse *= -1;
                 break;
             case typeOfBonus.SCOREBONUS:
                 gameData.ScoreMultiplier /= 2;
