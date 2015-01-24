@@ -1,23 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class motionProjectile : MonoBehaviour
+public class hommingProject : MonoBehaviour
 {
 
     [Range(0.0F, 500.0F)]
     public float forwardSpeed, destroyDmg;
-    public Vector3 directionVector { get; set; }
     [HideInInspector]
     public bool isPlayers = false;
+    private float timer = 0;
+    public float destroyTime = 8;
     public bool launch = false;
-
-    void Start()
-    {
-        directionVector = Vector3.forward;
-    }
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.LogError(collision.gameObject);
         if (isPlayers && collision.gameObject.GetComponent<shipSystemsEnemy>() != null && transform.parent == null)
         {
             var enemy = collision.gameObject.GetComponent<shipSystemsEnemy>();
@@ -68,15 +65,24 @@ public class motionProjectile : MonoBehaviour
     {
         if (!gameData.pausedGame && launch)
         {
-            transform.Translate(directionVector * forwardSpeed * Time.deltaTime);
+            if (timer >= destroyTime)
+                Destroy(gameObject);
+            else
+                timer += Time.deltaTime;
+            if (gameData.playerMotion != null)
+            {
+                var target = gameData.playerMotion.gameObject;
+                if (target != null)
+                {
+                    var relativePos = target.transform.position - transform.position;
+                    var rotation = Quaternion.LookRotation(relativePos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.035f);
+                }
+                transform.Translate(0, 0, forwardSpeed * Time.deltaTime, Space.Self);
+            }
             if (gameData.gameBounds != null)
-                if (transform.position.x > gameData.gameBounds.collider.bounds.max.x) Destroy(gameObject);
-                else if (transform.position.x < gameData.gameBounds.collider.bounds.min.x) Destroy(gameObject);
-                else if (transform.position.y > gameData.gameBounds.collider.bounds.max.y) Destroy(gameObject);
+                if (transform.position.y > gameData.gameBounds.collider.bounds.max.y) Destroy(gameObject);
                 else if (transform.position.y < gameData.gameBounds.collider.bounds.min.y) Destroy(gameObject);
-                else if (transform.position.z <= gameData.cameraOffsite.z + gameData.playerPosition.z) Destroy(gameObject);
-            if (isPlayers&&transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
-                
         }
     }
 }

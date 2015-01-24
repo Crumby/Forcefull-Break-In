@@ -6,7 +6,7 @@ public class TerrainCollision : MonoBehaviour
 
     public GameObject explosion;
 
-    void onTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Boundary")
         {

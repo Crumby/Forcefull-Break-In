@@ -6,7 +6,6 @@ public class loadingScrren : MonoBehaviour
 
     public GameObject[] dost;
     private int point = 1;
-    private float timer = 0;
     // Use this for initialization
     public void MoveDot()
     {
