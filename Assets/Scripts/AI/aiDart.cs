@@ -17,7 +17,4 @@ public class aiDart : MonoBehaviour
         if (!gameData.pausedGame && gameData.inReach(transform.position))
             ThinkFire();
     }
-
-    //lode naskriptuj
-    //lvl2 bos scripty
 }
