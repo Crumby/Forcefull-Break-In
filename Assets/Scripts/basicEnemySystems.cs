@@ -30,8 +30,10 @@ public class basicEnemySystems : MonoBehaviour
     private void destroyEnemy()
     {
         Instantiate(destroyExplosion, transform.position, Quaternion.identity);
-        foreach (var where in endEplosionPos)
-            Instantiate(fires, where.position, Quaternion.identity);
+        foreach (var where in endEplosionPos) { 
+            var tmp=(GameObject)Instantiate(fires, where.position, Quaternion.identity);
+            tmp.transform.parent = transform;
+        }
     }
 
     void OnCollisionEnter(Collision collision)

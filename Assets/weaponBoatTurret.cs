@@ -9,19 +9,11 @@ public class weaponBoatTurret : MonoBehaviour
 
     public void Fire(Vector3 to)
     {
+        Debug.Log("FIRE");
         var tmp_1 = (GameObject)Instantiate(projectile, where.position, Quaternion.identity);
         var tmp = tmp_1.GetComponent<motionProjectile>();
         tmp.transform.LookAt(to, Vector3.up);
         tmp.forwardSpeed += GetComponentInParent<motionEnemy>().forwardSpeed;
         tmp.launch = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!gameData.pausedGame)
-        {
-            transform.LookAt(gameData.playerPosition, Vector3.up);
-        }
     }
 }

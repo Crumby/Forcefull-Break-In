@@ -23,7 +23,7 @@ public class aiBoat : MonoBehaviour
     {
         if (motionEnemy.moveHorizontal == 0 && Random.Range(0, 50) % (12 / (int)gameData.difficulty) == 0)
         {
-            float tmp = transform.position.x - gameData.playerPosition.x;
+            float tmp = (transform.position.x - gameData.playerPosition.x)%150;
             if (tmp < 0)
             {
                 motionEnemy.moveHorizontal -= tmp;
@@ -38,9 +38,9 @@ public class aiBoat : MonoBehaviour
     }
     void Update()
     {
-        if (!gameData.pausedGame && gameData.inReach(transform.position))
+        if (!gameData.pausedGame && gameData.inReach(transform.position) && GetComponent<basicEnemySystems>() != null && GetComponent<basicEnemySystems>().health > 0)
         {
-            //ThinkMove();
+            ThinkMove();
             ThinkFire();
         }
     }
