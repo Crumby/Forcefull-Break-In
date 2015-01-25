@@ -14,7 +14,6 @@ public class hommingProject : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.LogError(collision.gameObject);
         if (isPlayers && collision.gameObject.GetComponent<shipSystemsEnemy>() != null && transform.parent == null)
         {
             var enemy = collision.gameObject.GetComponent<shipSystemsEnemy>();
