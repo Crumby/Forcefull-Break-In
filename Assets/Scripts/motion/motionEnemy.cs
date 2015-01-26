@@ -182,7 +182,7 @@ public class motionEnemy : MonoBehaviour
         {
             DestroyObject(gameObject);
         }
-        else if (!gameData.pausedGame && gameData.inReach(transform.position))
+        else if (!gameData.pausedGame && gameData.inReach(transform.position) && GetComponent<basicEnemySystems>() != null && GetComponent<basicEnemySystems>().health>0)
         {
             if (transform.position.z > waitOffset + gameData.playerPosition.z)
                 transform.Translate(0, 0, -forwardSpeed * Time.deltaTime, Space.World);

@@ -8,7 +8,8 @@ public class motionProjectile : MonoBehaviour
     public float forwardSpeed, destroyDmg;
     public Vector3 directionVector { get; set; }
     [HideInInspector]
-    public bool isPlayers = false, launch = false;
+    public bool isPlayers = false;
+    public bool launch = false;
 
     void Start()
     {
@@ -73,8 +74,9 @@ public class motionProjectile : MonoBehaviour
                 else if (transform.position.x < gameData.gameBounds.collider.bounds.min.x) Destroy(gameObject);
                 else if (transform.position.y > gameData.gameBounds.collider.bounds.max.y) Destroy(gameObject);
                 else if (transform.position.y < gameData.gameBounds.collider.bounds.min.y) Destroy(gameObject);
-                else if (transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
                 else if (transform.position.z <= gameData.cameraOffsite.z + gameData.playerPosition.z) Destroy(gameObject);
+            if (isPlayers&&transform.position.z > gameData.playerPosition.z + gameData.aiActivation) Destroy(gameObject);
+                
         }
     }
 }
