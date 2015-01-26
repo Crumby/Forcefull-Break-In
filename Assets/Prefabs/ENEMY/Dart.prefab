@@ -172,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -42.9000015, y: 0, z: 160.100006}
-  m_LocalScale: {x: 168.853806, y: 100, z: 100}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_Children:
   - {fileID: 400014}
   - {fileID: 400008}
@@ -684,7 +684,7 @@ MonoBehaviour:
   forwardSpeed: 9.39999962
   horizontalSpeed: 15.3999996
   verticalSpeed: 9.89999962
-  waitOffset: 20
+  waitOffset: 75
   horizontalRotation: 6
   waitInFrontPlayer: 19.2999992
   colisionWait: 1.29999995
