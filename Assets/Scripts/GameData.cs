@@ -162,6 +162,7 @@ public class gameData : MonoBehaviour
         if (!gameData.pausedGame) {
             if (gameData.gameEnded == gameEnd) {
                 gameData.EndRoundSave();
+                menus.showClearedStage();
                 LoadMenu();
             }
         }

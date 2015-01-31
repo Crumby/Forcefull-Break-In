@@ -11,6 +11,7 @@ public class hommingProject : MonoBehaviour
     private float timer = 0;
     public float destroyTime = 8;
     public bool launch = false;
+    public GameObject explosion;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -64,8 +65,10 @@ public class hommingProject : MonoBehaviour
     {
         if (!gameData.pausedGame && launch)
         {
-            if (timer >= destroyTime)
+            if (timer >= destroyTime){
+                Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            }
             else
                 timer += Time.deltaTime;
             if (gameData.playerMotion != null)

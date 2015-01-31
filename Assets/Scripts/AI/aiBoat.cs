@@ -15,7 +15,7 @@ public class aiBoat : MonoBehaviour
     private void ThinkFire()
     {
         if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
-            weapons[Random.Range(0, weapons.Length)].Fire(gameData.playerPosition);
+            weapons[Random.Range(0, weapons.Length)].Fire(gameData.playerPosition+new Vector3(0,0,25));
     }
 
 

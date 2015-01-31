@@ -20,6 +20,7 @@ public class animRocketLaucher : MonoBehaviour
     public void Fire()
     {
         engine.SetActive(true);
+        GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame

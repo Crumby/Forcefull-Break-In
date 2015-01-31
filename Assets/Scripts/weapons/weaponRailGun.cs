@@ -45,6 +45,7 @@ public class weaponRailGun : MonoBehaviour
             {
                 bullets[p_rail].transform.parent = null; 
                 tmp_1.SetActive(true);
+                tmp_1.GetComponent<AudioSource>().Play();
                 var tmp = bullets[p_rail].GetComponent<motionProjectile>();
                 tmp.forwardSpeed += GetComponentInParent<motionPlayer>().forwardSpeed;
                 if (gameData.aimPoint != Vector3.zero)

@@ -9,7 +9,6 @@ public class weaponBoatTurret : MonoBehaviour
 
     public void Fire(Vector3 to)
     {
-        Debug.Log("FIRE");
         var tmp_1 = (GameObject)Instantiate(projectile, where.position, Quaternion.identity);
         var tmp = tmp_1.GetComponent<motionProjectile>();
         tmp.transform.LookAt(to, Vector3.up);

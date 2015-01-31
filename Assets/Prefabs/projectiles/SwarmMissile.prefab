@@ -61,7 +61,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11467638}
@@ -351,21 +350,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.63670349, y: .669712543, z: 20.8717957}
   m_Center: {x: 1.1920929e-07, y: -.00106288493, z: 1.58885145}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 45ae2fcb8f70b2a4d8f480568af27c7d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11467638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,6 +366,7 @@ MonoBehaviour:
   isPlayers: 0
   destroyTime: 20
   launch: 1
+  explosion: {fileID: 100000, guid: b9dd5ecd168e0b54295932b5b107b983, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
