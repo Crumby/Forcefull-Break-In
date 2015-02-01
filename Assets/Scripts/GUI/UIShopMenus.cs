@@ -22,7 +22,7 @@ public class UIShopMenus : MonoBehaviour
         foreach (var button in buttonsToSlide)
         {
             button.transform.position = new Vector3(button.transform.position.x,
-                button.transform.position.y + toMove + button.GetComponent<UnityEngine.RectTransform>().rect.height * 2.5f,
+                button.transform.position.y + toMove + button.GetComponent<UnityEngine.RectTransform>().rect.height ,
                 button.transform.position.z);
         }
         openedTab = this;
@@ -35,7 +35,7 @@ public class UIShopMenus : MonoBehaviour
         foreach (var button in buttonsToSlide)
         {
             button.transform.position = new Vector3(button.transform.position.x,
-                button.transform.position.y + toMove - button.GetComponent<UnityEngine.RectTransform>().rect.height * 2.5f,
+                button.transform.position.y + toMove - button.GetComponent<UnityEngine.RectTransform>().rect.height ,
                 button.transform.position.z);
         }
         openedTab = null;

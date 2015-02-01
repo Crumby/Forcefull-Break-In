@@ -17,9 +17,11 @@ public class MenusLogic : MonoBehaviour
     public Text planetName, stageT, start;
     public Button stage, contin;
     public PlanetEntity[] planets;
+    public static bool[][] levelsLocks;
     private PlanetEntity selectedPlanet;
     private static PlanetNames SelectedPlanet;
     private static MenuScreen loadedScreen = MenuScreen.NONE;
+    public static ShopItems SelectedBonus;
     public static bool stageCompleted = false;
     public loadingScrren loadingScreen;
     // Use this for initialization
@@ -54,6 +56,18 @@ public class MenusLogic : MonoBehaviour
         {
             gameData.difficulty = Difficulty.EASY;
             contin.interactable = false;
+            if (levelsLocks == null)
+            {
+                levelsLocks = new bool[planets.Length][];
+                for (int i = 0; i < planets.Length; i++)
+                {
+                    levelsLocks[i] = new bool[planets[i].LevelsLock.Length];
+                    for (int l = 0; l < planets[i].LevelsLock.Length; l++)
+                    {
+                        levelsLocks[i][l] = planets[i].LevelsLock[l];
+                    }
+                }
+            }
         }
         else
         {
@@ -195,5 +209,9 @@ public class MenusLogic : MonoBehaviour
     public void ReloadTotalScore()
     {
         totalScore.text = gameData.totalScore.ToString();
+    }
+
+    public void buyBonus() {
+        gameData.Upgrade(SelectedBonus);
     }
 }

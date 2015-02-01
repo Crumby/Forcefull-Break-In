@@ -32,7 +32,7 @@ public class weaponRailGun : MonoBehaviour
 
     void Update()
     {
-        if (timer < fireRate)
+        if (timer < fireRate/gameData.firespeedCannon)
             timer += Time.deltaTime;
     }
 
@@ -53,6 +53,7 @@ public class weaponRailGun : MonoBehaviour
                 else
                     tmp.transform.rotation = transform.rotation;
                 tmp.isPlayers = true;
+                tmp.destroyDmg += gameData.bonusDmgCannon;
                 tmp.launch = true;
             }
         }

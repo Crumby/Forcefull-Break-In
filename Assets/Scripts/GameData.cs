@@ -5,13 +5,15 @@ namespace UnityEngine
 {
     public enum EnemyCollision { RIGTH, LEFT, FRONT, BACK, UP, DOWN, NONE }
     public enum Difficulty { EASY = 1, NORMAL = 2, HARD = 4, GODLIKE = 6 }
+    public enum ShopItems { HP, SHIELD, SHREGEN, MISLISEDMG, CANNONDMG, CANONFIRA, SPEED, ULTI }
     [System.Serializable]
     public class SaveData
     {
         public Difficulty difficulty;
         public float score, volume;
-        public PlanetEntity[] planets;
+        public bool[][] planets;
         //public bool soundMute;
+        public float bonusShields, bonusShieldRegen, bonusHP, bonusDmgMissise, bonusDmgCannon, firespeedCannon, bonusSpeed, ultiDerease;
     }
 }
 
@@ -67,6 +69,8 @@ public class gameData : MonoBehaviour
     public inGameMenu menus;
     public static Difficulty difficulty { get; set; }
     public static int gameEnded { get; set; }
+    //bonuses
+    public static float bonusShields = 0, bonusShieldRegen = 0, bonusHP = 0, bonusDmgMissise = 0, bonusDmgCannon = 0, firespeedCannon = 1, bonusSpeed = 0, ultiDerease = 1;
 
 
     // Use this for initialization
@@ -130,6 +134,12 @@ public class gameData : MonoBehaviour
         gameData.gameEnded = 0;
     }
 
+    public void pauseGame()
+    {
+        menus.showMenu();
+        gameData.PauseGame();
+    }
+
     public static void PauseGame()
     {
         if (Time.timeScale == 0)
@@ -158,7 +168,7 @@ public class gameData : MonoBehaviour
         {
             if (gameData.gameEnded == gameEnd)
             {
-                StartCoroutine(endRound()); 
+                StartCoroutine(endRound());
                 StartCoroutine(endRound());
             }
         }
@@ -188,7 +198,15 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = totalScore + score;
-        //obj.planets = MenusLogic.planetsToSave;
+        obj.planets = MenusLogic.levelsLocks;
+        obj.bonusShields = bonusShields;
+        obj.bonusShieldRegen = bonusShieldRegen;
+        obj.bonusHP = bonusHP;
+        obj.bonusDmgMissise = bonusDmgMissise;
+        obj.bonusDmgCannon = bonusDmgCannon;
+        obj.firespeedCannon = firespeedCannon;
+        obj.bonusSpeed = bonusSpeed;
+        obj.ultiDerease = ultiDerease;
         Save(obj);
     }
 
@@ -198,7 +216,15 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = totalScore;
-        //obj.planets = MenusLogic.planetsToSave;
+        obj.planets = MenusLogic.levelsLocks;
+        obj.bonusShields = bonusShields;
+        obj.bonusShieldRegen = bonusShieldRegen;
+        obj.bonusHP = bonusHP;
+        obj.bonusDmgMissise = bonusDmgMissise;
+        obj.bonusDmgCannon = bonusDmgCannon;
+        obj.firespeedCannon = firespeedCannon;
+        obj.bonusSpeed = bonusSpeed;
+        obj.ultiDerease = ultiDerease;
         Save(obj);
     }
 
@@ -208,7 +234,15 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = 0;
-        //obj.planets = MenusLogic.planetsToSave;
+        obj.planets = MenusLogic.levelsLocks;
+        obj.bonusShields = bonusShields;
+        obj.bonusShieldRegen = bonusShieldRegen;
+        obj.bonusHP = bonusHP;
+        obj.bonusDmgMissise = bonusDmgMissise;
+        obj.bonusDmgCannon = bonusDmgCannon;
+        obj.firespeedCannon = firespeedCannon;
+        obj.bonusSpeed = bonusSpeed;
+        obj.ultiDerease = ultiDerease;
         Save(obj);
     }
 
@@ -234,7 +268,72 @@ public class gameData : MonoBehaviour
         totalScore = obj.score;
         difficulty = obj.difficulty;
         AudioListener.volume = obj.volume;
-        //MenusLogic.planetsToSave = obj.planets;
+        MenusLogic.levelsLocks = obj.planets;
+        bonusShields = obj.bonusShields;
+        bonusShieldRegen = obj.bonusShieldRegen;
+        bonusHP = obj.bonusHP;
+        bonusDmgMissise = obj.bonusDmgMissise;
+        bonusDmgCannon = obj.bonusDmgCannon;
+        firespeedCannon = obj.firespeedCannon;
+        bonusSpeed = obj.bonusSpeed;
+        ultiDerease = obj.ultiDerease;
         return true;
+    }
+
+    public static void Upgrade(ShopItems item)
+    {
+        if (canUpgrade(item))
+            switch (item)
+            {
+                case ShopItems.HP:
+                    bonusHP += 50;
+                    break;
+                case ShopItems.SHIELD:
+                    bonusShields += 50;
+                    break;
+                case ShopItems.SHREGEN:
+                    bonusShieldRegen += 2;
+                    break;
+                case ShopItems.MISLISEDMG:
+                    bonusDmgMissise += 20;
+                    break;
+                case ShopItems.CANNONDMG:
+                    bonusDmgCannon += 3;
+                    break;
+                case ShopItems.CANONFIRA:
+                    firespeedCannon += 0.25f;
+                    break;
+                case ShopItems.SPEED:
+                    bonusSpeed += 35;
+                    break;
+                case ShopItems.ULTI:
+                    ultiDerease += 0.20f;
+                    break;
+            }
+    }
+
+    public static bool canUpgrade(ShopItems item)
+    {
+        switch (item)
+        {
+            case ShopItems.HP:
+                return bonusHP == 0 && totalScore > 1000;
+            case ShopItems.SHIELD:
+                return bonusShields == 0 && totalScore > 1000;
+            case ShopItems.SHREGEN:
+                return bonusShieldRegen == 0 && totalScore > 1000;
+            case ShopItems.MISLISEDMG:
+                return bonusDmgMissise == 0 && totalScore > 1000;
+            case ShopItems.CANNONDMG:
+                return bonusDmgCannon == 0 && totalScore > 1000;
+            case ShopItems.CANONFIRA:
+                return firespeedCannon == 1 && totalScore > 1000;
+            case ShopItems.SPEED:
+                return bonusSpeed == 0 && totalScore > 1000;
+            case ShopItems.ULTI:
+                return ultiDerease == 1 && totalScore > 1000;
+            default:
+                return false;
+        }
     }
 }

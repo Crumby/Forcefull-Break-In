@@ -31,8 +31,8 @@ public class shipSystemsPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Health = maxHealth;
-        Shield = maxShield;
+        Health = maxHealth+gameData.bonusHP;
+        Shield = maxShield+gameData.bonusShields;
         Power = 0;
     }
 
@@ -40,7 +40,7 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (Power > 0)
         {
-            Power -= powerDrain * Time.deltaTime;
+            Power -= powerDrain/gameData.ultiDerease * Time.deltaTime;
             if (Power < 0)
                 Power = 0;
             if (Power > maxPower)
@@ -54,9 +54,9 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (Shield < maxShield && !noShield)
         {
-            if (shieldRegen * Time.deltaTime + Shield > maxShield)
+            if ((shieldRegen + gameData.bonusShieldRegen) * Time.deltaTime + Shield > maxShield)
                 Shield = maxShield;
-            else Shield += shieldRegen * Time.deltaTime;
+            else Shield += (shieldRegen +gameData.bonusShieldRegen)* Time.deltaTime;
             shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
                 Shield / (float)maxShield, shieldTexture.rectTransform.localScale.z);
             shieldText.text = Mathf.CeilToInt(Shield).ToString();

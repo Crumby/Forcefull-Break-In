@@ -22,7 +22,6 @@ public class weaponRocketLaucher : MonoBehaviour
         if (!gameData.pausedGame)
         {
             if (GetComponentInParent<motionPlayer>() != null)
-                //                Debug.Log("P" + charged + " " + timer + " " + projetile);
                 if (charged && projetile.GetComponent<motionProjectile>().launch)
                 {
                     projetile = null;
@@ -42,7 +41,10 @@ public class weaponRocketLaucher : MonoBehaviour
     private void addParentSpeed(bool isPlayer)
     {
         if (isPlayer)
+        {
             projetile.GetComponent<motionProjectile>().forwardSpeed += GetComponentInParent<motionPlayer>().forwardSpeed;
+            projetile.GetComponent<motionProjectile>().destroyDmg += gameData.bonusDmgMissise;
+        }
         else
             projetile.GetComponent<motionProjectile>().forwardSpeed += GetComponentInParent<motionEnemy>().forwardSpeed;
     }
