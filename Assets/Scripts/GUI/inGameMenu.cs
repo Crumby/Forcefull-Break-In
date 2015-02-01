@@ -5,7 +5,7 @@ public class inGameMenu : MonoBehaviour
 {
 
     public UnityEngine.UI.Button menu, restart, exit, options;
-    public UnityEngine.UI.Text gameOver,stageCleared, bonusPopup;
+    public UnityEngine.UI.Text gameOver, stageCleared, bonusPopup;
     public UnityEngine.UI.Scrollbar volume;
     public UnityEngine.UI.Toggle sound;
     public GameObject optionsMenu;
@@ -34,10 +34,8 @@ public class inGameMenu : MonoBehaviour
 
     public void showClearedStage()
     {
+        bonusPopup.gameObject.SetActive(false);
         stageCleared.gameObject.SetActive(true);
-        float timer = 0;
-        while (timer <= 6000)
-            timer += Time.fixedDeltaTime;
     }
 
     public void showMenu()
@@ -71,7 +69,7 @@ public class inGameMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && Time.timeScale == 1)
+        if (Input.GetButtonDown("Cancel"))
         {
             showMenu();
             gameData.PauseGame();

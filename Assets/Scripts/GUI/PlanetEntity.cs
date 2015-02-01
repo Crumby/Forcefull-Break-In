@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class PlanetEntity : MonoBehaviour
 {
     public bool[] LevelsLock;
@@ -23,6 +24,12 @@ public class PlanetEntity : MonoBehaviour
         else
             SelectedLevel = SelectedLevel + 1;
 
+    }
+
+    public void unlockNext() {
+        if (SelectedLevel + 1 < LevelsLock.Length)
+            LevelsLock[SelectedLevel + 1] = false;
+        NextLevel();
     }
 
 }

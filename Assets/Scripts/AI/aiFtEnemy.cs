@@ -62,9 +62,9 @@ public class aiFtEnemy : MonoBehaviour
             ThinkFire();
             ThinkChangeHeight();
             if (rotorL != null)
-                rotorL.transform.Rotate(new Vector3(0, 1, 0), 0.1f, Space.Self);
+                rotorL.gameObject.transform.Rotate(new Vector3(0, 1, 0), 120*Time.deltaTime, Space.World);
             if (rotorR != null)
-                rotorR.transform.Rotate(new Vector3(0, 1, 0), 0.1f, Space.Self);
+                rotorR.gameObject.transform.Rotate(new Vector3(0, 1, 0), -120*Time.deltaTime, Space.World);
         }
     }
 }

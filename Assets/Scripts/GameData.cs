@@ -10,6 +10,7 @@ namespace UnityEngine
     {
         public Difficulty difficulty;
         public float score, volume;
+        public PlanetEntity[] planets;
         //public bool soundMute;
     }
 }
@@ -129,12 +130,6 @@ public class gameData : MonoBehaviour
         gameData.gameEnded = 0;
     }
 
-    public void pauseGame()
-    {
-        gameData.PauseGame();
-        menus.showMenu();
-    }
-
     public static void PauseGame()
     {
         if (Time.timeScale == 0)
@@ -159,13 +154,25 @@ public class gameData : MonoBehaviour
                 if (startDelay < 0) PauseGame();
             }
         }
-        if (!gameData.pausedGame) {
-            if (gameData.gameEnded == gameEnd) {
-                gameData.EndRoundSave();
-                menus.showClearedStage();
-                LoadMenu();
+        if (!gameData.pausedGame)
+        {
+            if (gameData.gameEnded == gameEnd)
+            {
+                StartCoroutine(endRound()); 
+                StartCoroutine(endRound());
             }
         }
+    }
+
+    private IEnumerator endRound()
+    {
+        menus.showClearedStage();
+        gameData.PauseGame();
+        yield return new WaitForSeconds(5);
+        string n = Application.loadedLevelName;
+        if (n == "space_0" || n == "space_1" || n == "space_2" || n == "space_3")
+            MenusLogic.stageCompleted = true;
+        LoadMenu();
     }
 
     void LoadMenu()
@@ -181,6 +188,7 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = totalScore + score;
+        //obj.planets = MenusLogic.planetsToSave;
         Save(obj);
     }
 
@@ -190,6 +198,7 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = totalScore;
+        //obj.planets = MenusLogic.planetsToSave;
         Save(obj);
     }
 
@@ -199,6 +208,7 @@ public class gameData : MonoBehaviour
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
         obj.score = 0;
+        //obj.planets = MenusLogic.planetsToSave;
         Save(obj);
     }
 
@@ -224,6 +234,7 @@ public class gameData : MonoBehaviour
         totalScore = obj.score;
         difficulty = obj.difficulty;
         AudioListener.volume = obj.volume;
+        //MenusLogic.planetsToSave = obj.planets;
         return true;
     }
 }

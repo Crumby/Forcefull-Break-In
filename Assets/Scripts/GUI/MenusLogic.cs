@@ -20,6 +20,7 @@ public class MenusLogic : MonoBehaviour
     private PlanetEntity selectedPlanet;
     private static PlanetNames SelectedPlanet;
     private static MenuScreen loadedScreen = MenuScreen.NONE;
+    public static bool stageCompleted = false;
     public loadingScrren loadingScreen;
     // Use this for initialization
     void Start()
@@ -30,6 +31,12 @@ public class MenusLogic : MonoBehaviour
             welcomeSC.SetActive(false);
             levelSC.SetActive(true);
             LevelPanelMove(planets[(int)SelectedPlanet]);
+            if (stageCompleted)
+            {
+                planets[(int)SelectedPlanet].unlockNext();
+                stageCompleted = false;
+                gameData.EndRoundSave();
+            }
         }
         else
         {
@@ -49,7 +56,9 @@ public class MenusLogic : MonoBehaviour
             contin.interactable = false;
         }
         else
+        {
             contin.interactable = true;
+        }
         volume.value = AudioListener.volume;
         if (AudioListener.volume == 0)
         {
@@ -84,21 +93,25 @@ public class MenusLogic : MonoBehaviour
         updateStage();
     }
 
+    private void unlockStage(PlanetEntity planet)
+    {
+    }
+
     public void LoadLevel()
     {
         switch (selectedPlanet.PlanetName)
         {
             case PlanetNames.Garuz:
-                StartCoroutine(LoadLevelAsync("lvl1"));
+                StartCoroutine(LoadLevelAsync("space_0"));
                 break;
             case PlanetNames.Figil:
-                StartCoroutine(LoadLevelAsync("lvl2"));
+                StartCoroutine(LoadLevelAsync("space_2"));
                 break;
             case PlanetNames.Prezz:
-                StartCoroutine(LoadLevelAsync("lvl1"));
+                StartCoroutine(LoadLevelAsync("space_1"));
                 break;
             case PlanetNames.Bcolg:
-                StartCoroutine(LoadLevelAsync("lvl2"));
+                StartCoroutine(LoadLevelAsync("space_3"));
                 break;
             default:
                 break;
@@ -107,7 +120,7 @@ public class MenusLogic : MonoBehaviour
 
     IEnumerator LoadLevelAsync(string name)
     {
-        loadingScreen.gameObject.SetActive(true);        
+        loadingScreen.gameObject.SetActive(true);
         AsyncOperation sceneLoadingOperation = Application.LoadLevelAsync(name);
         while (!sceneLoadingOperation.isDone)
         {
