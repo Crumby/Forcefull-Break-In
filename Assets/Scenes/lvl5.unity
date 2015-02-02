@@ -19,7 +19,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 71b634fec31b38b46a30f6185273a772, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &348062294
 Transform:
   m_ObjectHideFlags: 0
@@ -745,10 +745,10 @@ ParticleAnimator:
     rgba: 603947008
   colorAnimation[3]:
     serializedVersion: 2
-    rgba: 257622129
+    rgba: 268370003
   colorAnimation[4]:
     serializedVersion: 2
-    rgba: 14876927
+    rgba: 255
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
   sizeGrow: .400000006
@@ -1156,6 +1156,7 @@ RectTransform:
   m_Children:
   - {fileID: 1751572783}
   - {fileID: 1633509087}
+  - {fileID: 839504465}
   - {fileID: 1759396949}
   - {fileID: 1492006255}
   - {fileID: 1080876845}
@@ -1198,10 +1199,10 @@ RectTransform:
   m_Children:
   - {fileID: 910496003}
   m_Father: {fileID: 485634397}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -160}
+  m_AnchoredPosition: {x: 0, y: -81}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &534522272
@@ -1246,6 +1247,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2057798023}
         m_MethodName: pauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1381,7 +1394,7 @@ Transform:
   m_PrefabInternal: {fileID: 2028493030}
   m_GameObject: {fileID: 688087016}
   m_LocalRotation: {x: .0436193869, y: 0, z: 0, w: .999048233}
-  m_LocalPosition: {x: 506, y: 151.300003, z: -1.60000002}
+  m_LocalPosition: {x: 492, y: 151.300003, z: -1.60000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1606164482}
@@ -1696,6 +1709,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1080876844}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -2184,6 +2209,91 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 2028493030}
   m_GameObject: {fileID: 834101582}
+--- !u!1 &839504464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 127066, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 839504465}
+  - 222: {fileID: 839504468}
+  - 114: {fileID: 839504466}
+  - 114: {fileID: 839504467}
+  m_Layer: 5
+  m_Name: gameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &839504465
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22427066, guid: d254c1e61df481f45b049b85a90b2e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  m_GameObject: {fileID: 839504464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485634397}
+  m_RootOrder: 2
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 179}
+  m_SizeDelta: {x: 130, y: 30}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &839504466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11427066, guid: d254c1e61df481f45b049b85a90b2e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  m_GameObject: {fileID: 839504464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 41dca67f107a8244b9d6148989d2ffcf, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Game Over
+--- !u!114 &839504467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11427068, guid: d254c1e61df481f45b049b85a90b2e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  m_GameObject: {fileID: 839504464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: .501960814}
+  m_EffectDistance: {x: 10, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!222 &839504468
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22227066, guid: d254c1e61df481f45b049b85a90b2e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  m_GameObject: {fileID: 839504464}
 --- !u!1 &842317676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2710,7 @@ GameObject:
   - 114: {fileID: 1044533831}
   - 114: {fileID: 1044533830}
   - 114: {fileID: 1044533829}
+  - 82: {fileID: 1044533833}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2649,7 +2760,8 @@ MonoBehaviour:
   restart: {fileID: 1492006256}
   exit: {fileID: 1633509088}
   options: {fileID: 1080876846}
-  gameOver: {fileID: 1759396950}
+  gameOver: {fileID: 839504466}
+  stageCleared: {fileID: 1759396950}
   bonusPopup: {fileID: 167193522}
   volume: {fileID: 1386668560}
   sound: {fileID: 2010677605}
@@ -2711,6 +2823,65 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!82 &1044533833
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8242452, guid: d254c1e61df481f45b049b85a90b2e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028493030}
+  m_GameObject: {fileID: 1044533827}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 3e946226c48929a44a57d14ddde3e624, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1047383256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,7 +2940,7 @@ RectTransform:
   m_Children:
   - {fileID: 805700542}
   m_Father: {fileID: 485634397}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -1}
@@ -2875,6 +3046,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1080876847
@@ -2945,7 +3128,7 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: .610294104, g: .811051667, b: 1, a: 1}
-  m_Intensity: 1.30999994
+  m_Intensity: .300000012
   m_Range: 433.228851
   m_SpotAngle: 48
   m_CookieSize: 10
@@ -3205,6 +3388,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1044533829}
         m_MethodName: SoundVolume
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -4376,7 +4571,7 @@ RectTransform:
   m_Children:
   - {fileID: 1573879541}
   m_Father: {fileID: 485634397}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 78}
@@ -4424,6 +4619,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2057798023}
         m_MethodName: reloadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4535,7 +4742,7 @@ Transform:
   m_PrefabInternal: {fileID: 2028493030}
   m_GameObject: {fileID: 1513496451}
   m_LocalRotation: {x: .0436193869, y: 0, z: 0, w: .999048233}
-  m_LocalPosition: {x: 506, y: 160.300003, z: -13.6000004}
+  m_LocalPosition: {x: 492, y: 160.300003, z: -13.6000004}
   m_LocalScale: {x: 1, y: .992459118, z: 2.03627324}
   m_Children:
   - {fileID: 1664386465}
@@ -5201,7 +5408,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -79}
+  m_AnchoredPosition: {x: 0, y: -160}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1633509088
@@ -5256,6 +5463,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1633509089
@@ -5553,7 +5772,7 @@ GameObject:
   - 114: {fileID: 1759396950}
   - 114: {fileID: 1759396951}
   m_Layer: 5
-  m_Name: gameOver
+  m_Name: stageCleared
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5567,14 +5786,14 @@ RectTransform:
   m_PrefabInternal: {fileID: 2028493030}
   m_GameObject: {fileID: 1759396948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3.40715883e-06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 485634397}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 179}
+  m_AnchoredPosition: {x: 0, y: 178.999969}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1759396950
@@ -5603,7 +5822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: Stage cleared
 --- !u!114 &1759396951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6051,7 +6270,7 @@ Transform:
   m_PrefabInternal: {fileID: 2028493030}
   m_GameObject: {fileID: 2010261234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33430481, y: -4.59938431, z: -4.41511726}
+  m_LocalPosition: {x: .0399999991, y: .150000006, z: 20.9599991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 688087017}
@@ -6149,6 +6368,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1044533829}
         m_MethodName: SoundEnable
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1044533833}
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
