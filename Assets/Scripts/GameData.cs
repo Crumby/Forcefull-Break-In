@@ -61,7 +61,7 @@ public class gameData : MonoBehaviour
     [Range(0, 5)]
     public float startDelay;
     public int gameEnd = 1;
-    [Range(0, 500)]
+    [Range(0, 2500)]
     public float endOff;
     public GameObject bounds;
     [Range(0.0F, 1000.0F)]

@@ -12,7 +12,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11415558}
+  - 114: {fileID: 11493852}
   m_Layer: 0
   m_Name: NotSoHomingCannonball
   m_TagString: Untagged
@@ -74,7 +74,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &11415558
+--- !u!114 &11493852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,8 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a87d8cafdadec44791b806f1222421d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 110
-  destroyDmg: 52
+  forwardSpeed: 150
+  destroyDmg: 130
   isPlayers: 0
   launch: 1
 --- !u!135 &13500000

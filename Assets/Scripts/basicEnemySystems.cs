@@ -8,14 +8,14 @@ public class basicEnemySystems : MonoBehaviour
     public float collisionDmg;
     [Range(0.0F, 500.0F)]
     public int maxHealth, score;
-    public int health { get; private set; }
+    public int health { get; set; }
     public GameObject smallExplosion, fires, destroyExplosion;
     public Transform[] endEplosionPos;
 
     // Use this for initialization
     void Start()
     {
-        health = maxHealth;
+        health = maxHealth * (int)gameData.difficulty;
     }
 
     public bool recieveDmg(float dmg, Vector3 where)
@@ -30,8 +30,9 @@ public class basicEnemySystems : MonoBehaviour
     private void destroyEnemy()
     {
         Instantiate(destroyExplosion, transform.position, Quaternion.identity);
-        foreach (var where in endEplosionPos) { 
-            var tmp=(GameObject)Instantiate(fires, where.position, Quaternion.identity);
+        foreach (var where in endEplosionPos)
+        {
+            var tmp = (GameObject)Instantiate(fires, where.position, Quaternion.identity);
             tmp.transform.parent = transform;
         }
     }
@@ -43,6 +44,7 @@ public class basicEnemySystems : MonoBehaviour
         {
             enemy.recieveDmg(collisionDmg, collision.contacts[0].point);
         }
+        else if (collision.gameObject.GetComponent<TerrainCollider>() != null && GetComponent<motionEnemy>() != null) destroyEnemy();
     }
 
     void Update()

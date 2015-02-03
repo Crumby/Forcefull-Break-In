@@ -40,7 +40,6 @@ public class aiBoss2 : MonoBehaviour
                 }
             }
             else gameData.gameEnded++;
-
         }
     }
 }

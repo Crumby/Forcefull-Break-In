@@ -17,8 +17,8 @@ public class shipSystemsEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        health = maxHealth;
-        shield = maxShield;
+        health = maxHealth * (int)gameData.difficulty;
+        shield = maxShield * (int)gameData.difficulty;
     }
 
     private void shieldRegeneration()

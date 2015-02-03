@@ -543,8 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a87d8cafdadec44791b806f1222421d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 41
-  destroyDmg: 25.7000008
+  forwardSpeed: 110
+  destroyDmg: 30
   isPlayers: 0
   launch: 0
 --- !u!1001 &100100000
