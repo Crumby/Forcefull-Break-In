@@ -168,22 +168,22 @@ public class gameData : MonoBehaviour
         {
             if (gameData.gameEnded == gameEnd)
             {
+                totalScore += score;
+                string n = Application.loadedLevelName;
+                if (n == "space_0" || n == "space_1" || n == "space_2" || n == "space_3")
+                    MenusLogic.stageCompleted = true;
+                Debug.LogError(n+" "+gameData.totalScore);
+                menus.showClearedStage();
                 StartCoroutine(endRound());
                 StartCoroutine(endRound());
+                gameEnd++;
             }
         }
     }
 
     private IEnumerator endRound()
     {
-        totalScore += score;
-        MenusLogic.stageCompleted= true;
-        menus.showClearedStage();
-        gameData.PauseGame();
         yield return new WaitForSeconds(5);
-        string n = Application.loadedLevelName;
-        if (n == "space_0" || n == "space_1" || n == "space_2" || n == "space_3")
-            MenusLogic.stageCompleted = true;
         LoadMenu();
     }
 

@@ -17,7 +17,7 @@ public class aiFtEnemy : MonoBehaviour
     private void ThinkFire()
     {
         if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
-            weapon.Fire(gameData.playerPosition + new Vector3(0, 0, 50));
+            weapon.Fire(gameData.playerPosition );
     }
 
     private void ThinkChangeHeight()
