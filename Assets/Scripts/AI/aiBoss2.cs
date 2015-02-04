@@ -10,6 +10,7 @@ public class aiBoss2 : MonoBehaviour
     private Animator anim;
     [HideInInspector]
     public bool animEnded = false;
+    private bool ening = false;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -29,17 +30,23 @@ public class aiBoss2 : MonoBehaviour
                         end = false;
                         break;
                     }
-                if (end)
+                if (end && !ening)
                 {
                     foreach (var pos in explosionPositions)
                     {
                         var exp = (GameObject)Instantiate(endExplosion, pos.position, Quaternion.identity);
                         exp.transform.parent = transform;
                     }
-                    anim.Play("lvl2Boss");
+                    anim.SetBool("run", true);
+                    ening = true;
                 }
             }
-            else gameData.gameEnded++;
+            else
+            {
+                anim.SetBool("run", false);
+                gameData.gameEnded++;
+            }
+
         }
     }
 }

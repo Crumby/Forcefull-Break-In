@@ -13,15 +13,16 @@ public class aiBoss2Cannon : MonoBehaviour
 
     public void Fire(Vector3 to)
     {
-        if (timer >= fireSpeed / (float)gameData.difficulty&&where.Length>0)
+        if (timer >= fireSpeed / (float)gameData.difficulty && where.Length > 0 && Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
         {
+            cannon++;
+            if (cannon >= where.Length)
+                cannon = 0;
             Instantiate(blast, where[cannon].position, Quaternion.identity);
             var tmp_1 = (GameObject)Instantiate(projectile, where[cannon].position, Quaternion.identity);
             var tmp = tmp_1.GetComponent<motionProjectile>();
             tmp.transform.LookAt(to, Vector3.up);
-            tmp.forwardSpeed += GetComponentInParent<motionEnemy>().forwardSpeed;
-            tmp.launch = true;
-            cannon=(cannon+1)%where.Length;
+            tmp.launch = true;            
         }
         else timer += Time.deltaTime;
     }

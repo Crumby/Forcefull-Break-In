@@ -119,8 +119,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 445578}
-  - 95: {fileID: 9545672}
   - 114: {fileID: 11445668}
+  - 95: {fileID: 9587894}
   m_Layer: 0
   m_Name: lvl2Boss
   m_TagString: Untagged
@@ -946,8 +946,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145578}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 500, y: 54, z: 4975}
+  m_LocalRotation: {x: 0, y: -.984856486, z: 0, w: .173371762}
+  m_LocalPosition: {x: 529.200012, y: 54, z: 4966.7002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 444964}
@@ -1767,7 +1767,7 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300018, guid: 636a4016ac24c4e4f9a06268d3f847d7, type: 3}
---- !u!95 &9545672
+--- !u!95 &9587894
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -1775,9 +1775,9 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145578}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 636a4016ac24c4e4f9a06268d3f847d7, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2972eea8e5747e5418a2be2409b91c66, type: 2}
-  m_CullingMode: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe4236504cf80d548990bfc0cf129a64, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionDmg: 0
-  maxHealth: 500
+  maxHealth: 49
   score: 500
   smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
   fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa61a2d136b894c9c0f6266ee7e4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSpeed: 10
+  fireSpeed: 5
   projectile: {fileID: 100000, guid: 5d50e78cc6712ce4fbd8f7de30fba884, type: 2}
   blast: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
   where:
@@ -1841,7 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionDmg: 0
-  maxHealth: 500
+  maxHealth: 40
   score: 500
   smallExplosion: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
   fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa61a2d136b894c9c0f6266ee7e4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSpeed: 10
+  fireSpeed: 5
   projectile: {fileID: 100000, guid: 5d50e78cc6712ce4fbd8f7de30fba884, type: 2}
   blast: {fileID: 100000, guid: f600b4a5a289d0548842df7f27d883ea, type: 2}
   where:
@@ -1910,7 +1910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionDmg: 0
-  maxHealth: 500
+  maxHealth: 43
   score: 500
   smallExplosion: {fileID: 100000, guid: 13266a9cf8da28e41bfa61b378dfabc5, type: 2}
   fires: {fileID: 100000, guid: 542f86e4e34b523499e0f073b1355e1a, type: 2}
