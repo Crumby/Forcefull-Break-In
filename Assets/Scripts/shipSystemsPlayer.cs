@@ -9,7 +9,7 @@ public class shipSystemsPlayer : MonoBehaviour
     public float collisionDmg, powerDrain;
     [Range(0.0F, 500.0F)]
     public int maxHealth, maxShield, maxPower;
-    public float Health { get; private set; }
+    public float Health { get; set; }
     public float Shield { get; private set; }
     public float Power { get; set; }
     public int Score
@@ -97,7 +97,7 @@ public class shipSystemsPlayer : MonoBehaviour
         Instantiate(smallExplosion, where, Quaternion.identity);
         if (!idkfa)
         {
-            if (false)
+            if (Shield - dmg <= 0)
             {
                 Shield = 0;
                 shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,

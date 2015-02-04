@@ -32,13 +32,13 @@ public class weaponRailGun : MonoBehaviour
 
     void Update()
     {
-        if (timer < fireRate/gameData.firespeedCannon)
+        if (timer < fireRate*gameData.firespeedCannon)
             timer += Time.deltaTime;
     }
 
     public void Fire()
     {
-        if (timer >= fireRate)
+        if (timer >= fireRate * gameData.firespeedCannon)
         {
             var tmp_1 = bullets[Rail];
             if (tmp_1 != null)

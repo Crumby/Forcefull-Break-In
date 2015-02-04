@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum typeOfBonus { SPEEDUP, SPEEDDOWN, IDKFA, NOSHIELD, REVERSECONSTROL, SCOREBONUS }
+public enum typeOfBonus { SPEEDUP, SPEEDDOWN, IDKFA, NOSHIELD, REVERSECONSTROL, HEALT, SCOREBONUS }
 
 public class bonusDrops : MonoBehaviour
 {
@@ -77,6 +77,11 @@ public class bonusDrops : MonoBehaviour
                 break;
             case typeOfBonus.SCOREBONUS:
                 gameData.ScoreMultiplier *= 2;
+                break;
+            case typeOfBonus.HEALT:
+                if (gameData.playerSystems.maxHealth >= gameData.playerSystems.Health + 50)
+                    gameData.playerSystems.Health += 50;
+                else gameData.playerSystems.Health = gameData.playerSystems.maxHealth;
                 break;
         }
         activated = true;

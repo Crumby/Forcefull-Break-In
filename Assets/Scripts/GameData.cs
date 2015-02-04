@@ -308,7 +308,7 @@ public class gameData : MonoBehaviour
                     break;
                 case ShopItems.CANONFIRA:
                     totalScore -= 1000;
-                    firespeedCannon += 0.25f;
+                    firespeedCannon -= 0.75f;
                     break;
                 case ShopItems.SPEED:
                     totalScore -= 1000;
