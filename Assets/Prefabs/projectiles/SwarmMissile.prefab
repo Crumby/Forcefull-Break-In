@@ -364,7 +364,7 @@ MonoBehaviour:
   forwardSpeed: 90
   destroyDmg: 50
   isPlayers: 0
-  destroyTime: 20
+  destroyTime: 10
   launch: 1
   explosion: {fileID: 100000, guid: b9dd5ecd168e0b54295932b5b107b983, type: 2}
 --- !u!1001 &100100000
