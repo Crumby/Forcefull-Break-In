@@ -193,7 +193,7 @@ public class MenusLogic : MonoBehaviour
                 {
                     case 1: StartCoroutine(LoadLevelAsync("space_2"));
                         break;
-                    case 2: StartCoroutine(LoadLevelAsync("lvl3"));
+                    case 2: StartCoroutine(LoadLevelAsync("lvl4"));
                         break;
                 }
                 break;
@@ -202,7 +202,7 @@ public class MenusLogic : MonoBehaviour
                 {
                     case 1: StartCoroutine(LoadLevelAsync("space_3"));
                         break;
-                    case 2: StartCoroutine(LoadLevelAsync("lvl4"));
+                    case 2: StartCoroutine(LoadLevelAsync("lvl5"));
                         break;
                 }
                 break;
