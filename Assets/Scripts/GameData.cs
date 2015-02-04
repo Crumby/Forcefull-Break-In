@@ -52,7 +52,7 @@ public class gameData : MonoBehaviour
     }
     public static Vector3 aimPoint { get; set; }
     public static Transform aimNavigation { get; set; }
-    public static float endOffsite { get; private set; }
+    public static float endOffsite { get; set; }
     public static float totalScore { get; set; }
     public static motionPlayer playerMotion { get; private set; }
     public static shipSystemsPlayer playerSystems { get; private set; }
@@ -67,6 +67,7 @@ public class gameData : MonoBehaviour
     [Range(0.0F, 1000.0F)]
     public float aiActivationOffsite;
     public inGameMenu menus;
+    public static bool osr = false;
     public static Difficulty difficulty = Difficulty.EASY;
     public static int gameEnded { get; set; }
     //bonuses
@@ -121,6 +122,7 @@ public class gameData : MonoBehaviour
 
     public void reset()
     {
+        gameData.osr = false;
         playerMotion = null;
         playerSystems = null;
         gameBounds = null;
@@ -166,6 +168,7 @@ public class gameData : MonoBehaviour
         }
         if (!gameData.pausedGame)
         {
+            Debug.LogError(gameEnded);
             if (gameData.gameEnded == gameEnd)
             {
                 totalScore += score;

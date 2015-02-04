@@ -39389,7 +39389,7 @@ Animator:
     type: 2}
   m_PrefabInternal: {fileID: 1542467752}
   m_GameObject: {fileID: 1267498437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: fe4236504cf80d548990bfc0cf129a64, type: 2}
   m_CullingMode: 0
@@ -52478,6 +52478,10 @@ Prefab:
     - target: {fileID: 445580, guid: f395a97484b32bb45b9e63ddc124b2c0, type: 2}
       propertyPath: m_LocalRotation.w
       value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 9587894, guid: f395a97484b32bb45b9e63ddc124b2c0, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f395a97484b32bb45b9e63ddc124b2c0, type: 2}
@@ -67617,6 +67621,10 @@ Prefab:
       propertyPath: endOff
       value: 2500
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
+      propertyPath: gameEnd
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
   m_RootGameObject: {fileID: 586200811}
@@ -68568,7 +68576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDelay: 2
-  gameEnd: 1
+  gameEnd: 3
   endOff: 2500
   bounds: {fileID: 43592954}
   aiActivationOffsite: 500

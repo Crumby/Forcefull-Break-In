@@ -7,10 +7,10 @@ public class aiBoss2 : MonoBehaviour
     public basicEnemySystems[] subparts;
     public GameObject endExplosion;
     public Transform[] explosionPositions;
-    private Animator anim;
+    private Animator anim = null;
     [HideInInspector]
     public bool animEnded = false;
-    private bool ening = false;
+    private bool ening = false, tmp = false;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -37,14 +37,22 @@ public class aiBoss2 : MonoBehaviour
                         var exp = (GameObject)Instantiate(endExplosion, pos.position, Quaternion.identity);
                         exp.transform.parent = transform;
                     }
-                    anim.SetBool("run", true);
+                    if (anim.enabled)
+                        anim.SetBool("run", true);
+                    else
+                        animEnded = true;
                     ening = true;
                 }
             }
-            else
+            else if (!tmp)
             {
-                anim.SetBool("run", false);
+                if (anim.enabled)
+                    anim.SetBool("run", false);
+                else
+                    gameData.osr = true;
                 gameData.gameEnded++;
+                gameData.endOffsite = 0;
+                tmp = true;
             }
 
         }
