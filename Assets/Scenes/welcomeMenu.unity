@@ -2891,7 +2891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0100000000
+  LevelsLock: 0101
   PlanetName: 0
   SelectedLevel: 1
 --- !u!1 &437409783
@@ -4184,7 +4184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0100000000
+  LevelsLock: 0101
   PlanetName: 3
   SelectedLevel: 1
 --- !u!1 &650549099
@@ -5152,7 +5152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0100000000
+  LevelsLock: 0101
   PlanetName: 1
   SelectedLevel: 1
 --- !u!1 &871947148
@@ -8193,7 +8193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd1bd1d7d1a95043a5de2f981a3a0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelsLock: 0100000000
+  LevelsLock: 0101
   PlanetName: 2
   SelectedLevel: 1
 --- !u!114 &1438702413

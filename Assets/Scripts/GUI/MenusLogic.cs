@@ -29,7 +29,8 @@ public class MenusLogic : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        initGame();
+        if (MenuScreen.NONE == loadedScreen)
+            initGame();
         if (loadedScreen == MenuScreen.LEVEL)
         {
             welcomeSC.SetActive(false);
@@ -63,6 +64,16 @@ public class MenusLogic : MonoBehaviour
         gameData.bonusSpeed = 0;
         gameData.ultiDerease = 1;
         gameData.totalScore = 0;
+        levelsLocks = new bool[planets.Length][];
+        for (int i = 0; i < planets.Length; i++)
+        {
+            levelsLocks[i] = new bool[planets[i].LevelsLock.Length];
+            for (int l = 0; l < planets[i].LevelsLock.Length; l++)
+            {
+                levelsLocks[i][l] = planets[i].LevelsLock[l];
+            }
+        }
+        selectedPlanet.SelectedLevel = 1;
         ReloadTotalScore();
     }
 
@@ -160,16 +171,40 @@ public class MenusLogic : MonoBehaviour
         switch (selectedPlanet.PlanetName)
         {
             case PlanetNames.Garuz:
-                StartCoroutine(LoadLevelAsync("space_0"));
+                switch (selectedPlanet.SelectedLevel)
+                {
+                    case 1: StartCoroutine(LoadLevelAsync("space_0"));
+                        break;
+                    case 2: StartCoroutine(LoadLevelAsync("lvl2"));
+                        break;
+                }
                 break;
             case PlanetNames.Figil:
-                StartCoroutine(LoadLevelAsync("space_2"));
+                switch (selectedPlanet.SelectedLevel)
+                {
+                    case 1: StartCoroutine(LoadLevelAsync("space_1"));
+                        break;
+                    case 2: StartCoroutine(LoadLevelAsync("lvl3"));
+                        break;
+                }
                 break;
             case PlanetNames.Prezz:
-                StartCoroutine(LoadLevelAsync("space_1"));
+                switch (selectedPlanet.SelectedLevel)
+                {
+                    case 1: StartCoroutine(LoadLevelAsync("space_2"));
+                        break;
+                    case 2: StartCoroutine(LoadLevelAsync("lvl3"));
+                        break;
+                }
                 break;
             case PlanetNames.Bcolg:
-                StartCoroutine(LoadLevelAsync("space_3"));
+                switch (selectedPlanet.SelectedLevel)
+                {
+                    case 1: StartCoroutine(LoadLevelAsync("space_3"));
+                        break;
+                    case 2: StartCoroutine(LoadLevelAsync("lvl4"));
+                        break;
+                }
                 break;
             default:
                 break;
@@ -257,7 +292,7 @@ public class MenusLogic : MonoBehaviour
 
     public void buyBonus()
     {
-        ReloadTotalScore();
         gameData.Upgrade(SelectedBonus);
+        ReloadTotalScore();
     }
 }
