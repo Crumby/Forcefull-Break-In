@@ -11,6 +11,8 @@ public class basicEnemySystems : MonoBehaviour
     public int health { get; set; }
     public GameObject smallExplosion, fires, destroyExplosion;
     public Transform[] endEplosionPos;
+    [HideInInspector]
+    public bool imortal = false;
 
     // Use this for initialization
     void Start()
@@ -21,9 +23,12 @@ public class basicEnemySystems : MonoBehaviour
     public bool recieveDmg(float dmg, Vector3 where)
     {
         Instantiate(smallExplosion, where, Quaternion.identity);
-        if (dmg >= health && health > 0)
-            destroyEnemy();
-        health -= Mathf.CeilToInt(dmg);
+        if (!imortal)
+        {
+            if (dmg >= health && health > 0)
+                destroyEnemy();
+            health -= Mathf.CeilToInt(dmg);
+        }
         return health > 0;
     }
 

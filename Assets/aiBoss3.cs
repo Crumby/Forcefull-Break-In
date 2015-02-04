@@ -11,12 +11,15 @@ public class aiBoss3 : MonoBehaviour
     public Transform endPointL, endPointR;
     private int hpFreze = -1;
     private bool moveSwitch = false;
-    
+    private float rotHlp = 0;
+    public GameObject explosion;
+    public Transform where;
+
     // Use this for initialization
     void Start()
     {
         hpFreze = bigCannon.maxHealth;
-        bigCannon.health = int.MaxValue;
+        bigCannon.imortal = true;
     }
 
     // Update is called once per frame
@@ -27,18 +30,20 @@ public class aiBoss3 : MonoBehaviour
             var hlp = Quaternion.LookRotation(transform.position - gameData.playerPosition, Vector3.up);
             if (smallCanon.health > 0)
             {
-                Debug.LogError(hlp.eulerAngles.y + " " + smallCanon.gameObject.transform.localEulerAngles.y);
-                if (hlp.eulerAngles.y < 180 && (smallCanon.gameObject.transform.localEulerAngles.y < 180 || smallCanon.gameObject.transform.localEulerAngles.y > 358.5f) && hlp.eulerAngles.y > smallCanon.gameObject.transform.localEulerAngles.y)
-                    smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), 20 * Time.deltaTime, Space.Self);
-                else if (hlp.eulerAngles.y < 180 && (smallCanon.gameObject.transform.localEulerAngles.y < 180 || smallCanon.gameObject.transform.localEulerAngles.y > 359f) && hlp.eulerAngles.y < smallCanon.gameObject.transform.localEulerAngles.y)
-                    smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), -20 * Time.deltaTime, Space.Self);
-                else if (hlp.eulerAngles.y > 180 && (smallCanon.gameObject.transform.localEulerAngles.y > 180 || smallCanon.gameObject.transform.localEulerAngles.y < 1.5f) && hlp.eulerAngles.y > smallCanon.gameObject.transform.localEulerAngles.y)
-                    smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), 20 * Time.deltaTime, Space.Self);
-                else if (hlp.eulerAngles.y > 180 && (smallCanon.gameObject.transform.localEulerAngles.y > 180 || smallCanon.gameObject.transform.localEulerAngles.y < 1.5f) && hlp.eulerAngles.y < smallCanon.gameObject.transform.localEulerAngles.y)
-                    smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), -20 * Time.deltaTime, Space.Self);
-                else smallCanon.gameObject.transform.rotation = Quaternion.identity;
+                if (hlp.eulerAngles.y < 180)
+                {
+                    if (rotHlp < hlp.eulerAngles.y)
+                        smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), 20 * Time.deltaTime, Space.Self);
+                    else if (rotHlp > hlp.eulerAngles.y)
+                        smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), -20 * Time.deltaTime, Space.Self);
+                }
+                else if (hlp.eulerAngles.y > 180)
+                    if (rotHlp < hlp.eulerAngles.y)
+                        smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), 20 * Time.deltaTime, Space.Self);
+                    else if (rotHlp > hlp.eulerAngles.y)
+                        smallCanon.gameObject.transform.Rotate(new Vector3(0, 0, 1), -20 * Time.deltaTime, Space.Self);
+                rotHlp = hlp.eulerAngles.y;
 
-                
                 if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
                     small_0.Fire(gameData.playerPosition);
                 if (Random.Range(0, 150) % (60 / (int)gameData.difficulty) == 0)
@@ -57,8 +62,6 @@ public class aiBoss3 : MonoBehaviour
             }
             if (smallCanon.health > 0 || bigCannon.health > 0)
             {
-                //movecannon
-                Debug.Log(moveSwitch);
                 if (moveSwitch)
                     if (transform.position.x < endPointR.position.x)
                         transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
@@ -67,14 +70,18 @@ public class aiBoss3 : MonoBehaviour
                     if (transform.position.x > endPointL.position.x)
                         transform.Translate(0, 0, -speed * Time.deltaTime, Space.Self);
                     else moveSwitch = !moveSwitch;
-
             }
             if (hpFreze != -1 && smallCanon.health <= 0)
             {
-                bigCannon.health = hpFreze;
-                hpFreze = 0;
+                bigCannon.imortal = false;
+                hpFreze = -1;
             }
-            else if (smallCanon.health <= 0 && bigCannon.health <= 0) gameData.gameEnded++;
+            else if (smallCanon.health <= 0 && bigCannon.health <= 0)
+            {
+                if (gameData.gameEnded == 1)
+                    Instantiate(explosion, where.position, Quaternion.identity);
+                gameData.gameEnded++;
+            }
         }
     }
 }

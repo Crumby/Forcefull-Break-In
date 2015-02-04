@@ -7,7 +7,7 @@ public class weaponBigBossCanon : MonoBehaviour
     public GameObject projectile;
     public GameObject explosion;
     public Transform[] whereL, whereR;
-    private float miss = 50;
+    private float miss = 500;
 
     public void Fire(Vector3 to)
     {

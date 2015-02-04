@@ -12,9 +12,14 @@ public class weaponPower_0 : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<motionEnemy>() != null||
+        if ((collision.gameObject.GetComponent<motionEnemy>() != null||
             collision.gameObject.GetComponent<motionProjectile>() != null||
-            collision.gameObject.GetComponent<aiMeteor>() != null)
+            collision.gameObject.GetComponent<aiMeteor>() != null
+            ) && collision.gameObject.GetComponent<aiBoss2>() == null
+             && collision.gameObject.GetComponent<aiBoss3>() == null
+             && collision.gameObject.GetComponent<aiBoss2Cannon>() == null
+             && collision.gameObject.GetComponent<weaponBigBossCanon>() == null
+             && collision.gameObject.GetComponent<weaponRocketsLauncherBoss>() == null)
         {
             Destroy(collision.gameObject);
             gameData.score = hitScore;

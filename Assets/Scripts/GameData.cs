@@ -172,11 +172,10 @@ public class gameData : MonoBehaviour
                 string n = Application.loadedLevelName;
                 if (n == "space_0" || n == "space_1" || n == "space_2" || n == "space_3")
                     MenusLogic.stageCompleted = true;
-                Debug.LogError(n+" "+gameData.totalScore);
+                gameEnd++;
                 menus.showClearedStage();
                 StartCoroutine(endRound());
                 StartCoroutine(endRound());
-                gameEnd++;
             }
         }
     }
