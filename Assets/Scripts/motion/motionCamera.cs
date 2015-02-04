@@ -41,10 +41,10 @@ public class motionCamera : MonoBehaviour
         {
             if (gameData.gameBounds !=null&& gameData.gameBounds.collider.bounds.max.z - gameData.endOffsite > transform.position.z - gameData.cameraOffsite.z)
                 transform.Translate(Vector3.forward * gameData.forwardSpeed * Time.deltaTime, Space.World);
-            moveLeft(gameData.horizontalSpeed);
-            moveRight(gameData.horizontalSpeed);
-            moveUp(gameData.verticalSpeed);
-            moveDown(gameData.verticalSpeed);
+            moveLeft(gameData.horizontalSpeed+gameData.bonusSpeed);
+            moveRight(gameData.horizontalSpeed + gameData.bonusSpeed);
+            moveUp(gameData.verticalSpeed + gameData.bonusSpeed);
+            moveDown(gameData.verticalSpeed + gameData.bonusSpeed);
         }
     }
 }

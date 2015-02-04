@@ -24,6 +24,8 @@ public class MenusLogic : MonoBehaviour
     public static ShopItems SelectedBonus;
     public static bool stageCompleted = false;
     public loadingScrren loadingScreen;
+    public Button shOff, shOn;
+    public GameObject shPanel, levelCh;
     // Use this for initialization
     void Start()
     {
@@ -48,6 +50,52 @@ public class MenusLogic : MonoBehaviour
             LevelPanelMove(initValue);
         }
         ReloadTotalScore();
+    }
+
+    public void setNewGame()
+    {
+        gameData.bonusShields = 0;
+        gameData.bonusShieldRegen = 0;
+        gameData.bonusHP = 0;
+        gameData.bonusDmgMissise = 0;
+        gameData.bonusDmgCannon = 0;
+        gameData.firespeedCannon = 1;
+        gameData.bonusSpeed = 0;
+        gameData.ultiDerease = 1;
+        gameData.totalScore = 0;
+        ReloadTotalScore();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            switch (loadedScreen)
+            {
+                case MenuScreen.WELCOME:
+                    PeriodicSave();
+                    QuitGame();
+                    break;
+                case MenuScreen.LEVEL:
+                    if (shPanel.activeSelf)
+                    {
+                        shPanel.SetActive(false);
+                        levelCh.SetActive(true);
+                        shOff.gameObject.SetActive(true);
+                        shOn.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        PeriodicSave();
+                        levelSC.SetActive(false);
+                        welcomeSC.SetActive(true);
+                        loadedScreen = MenuScreen.WELCOME;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void initGame()
@@ -105,10 +153,6 @@ public class MenusLogic : MonoBehaviour
             planetName.text = selectedPlanet.PlanetName.ToString();
         SelectedPlanet = selectedPlanet.PlanetName;
         updateStage();
-    }
-
-    private void unlockStage(PlanetEntity planet)
-    {
     }
 
     public void LoadLevel()
@@ -211,7 +255,9 @@ public class MenusLogic : MonoBehaviour
         totalScore.text = gameData.totalScore.ToString();
     }
 
-    public void buyBonus() {
+    public void buyBonus()
+    {
+        ReloadTotalScore();
         gameData.Upgrade(SelectedBonus);
     }
 }

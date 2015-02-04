@@ -53,7 +53,7 @@ public class gameData : MonoBehaviour
     public static Vector3 aimPoint { get; set; }
     public static Transform aimNavigation { get; set; }
     public static float endOffsite { get; private set; }
-    public static float totalScore { get; private set; }
+    public static float totalScore { get; set; }
     public static motionPlayer playerMotion { get; private set; }
     public static shipSystemsPlayer playerSystems { get; private set; }
     public static gameData nonStatic { get; private set; }
@@ -67,7 +67,7 @@ public class gameData : MonoBehaviour
     [Range(0.0F, 1000.0F)]
     public float aiActivationOffsite;
     public inGameMenu menus;
-    public static Difficulty difficulty=Difficulty.EASY;
+    public static Difficulty difficulty = Difficulty.EASY;
     public static int gameEnded { get; set; }
     //bonuses
     public static float bonusShields = 0, bonusShieldRegen = 0, bonusHP = 0, bonusDmgMissise = 0, bonusDmgCannon = 0, firespeedCannon = 1, bonusSpeed = 0, ultiDerease = 1;
@@ -176,6 +176,8 @@ public class gameData : MonoBehaviour
 
     private IEnumerator endRound()
     {
+        totalScore += score;
+        menus.stageCleared = true;
         menus.showClearedStage();
         gameData.PauseGame();
         yield return new WaitForSeconds(5);
@@ -197,7 +199,7 @@ public class gameData : MonoBehaviour
         var obj = new UnityEngine.SaveData();
         obj.difficulty = difficulty;
         obj.volume = AudioListener.volume;
-        obj.score = totalScore + score;
+        obj.score = totalScore;
         obj.planets = MenusLogic.levelsLocks;
         obj.bonusShields = bonusShields;
         obj.bonusShieldRegen = bonusShieldRegen;
@@ -287,27 +289,35 @@ public class gameData : MonoBehaviour
             {
                 case ShopItems.HP:
                     bonusHP += 50;
+                    totalScore -= 1000;
                     break;
                 case ShopItems.SHIELD:
                     bonusShields += 50;
+                    totalScore -= 1000;
                     break;
                 case ShopItems.SHREGEN:
+                    totalScore -= 1000;
                     bonusShieldRegen += 2;
                     break;
                 case ShopItems.MISLISEDMG:
+                    totalScore -= 1000;
                     bonusDmgMissise += 20;
                     break;
                 case ShopItems.CANNONDMG:
+                    totalScore -= 1000;
                     bonusDmgCannon += 3;
                     break;
                 case ShopItems.CANONFIRA:
+                    totalScore -= 1000;
                     firespeedCannon += 0.25f;
                     break;
                 case ShopItems.SPEED:
+                    totalScore -= 1000;
                     bonusSpeed += 35;
                     break;
                 case ShopItems.ULTI:
-                    ultiDerease += 0.20f;
+                    totalScore -= 1000;
+                    ultiDerease -= 0.20f;
                     break;
             }
     }

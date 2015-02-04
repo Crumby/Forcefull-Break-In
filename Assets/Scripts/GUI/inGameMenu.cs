@@ -71,8 +71,13 @@ public class inGameMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            showMenu();
-            gameData.PauseGame();
+            if (optionsMenu.activeSelf)
+                optionsMenu.SetActive(false);
+            else
+            {
+                showMenu();
+                gameData.PauseGame();
+            }
         }
     }
     public void SoundVolume(float val)

@@ -40,7 +40,7 @@ public class shipSystemsPlayer : MonoBehaviour
     {
         if (Power > 0)
         {
-            Power -= powerDrain/gameData.ultiDerease * Time.deltaTime;
+            Power -= (powerDrain*gameData.ultiDerease) * Time.deltaTime;
             if (Power < 0)
                 Power = 0;
             if (Power > maxPower)
