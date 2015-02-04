@@ -1461,7 +1461,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1002.0498, y: 358.531616, z: 5981.55762}
+  m_Size: {x: 1002.0498, y: 358.531616, z: 5993.54004}
   m_Center: {x: 500.525146, y: 94.024353, z: 860.577148}
 --- !u!4 &43592956
 Transform:
@@ -1474,7 +1474,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &44027293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,6 +6697,7 @@ MonoBehaviour:
   - {fileID: 1998900579}
   - {fileID: 1976397006}
   - {fileID: 446470532}
+  imortal: 0
 --- !u!65 &171084879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18765,6 +18766,7 @@ MonoBehaviour:
   - {fileID: 1949099111}
   - {fileID: 522221952}
   - {fileID: 422571036}
+  imortal: 0
 --- !u!65 &575532137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19044,7 +19046,7 @@ Transform:
   - {fileID: 688087017}
   - {fileID: 1044533828}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &587128366
 GameObject:
   m_ObjectHideFlags: 0
@@ -20913,6 +20915,7 @@ MonoBehaviour:
   - {fileID: 1718747888}
   - {fileID: 1264472882}
   - {fileID: 825811255}
+  imortal: 0
 --- !u!54 &657724642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31541,6 +31544,7 @@ MonoBehaviour:
   - {fileID: 1014000706}
   - {fileID: 593804048}
   - {fileID: 1935264930}
+  imortal: 0
 --- !u!65 &971869127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35461,6 +35465,7 @@ MonoBehaviour:
   - {fileID: 1806944090}
   - {fileID: 936682193}
   - {fileID: 784558584}
+  imortal: 0
 --- !u!65 &1089401732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36833,6 +36838,7 @@ MonoBehaviour:
   - {fileID: 1974229887}
   - {fileID: 1339461654}
   - {fileID: 1067201678}
+  imortal: 0
 --- !u!65 &1165358536
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38845,7 +38851,7 @@ Transform:
   - {fileID: 1911378835}
   - {fileID: 1518169338}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!95 &1267498439
 Animator:
   serializedVersion: 3
@@ -40237,6 +40243,7 @@ MonoBehaviour:
   - {fileID: 97419869}
   - {fileID: 670349078}
   - {fileID: 714684350}
+  imortal: 0
 --- !u!65 &1273606180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41086,6 +41093,7 @@ MonoBehaviour:
   - {fileID: 1786902389}
   - {fileID: 742625864}
   - {fileID: 2130007993}
+  imortal: 0
 --- !u!65 &1288870788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51479,7 +51487,7 @@ Transform:
   - {fileID: 657724640}
   - {fileID: 1619634887}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1539768217
 GameObject:
   m_ObjectHideFlags: 0
@@ -53919,6 +53927,7 @@ MonoBehaviour:
   - {fileID: 1329932510}
   - {fileID: 93844546}
   - {fileID: 940194222}
+  imortal: 0
 --- !u!65 &1619634890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54884,6 +54893,7 @@ MonoBehaviour:
   - {fileID: 165439368}
   - {fileID: 595310643}
   - {fileID: 742638371}
+  imortal: 0
 --- !u!65 &1667499713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55746,6 +55756,7 @@ MonoBehaviour:
   - {fileID: 817933247}
   - {fileID: 1138171760}
   - {fileID: 1522683738}
+  imortal: 0
 --- !u!65 &1689349569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58933,6 +58944,7 @@ MonoBehaviour:
   - {fileID: 1498750203}
   - {fileID: 820962871}
   - {fileID: 211146081}
+  imortal: 0
 --- !u!65 &1815744834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59601,6 +59613,7 @@ MonoBehaviour:
   - {fileID: 318799133}
   - {fileID: 1174965456}
   - {fileID: 883854813}
+  imortal: 0
 --- !u!65 &1849560351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61117,6 +61130,7 @@ MonoBehaviour:
   - {fileID: 213689738}
   - {fileID: 1855625793}
   - {fileID: 327726879}
+  imortal: 0
 --- !u!64 &1888098482
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -62076,6 +62090,7 @@ MonoBehaviour:
   - {fileID: 205034492}
   - {fileID: 509165385}
   - {fileID: 503523405}
+  imortal: 0
 --- !u!64 &1911378837
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -66629,6 +66644,10 @@ Prefab:
       propertyPath: verticalSpeed
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
+      propertyPath: endOff
+      value: 2500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d254c1e61df481f45b049b85a90b2e60, type: 2}
   m_RootGameObject: {fileID: 586200811}
@@ -67581,7 +67600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDelay: 2
   gameEnd: 1
-  endOff: 50
+  endOff: 2500
   bounds: {fileID: 43592954}
   aiActivationOffsite: 500
   menus: {fileID: 1044533829}
@@ -67753,6 +67772,7 @@ MonoBehaviour:
   - {fileID: 2035840721}
   - {fileID: 2109097669}
   - {fileID: 1488340283}
+  imortal: 0
 --- !u!64 &2065383002
 MeshCollider:
   m_ObjectHideFlags: 0

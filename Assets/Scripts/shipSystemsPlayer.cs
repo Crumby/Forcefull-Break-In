@@ -97,7 +97,7 @@ public class shipSystemsPlayer : MonoBehaviour
         Instantiate(smallExplosion, where, Quaternion.identity);
         if (!idkfa)
         {
-            if (Shield - dmg <= 0)
+            if (false)
             {
                 Shield = 0;
                 shieldTexture.rectTransform.localScale = new Vector3(shieldTexture.rectTransform.localScale.x,
