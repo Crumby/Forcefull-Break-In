@@ -177,7 +177,7 @@ public class gameData : MonoBehaviour
     private IEnumerator endRound()
     {
         totalScore += score;
-        menus.stageCleared = true;
+        MenusLogic.stageCompleted= true;
         menus.showClearedStage();
         gameData.PauseGame();
         yield return new WaitForSeconds(5);
