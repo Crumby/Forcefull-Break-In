@@ -67,7 +67,7 @@ public class gameData : MonoBehaviour
     [Range(0.0F, 1000.0F)]
     public float aiActivationOffsite;
     public inGameMenu menus;
-    public static Difficulty difficulty { get; set; }
+    public static Difficulty difficulty=Difficulty.EASY;
     public static int gameEnded { get; set; }
     //bonuses
     public static float bonusShields = 0, bonusShieldRegen = 0, bonusHP = 0, bonusDmgMissise = 0, bonusDmgCannon = 0, firespeedCannon = 1, bonusSpeed = 0, ultiDerease = 1;
